@@ -1,9 +1,9 @@
-PWD /home/javier/Desktop/TESIS/Plantilla Tesis
+PWD /home/javier/Desktop/TESIS/Tesis Latex
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/javier/Desktop/TESIS/Plantilla Tesis/Thesis.tex
+INPUT /home/javier/Desktop/TESIS/Tesis Latex/Thesis.tex
 OUTPUT Thesis.log
 INPUT uhthesis.cls
 INPUT uhthesis.cls
@@ -92,10 +92,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg
-INPUT /usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
@@ -122,6 +118,12 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/mathpazo.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/mathpazo.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 OUTPUT Thesis.nlo
 INPUT Thesis.aux
 INPUT Thesis.aux
@@ -214,11 +216,30 @@ INPUT MainMatter/Introduction.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8t.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
+INPUT Graphics/PitchFX_1.jpg
+INPUT ./Graphics/PitchFX_1.jpg
+INPUT ./Graphics/PitchFX_1.jpg
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
+INPUT Graphics/HawkEye_1.jpg
+INPUT ./Graphics/HawkEye_1.jpg
+INPUT ./Graphics/HawkEye_1.jpg
+INPUT Graphics/SportLive_1.jpg
+INPUT ./Graphics/SportLive_1.jpg
+INPUT ./Graphics/SportLive_1.jpg
+INPUT Graphics/K-Zone_1.jpg
+INPUT ./Graphics/K-Zone_1.jpg
+INPUT ./Graphics/K-Zone_1.jpg
+INPUT Graphics/PlayStation-Eye.jpg
+INPUT ./Graphics/PlayStation-Eye.jpg
+INPUT ./Graphics/PlayStation-Eye.jpg
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplro8t.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplr8t.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8t.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 OUTPUT MainMatter/Background.aux

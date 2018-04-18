@@ -5,7 +5,114 @@
 \addcontentsline{toc}{chapter}{Introducción}
 %===================================================================================
 
+Se dice que los deportes son el pegamento social de la sociedad. Permite a las
+personas interactuar independientemente de su estatus social, edad, etc. Con el
+auge de los medios de comunicación, se ha canalizado una cantidad significativa
+de recursos hacia los deportes para mejorar la comprensión, el rendimiento y la
+presentación. Por ejemplo, áreas como la evaluación del rendimiento, que antes
+eran principalmente de interés para entrenadores y científicos deportivos, ahora
+encuentran aplicaciones en medios de difusión y otros medios, impulsadas por el
+uso cada vez mayor de la visualización de deportes en línea, que proporciona una
+forma de realizar todo tipo de estadísticas de actuaciones disponibles para los
+espectadores. La visión por computadora ha comenzado recientemente a desempeñar
+un papel importante en los deportes, como se ve, por ejemplo, en el fútbol, donde
+los gráficos basados en la visión por computadora en tiempo real mejoran diferentes
+aspectos del juego.
+
+Los algoritmos de visión por computadora tienen un gran potencial en muchos aspectos
+de los deportes, que van desde la anotación automática de secuencias retransmitidas,
+hasta una mejor comprensión de las lesiones deportivas y una mejor visualización.
+Hasta ahora, el uso de la visión por computadora en los deportes se ha diseminado
+entre diferentes disciplinas.
+
+En el mundo de los deportes se ha tratado continuamente de desarrollar técnicas
+de perfeccionamiento, tanto para satisfacer necesidades de los jugadores como
+de los árbitros que en estos participan. Existen varios acercamientos a la hora de
+desarrollar estas técnicas, por ejemplo, en el campo tecnológico se han
+desarrollado diversas variantes como la implementación de accesorios o la de
+sistemas computacionales. Dentro de los sistemas computacionales se han
+realizado varios intentos de mejorar la precisión con que los árbitros inciden en el
+juego, para así hacer un poco más de justicia por decirlo de alguna forma.
+
+Recientemente se han lanzado al mercado varios productos para mejorar la
+precisión de los árbitros. Tanto es así que en varios deportes en la actualidad ya
+se hace uso de estas tecnologías, como es el caso del béisbol, el fútbol, el tenis,
+el voleibol, el fútbol americano o fútbol Rugby, entre otros que se han ido sumando
+a esta lista.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/PitchFX_1.jpg}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/HawkEye_1.jpg}
+		\caption{}
+	\end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/SportLive_1.jpg}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth, height=3.5cm]{Graphics/K-Zone_1.jpg}
+        \caption{}
+    \end{subfigure}
+    \caption{Tecnologías más usadas: (a) PITCHf/x, (b) Ojo de Halcón, (c) Sport Live, (d) K-Zone.}
+	\label{fig:technologys}
+\end{figure}
+
+Estos sistemas usan entre 7 y 10 cámaras conectadas entre sí para poder obturar
+en el mismo instante de tiempo, esto produce una alta eficiencia y una gran
+precisión a la hora de ubicar en el espacio a cualquier objeto que en este se
+encuentre. Cada una de estas cámaras son de una alta calidad por lo que tienen
+un elevado precio en el mercado que oscila entre 3000 y 5000usd. Todo esto hace
+que instalar estos sistemas en un estadio sea extremadamente costoso con
+montos que superan los 50 000usd. Existe otro pequeño grupo de cámaras de
+una calidad considerable pero que, sin embargo, son de muy bajo costo, por
+ejemplo, la cámara PlayStation Eye.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{Graphics/PlayStation-Eye.jpg}
+    \caption{Cámara PlayStation Eye.}
+\end{figure}
+
+La cámara PlayStation Eye se lanzó al mercado en sus inicios con un precio de
+20usd, en estos momentos ese precio es de 5usd, esta cámara es capaz de
+capturar hasta 120 cuadros por segundo, a diferencia de las cámaras web
+regulares que solo captan 30 cuadros por segundo. Además, cuenta con un
+chipset de alta calidad comparable con los encontrados en muchas cámaras
+dedicadas a la visión por computadora. Esto combinado con su bajo costo la
+convierte en una gran opción a la hora de tomar en cuenta cual dispositivo utilizar
+para realizar un sistema computacional basado en visión por computadora.
+Debido a lo anterior nos hemos planteado si será posible determinar en tiempo
+real y con un error de precisión mínimo si un lanzamiento de un pitcher de béisbol
+fue strike o bola utilizando una sola cámara PlayStation Eye. Para esto se diseñará
+una herramienta que nos permita colocar dicha cámara a tres metros encima del
+Home Plate para poder determinar con mayor exactitud la trayectoria de la pelota.
+
 \subsection*{Objetivos}
+
+Atendiendo al alto costo de los sistemas ya existentes y los limitados recursos que
+posee nuestro país, se propone como objetivo principal desarrollar una aplicación
+que permita determinar si un lanzamiento de un pitcher de béisbol
+fue strike o bola mediante técnicas de visión por computadora utilizando una única
+cámara PlayStation Eye.
+
+A continuación, se enumeran los siguientes objetivos específicos:
+\begin{itemize}
+    \item {Probar técnicas para la eliminación de ruido en tiempo real dada una secuencia de
+            imagenes capturadas por la cámara.}
+    \item {Determinar si en una imagen se encuentra el Home Plate.}
+    \item {Ubicar los 5 puntos del Home Plate en la imagen.}
+    \item {Transformar la imagen brindada por la cámara a una vista top view.}
+    \item {Determinar si en una imagen se encuentra la pelota.}
+    \item {Determinar la trayectoria de la pelota en una secuencia de imagenes.}
+    \item {Determinar si el lanzamiento fue strike o no, así como la velocidad del lanzamiento.}
+    \item {Obtener datos estadísticos que permitan determinar la precisión y la
+            velocidad de un pitcher después de un conjunto de lanzamientos.}
+\end{itemize}
 
 \subsection*{Contribuciones}
 
