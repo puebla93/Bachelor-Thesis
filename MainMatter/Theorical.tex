@@ -1,23 +1,45 @@
 \chapter{Marco Teórico}\label{chapter:theorical}
 
-El objetivo principal de este trabajo es desarrollar un sistema, que permita conocer en tiempo real, si un lanzamiento de un pitcher de béisbol fue strike o bola utilizando una única cámara PlayStation Eye. Es válido señalar que el sistema utilizará una única cámara, ya que los sistemas existentes en su gran mayoría utilizan cámaras estereoscópicas. La información que brinda el sistema en cada lanzamiento, es si este fue strike o bola, así como su velocidad, pudiendo establecer con esta información varios datos estadísticos con respecto al comportamiento del pitcher luego de un conjunto de lanzamientos.
+El objetivo principal de este trabajo es desarrollar un sistema que permita conocer en tiempo real si un lanzamiento de un pitcher de béisbol fue strike o bola utilizando una única cámara PlayStation Eye. Es válido señalar que el sistema utilizará una única cámara, puesto que los sistemas existentes en su gran mayoría utilizan cámaras estereoscópicas. La información que brinda el sistema en cada lanzamiento consiste en definir si este fue strike o bola, así como su velocidad, pudiendo establecer con esta información varios datos estadísticos con respecto al comportamiento del pitcher luego de un conjunto de lanzamientos.
 
-Para comprender la solución que propone en este trabajo se enumeran las tres etapas en que se dividió el proceso de caracterización de un lanzamiento:
+Para comprender la solución que se propone en este trabajo se enumeran las tres etapas en que se dividió el proceso de caracterización de un lanzamiento:
 
 \begin{itemize}
     \item Obtención de los cinco puntos que describen el Home Plate.
-    \item Computar la matriz de tranformación del la imagen a una vista top-view.
+    \item Computar la matriz de tranformación de la imagen a una vista top-view.
     \item Detección de la pelota en la imagen.
     \item Modelación de la trayectoria de la pelota.
 \end{itemize}
 
-A lo largo de este capítulo se pretende describir el fundamento teórico y los principales algorítmos utilizados en cada etapa.
+A lo largo de este capítulo se pretende describir el fundamento teórico y los principales algoritmos utilizados en cada etapa.
 
 \section{Eliminación de ruido}
 
-En todos los sistemas de procesamiento debemos considerar qué parte de la señal detectada puede considerarse verdadera y qué tanto está asociada con los eventos de fondo aleatorios resultantes del proceso de detección o transmisión. Estos eventos aleatorios se clasifican bajo el tema general de ruido. Este ruido puede ser el resultado de una amplia variedad de fuentes, incluyendo la naturaleza discreta de la radiación, variación en la sensibilidad del detector, efectos de granos fotográficos, errores de transmisión de datos, propiedades de sistemas de imágenes como turbulencia de aire o gotas de agua y errores de cuantificación de imágenes. En cada caso, las propiedades del ruido son diferentes, al igual que las operaciones de procesamiento de imágenes que se pueden aplicar para reducir sus efectos \cite{topic5}. En esta sección, bindaremos una breve descripción de varios modelos de ruido, las diferentes fuentes responsables de producir estos ruidos y los diferentes tipos de filtros que se utilizan para eliminarlo \cite{MandarMeghana}.
+La eliminación de ruido en imágenes es una tarea vital de procesamiento de imágenes, como un proceso en sí mismo o como un componente en otros procesos \cite{PawanManojSumitAshok}. En todos los sistemas de procesamiento debemos considerar qué parte de la señal detectada puede considerarse verdadera y qué tanto está asociada con los eventos de fondo aleatorios resultantes del proceso de detección o transmisión. Estos eventos aleatorios se clasifican bajo el tema general de ruido. Este ruido puede ser el resultado de una amplia variedad de fuentes, incluyendo la naturaleza discreta de la radiación, variación en la sensibilidad del detector, efectos de granos fotográficos, errores de transmisión de datos, propiedades de sistemas de imágenes como turbulencia de aire o gotas de agua y errores de cuantificación de imágenes. En cada caso, las propiedades del ruido son diferentes, al igual que las operaciones de procesamiento de imágenes que se pueden aplicar para reducir sus efectos \cite{topic5}. En esta sección, bindaremos una breve descripción de varios modelos de ruido \cite{AjayBrijendra} y los diferentes tipos de filtros que se utilizan para eliminarlo \cite{MandarMeghana}\cite{PawanManojSumitAshok}.
 
-La eliminación de ruidos de imágenes es una tarea vital de procesamiento de imágenes, como un proceso en sí mismo o como un componente en otros procesos. Hay muchas maneras de eliminar el ruido de una imagen o existen un conjunto de datos y métodos para ello \cite{PawanSumit}\cite{MandarMeghana}. La propiedad mas importante de un buen modelo de eliminación de ruidos en imágenes\cite{AjayBrijendra} es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes. Tradicionalmente, hay dos tipos de modelos, modelo lineal y modelo no lineal, generalmente, se usan los modelos lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen. Por otro lado, los modelos no lineales pueden manejar los bordes de una manera mucho mejor que los modelos lineales \cite{PawanSumit}.
+\subsection{Ruido}
+
+Podemos considerar que una imagen degradada puede ser modelada de la siguiente manera:
+$$g(x, y) = f(x, y) - \eta(x, y),$$
+donde $f(x, y)$ es el píxel de la imagen original, $\eta(x, y)$ es el término de ruido, el cual se considera que es una señal esporádica y aleatoria y $g(x, y)$ es el píxel degradado resultante \cite{MandarMeghana}.
+
+\subsection{Modelos de Ruido}
+
+El ruido produce efectos no deseados, para reducir los mismos, el aprendizaje previo de los modelos de ruido es esencial para un procesamiento posterior. El ruido digital puede surgir de varios tipos de fuentes, como los Dispositivos de Acoplamiento de Carga (CCD) y los sensores de Semiconducción de Óxido de Metal Complementario (CMOS). En cierto sentido, la función de dispersión de puntos (PSF) y la función de transferencia de modulación (MTF) se han utilizado para el análisis oportuno, completo y cuantitativo de los modelos de ruido. La función de densidad de probabilidad (PDF) o Histograma también se utiliza para diseñar y caracterizar los modelos de ruido \cite{AjayBrijendra} \cite{Dougherty}.
+
+\textbf{Ruido Gaussiano.} El ruido puede clasificarse como ruido substitutivo (ruido impulsivo (ruido de sal y pimienta), ruido impulsivo aleatorio, etc.) y ruido aditivo (por ejemplo, ruido gaussiano blanco aditivo). En muchas ocasiones el ruido en las imágenes digitales es aditivo por naturaleza con una potencia uniforme en todo el ancho de banda con distribución de probabilidad gaussiana. Este ruido se denomina ruido gaussiano blanco aditivo (RGBA) \cite{MandarMeghana}. El ruido gaussiano es causado por fuentes naturales como la vibración térmica de los átomos y la naturaleza discreta de la radiación de los objetos cálidos \cite{AjayBrijendra2}. Este modelo de ruido generalmente altera los valores grises en las imágenes digitales. Es por eso que está esencialmente diseñado y caracterizado por su función de densidad de probabilidad (PDF) o histograma normalizado (ver Fig. \ref{fig:PDFGaussianNoise}). con respecto al valor de gris \cite{AjayBrijendra}. La \textit{función de distribución de probabilidad} $p$ de una variable aleatoria Gaussiana $z$, está dada por:
+$$p(z) = \frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{(z-\bar{z})^2}{2\sigma^2}},$$
+donde $z$ representa el nivel de gris, $\bar{z}$ el valor medio y $\sigma$ la desviación estándar, donde $\sigma^2$ es la varianza.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=5cm]{Graphics/PDF-of-Gaussian-Noise.png}
+    \caption{PDF de Ruido Gaussiano.}
+    \label{fig:PDFGaussianNoise}
+    
+\end{figure}
+
+% Hay muchas maneras de eliminar el ruido de una imagen o existen un conjunto de datos y métodos para ello \cite{PawanManojSumitAshok}\cite{MandarMeghana}. La propiedad mas importante de un buen modelo de eliminación de ruidos en imágenes\cite{AjayBrijendra} es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes. Tradicionalmente, hay dos tipos de modelos, modelo lineal y modelo no lineal, generalmente, se usan los modelos lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen. Por otro lado, los modelos no lineales pueden manejar los bordes de una manera mucho mejor que los modelos lineales \cite{PawanManojSumitAshok}.
 
 \section{Thresholding}
 
