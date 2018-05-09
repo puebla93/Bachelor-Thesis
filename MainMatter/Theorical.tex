@@ -13,6 +13,10 @@ Para comprender la solución que se propone en este trabajo se enumeran las tres
 
 A lo largo de este capítulo se pretende describir el fundamento teórico y los principales algoritmos utilizados en cada etapa.
 
+\section{Calibración}
+
+Calibración
+
 \section{Eliminación de ruido}
 
 La eliminación de ruido en imágenes es una tarea vital de procesamiento de imágenes, como un proceso en sí mismo o como un componente en otros procesos \cite{PawanManojSumitAshok}. En todos los sistemas de procesamiento debemos considerar qué parte de la señal detectada puede considerarse verdadera y qué tanto está asociada con los eventos de fondo aleatorios resultantes del proceso de detección o transmisión. Estos eventos aleatorios se clasifican bajo el tema general de ruido. Este ruido puede ser el resultado de una amplia variedad de fuentes, incluyendo la naturaleza discreta de la radiación, variación en la sensibilidad del detector, efectos de granos fotográficos, errores de transmisión de datos, propiedades de sistemas de imágenes como turbulencia de aire o gotas de agua y errores de cuantificación de imágenes. En cada caso, las propiedades del ruido son diferentes, al igual que las operaciones de procesamiento de imágenes que se pueden aplicar para reducir sus efectos \cite{topic5}. En esta sección, bindaremos una breve descripción de varios modelos de ruido \cite{AjayBrijendra} y los diferentes tipos de filtros que se utilizan para eliminarlo \cite{MandarMeghana}\cite{PawanManojSumitAshok}.
@@ -27,7 +31,8 @@ donde $f(x, y)$ es el píxel de la imagen original, $\eta(x, y)$ es el término 
 
 El ruido produce efectos no deseados, para reducir los mismos, el aprendizaje previo de los modelos de ruido es esencial para un procesamiento posterior. El ruido digital puede surgir de varios tipos de fuentes, como los Dispositivos de Acoplamiento de Carga (CCD) y los sensores de Semiconducción de Óxido de Metal Complementario (CMOS). En cierto sentido, la función de dispersión de puntos (PSF) y la función de transferencia de modulación (MTF) se han utilizado para el análisis oportuno, completo y cuantitativo de los modelos de ruido. La función de densidad de probabilidad (PDF) o Histograma también se utiliza para diseñar y caracterizar los modelos de ruido \cite{AjayBrijendra} \cite{Dougherty}.
 
-\textbf{Ruido Gaussiano.} El ruido puede clasificarse como ruido substitutivo (ruido impulsivo (ruido de sal y pimienta), ruido impulsivo aleatorio, etc.) y ruido aditivo (por ejemplo, ruido gaussiano blanco aditivo). En muchas ocasiones el ruido en las imágenes digitales es aditivo por naturaleza con una potencia uniforme en todo el ancho de banda con distribución de probabilidad gaussiana. Este ruido se denomina ruido gaussiano blanco aditivo (RGBA) \cite{MandarMeghana}. El ruido gaussiano es causado por fuentes naturales como la vibración térmica de los átomos y la naturaleza discreta de la radiación de los objetos cálidos \cite{AjayBrijendra2}. Este modelo de ruido generalmente altera los valores grises en las imágenes digitales. Es por eso que está esencialmente diseñado y caracterizado por su función de densidad de probabilidad (PDF) o histograma normalizado (ver Fig. \ref{fig:PDFGaussianNoise}). con respecto al valor de gris \cite{AjayBrijendra}. La \textit{función de distribución de probabilidad} $p$ de una variable aleatoria Gaussiana $z$, está dada por:
+\textbf{Ruido Gaussiano.}
+El ruido puede clasificarse como ruido substitutivo (ruido impulsivo (ruido de sal y pimienta), ruido impulsivo aleatorio, etc.) y ruido aditivo (por ejemplo, ruido gaussiano blanco aditivo). En muchas ocasiones el ruido en las imágenes digitales es aditivo por naturaleza con una potencia uniforme en todo el ancho de banda con distribución de probabilidad gaussiana. Este ruido se denomina ruido gaussiano blanco aditivo (RGBA) \cite{MandarMeghana}. El ruido gaussiano es causado por fuentes naturales como la vibración térmica de los átomos y la naturaleza discreta de la radiación de los objetos cálidos \cite{AjayBrijendra2}. Este modelo de ruido generalmente altera los valores grises en las imágenes digitales. Es por eso que está esencialmente diseñado y caracterizado por su función de densidad de probabilidad (PDF) o histograma normalizado (ver Fig. \ref{fig:PDFGaussianNoise}). con respecto al valor de gris \cite{AjayBrijendra}. La \textit{función de distribución de probabilidad} $p$ de una variable aleatoria Gaussiana $z$, está dada por:
 $$p(z) = \frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{(z-\bar{z})^2}{2\sigma^2}},$$
 donde $z$ representa el nivel de gris, $\bar{z}$ el valor medio y $\sigma$ la desviación estándar, donde $\sigma^2$ es la varianza.
 
@@ -36,10 +41,49 @@ donde $z$ representa el nivel de gris, $\bar{z}$ el valor medio y $\sigma$ la de
     \includegraphics[width=5cm]{Graphics/PDF-of-Gaussian-Noise.png}
     \caption{PDF de Ruido Gaussiano.}
     \label{fig:PDFGaussianNoise}
-    
 \end{figure}
 
-% Hay muchas maneras de eliminar el ruido de una imagen o existen un conjunto de datos y métodos para ello \cite{PawanManojSumitAshok}\cite{MandarMeghana}. La propiedad mas importante de un buen modelo de eliminación de ruidos en imágenes\cite{AjayBrijendra} es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes. Tradicionalmente, hay dos tipos de modelos, modelo lineal y modelo no lineal, generalmente, se usan los modelos lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen. Por otro lado, los modelos no lineales pueden manejar los bordes de una manera mucho mejor que los modelos lineales \cite{PawanManojSumitAshok}.
+\textbf{Ruido Uniforme.}
+El ruido uniforme es causado por la cuantificación de los píxeles de la imagen a un número de niveles distintos y se conoce como ruido de cuantificación. El nivel de los valores grises se distribuye uniformemente en un rango específico y se puede utilizar para generar cualquier tipo diferente de distribución. Este ruido proporciona el ruido más neutral o imparcial y se usa a menudo para degradar imágenes para la evaluación de algoritmos de restauración de imágenes \cite{HaidiTheamSin}.
+$$
+p(z) = \left\{
+    \begin{array}{ll}
+        \frac{1}{(b-a)} & \mbox{if } a \leq z \leq b \\
+        0  & \mbox{en otro caso}
+    \end{array}
+    \right.
+$$
+La media y la varianza de esta densidad están dadas por $\mu = \frac{(a+b)}{2}$ y $\sigma^2 = \frac{(b-a)^2}{12}$ \cite{MandarMeghana}.
+    
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=5cm]{Graphics/PDF-of-Uniform-Noise.png}
+    \caption{PDF de Ruido Uniforme.}
+    \label{fig:PDFUniformNoise}
+\end{figure}
+
+\subsection{Filtros}
+
+El propósito del filtrado de imágenes es reducir el ruido y mejorar la calidad visual de la imagen. Hay muchas maneras de eliminar el ruido de una imagen y se utilizan una variedad de algoritmos \cite{MandarMeghana}\cite{PawanManojSumitAshok} para ello. La propiedad mas importante de un buen modelo de eliminación de ruidos en imágenes, es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes \cite{PawanManojSumitAshok}. El filtrado de imágenes hace posible varias tareas útiles en el procesamiento de imágenes. Se puede aplicar un filtro para reducir la cantidad de ruido no deseado en una imagen o para revertir los efectos de desenfoque en la misma \cite{RuchikaGaurav}. Existen principalmente dos tipos de algoritmos, lineales y no lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen \cite{PawanManojSumitAshok}. Los filtros no lineales tienen un comportamiento bastante diferente en comparación con los filtros lineales, puesto que pueden manejar los bordes de una manera mucho mejor que los lineales además pueden producir resultados que varían de una manera no intuitiva \cite{RuchikaGaurav}.
+
+\textbf{Mediana}
+El filtro de mediana es una técnica de filtrado digital no lineal, el cuál se basa en la clasificación de los valores de píxel contenidos en la región del filtro \cite{MandarMeghana}. Este es un filtro robusto y bastante popular para reducir ciertos tipos de ruido, es muy utilizado en el procesamiento digital de imágenes \cite{RuchikaGaurav}, puesto que bajo ciertas condiciones preserva los bordes de las imágenes mientras elimina el ruido. La idea principal es ir reemplazando cada pixel con la mediana de los pixeles vecinos en una ventana. Si la ventana tiene un número impar de entradas, entonces la mediana es simple de definir: \textit{valor medio de todas las entradas en la ventana ordenadas numéricamente}. Para un número par de entradas se utiliza para reemplazar el promedio de los dos valores de los píxeles del medio \cite{PawanManojSumitAshok}. Una gran ventaja de este filtro sobre filtros lineales es que puede eliminar el efecto de los valores de ruido de entrada con magnitudes extremadamente grandes \cite{MandarMeghana}, en cambio los filtros lineales son sensibles a este tipo de ruido, es decir, la salida puede degradarse severamente incluso por una pequeña fracción de los valores anómalos de ruido \cite{JamesYixinStephen}\cite{PawanManojSumitAshok}.
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+	    \includegraphics[width=5cm]{Graphics/Median-Filter-Original.png}
+        \caption{Original}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+	    \includegraphics[width=5cm]{Graphics/Median-Filter-Filtered.png}
+        \caption{Filtrada}
+    \end{subfigure}
+    \caption{Filtro de Mediana}
+    \label{fig:MedianFilter}
+\end{figure}
 
 \section{Thresholding}
 
