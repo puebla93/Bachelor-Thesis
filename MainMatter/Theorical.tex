@@ -19,17 +19,17 @@ Calibración
 
 \section{Eliminación de ruido}
 
-La eliminación de ruido en imágenes es una tarea vital de procesamiento de imágenes, como un proceso en sí mismo o como un componente en otros procesos \cite{PawanManojSumitAshok}. En todos los sistemas de procesamiento debemos considerar qué parte de la señal detectada puede considerarse verdadera y qué tanto está asociada con los eventos de fondo aleatorios resultantes del proceso de detección o transmisión. Estos eventos aleatorios se clasifican bajo el tema general de ruido. Este ruido puede ser el resultado de una amplia variedad de fuentes, incluyendo la naturaleza discreta de la radiación, variación en la sensibilidad del detector, efectos de granos fotográficos, errores de transmisión de datos, propiedades de sistemas de imágenes como turbulencia de aire o gotas de agua y errores de cuantificación de imágenes. En cada caso, las propiedades del ruido son diferentes, al igual que las operaciones de procesamiento de imágenes que se pueden aplicar para reducir sus efectos \cite{topic5}. En esta sección, bindaremos una breve descripción de varios modelos de ruido \cite{AjayBrijendra} y los diferentes tipos de filtros que se utilizan para eliminarlo \cite{MandarMeghana}\cite{PawanManojSumitAshok}.
+La eliminación de ruido en imágenes es una tarea vital de procesamiento de imágenes, como un proceso en sí mismo o como un componente en otros procesos \cite{PawanManojSumitAshok}. En todos los sistemas de procesamiento debemos considerar qué parte de la señal detectada puede considerarse verdadera y qué tanto está asociada con los eventos de fondo aleatorios resultantes del proceso de detección o transmisión. Estos eventos aleatorios se clasifican bajo el tema general de ruido. Este ruido puede ser el resultado de una amplia variedad de fuentes, incluyendo la naturaleza discreta de la radiación, variación en la sensibilidad del detector, efectos de granos fotográficos, errores de transmisión de datos, propiedades de sistemas de imágenes como turbulencia de aire o gotas de agua y errores de cuantificación de imágenes. En cada caso, las propiedades del ruido son diferentes, al igual que las operaciones de procesamiento de imágenes que se pueden aplicar para reducir sus efectos \cite{topic5}. En esta sección, bindaremos una breve descripción de varios modelos de ruido \cite{AjayBrijendra} y los diferentes tipos de filtros que se utilizan para eliminarlo \cite{MandarMeghana, PawanManojSumitAshok}.
 
 \subsection{Ruido}
 
 Podemos considerar que una imagen degradada puede ser modelada de la siguiente manera:
 $$g(x, y) = f(x, y) - \eta(x, y),$$
-donde $f(x, y)$ es el píxel de la imagen original, $\eta(x, y)$ es el término de ruido, el cual se considera que es una señal esporádica y aleatoria y $g(x, y)$ es el píxel degradado resultante \cite{MandarMeghana}.
+donde $f(x, y)$ es el píxel de la imagen original, $\eta(x, y)$ es el término de ruido, el cuál se considera que es una señal esporádica y aleatoria y $g(x, y)$ es el píxel degradado resultante \cite{MandarMeghana}.
 
 \subsection{Modelos de Ruido}
 
-El ruido produce efectos no deseados, para reducir los mismos, el aprendizaje previo de los modelos de ruido es esencial para un procesamiento posterior. El ruido digital puede surgir de varios tipos de fuentes, como los Dispositivos de Acoplamiento de Carga (CCD) y los sensores de Semiconducción de Óxido de Metal Complementario (CMOS). En cierto sentido, la función de dispersión de puntos (PSF) y la función de transferencia de modulación (MTF) se han utilizado para el análisis oportuno, completo y cuantitativo de los modelos de ruido. La función de densidad de probabilidad (PDF) o Histograma también se utiliza para diseñar y caracterizar los modelos de ruido \cite{AjayBrijendra} \cite{Dougherty}.
+El ruido produce efectos no deseados, para reducir los mismos, el aprendizaje previo de los modelos de ruido es esencial para un procesamiento posterior. El ruido digital puede surgir de varios tipos de fuentes, como los Dispositivos de Acoplamiento de Carga (CCD) y los sensores de Semiconducción de Óxido de Metal Complementario (CMOS). En cierto sentido, la función de dispersión de puntos (PSF) y la función de transferencia de modulación (MTF) se han utilizado para el análisis oportuno, completo y cuantitativo de los modelos de ruido. La función de densidad de probabilidad (PDF) o Histograma también se utiliza para diseñar y caracterizar los modelos de ruido \cite{AjayBrijendra,Dougherty}.
 
 \textbf{Ruido Gaussiano.}
 El ruido puede clasificarse como ruido substitutivo (ruido impulsivo (ruido de sal y pimienta), ruido impulsivo aleatorio, etc.) y ruido aditivo (por ejemplo, ruido gaussiano blanco aditivo). En muchas ocasiones el ruido en las imágenes digitales es aditivo por naturaleza con una potencia uniforme en todo el ancho de banda con distribución de probabilidad gaussiana. Este ruido se denomina ruido gaussiano blanco aditivo (RGBA) \cite{MandarMeghana}. El ruido gaussiano es causado por fuentes naturales como la vibración térmica de los átomos y la naturaleza discreta de la radiación de los objetos cálidos \cite{AjayBrijendra2}. Este modelo de ruido generalmente altera los valores grises en las imágenes digitales. Es por eso que está esencialmente diseñado y caracterizado por su función de densidad de probabilidad (PDF) o histograma normalizado (ver Fig. \ref{fig:PDFGaussianNoise}). con respecto al valor de gris \cite{AjayBrijendra}. La \textit{función de distribución de probabilidad} $p$ de una variable aleatoria Gaussiana $z$, está dada por:
@@ -64,33 +64,67 @@ La media y la varianza de esta densidad están dadas por $\mu = \frac{(a+b)}{2}$
 
 \subsection{Filtros}
 
-El propósito del filtrado de imágenes es reducir el ruido y mejorar la calidad visual de la imagen. Hay muchas maneras de eliminar el ruido de una imagen y se utilizan una variedad de algoritmos \cite{MandarMeghana}\cite{PawanManojSumitAshok} para ello. La propiedad mas importante de un buen modelo de eliminación de ruidos en imágenes, es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes \cite{PawanManojSumitAshok}. El filtrado de imágenes hace posible varias tareas útiles en el procesamiento de imágenes. Se puede aplicar un filtro para reducir la cantidad de ruido no deseado en una imagen o para revertir los efectos de desenfoque en la misma \cite{RuchikaGaurav}. Existen principalmente dos tipos de algoritmos, lineales y no lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen \cite{PawanManojSumitAshok}. Los filtros no lineales tienen un comportamiento bastante diferente en comparación con los filtros lineales, puesto que pueden manejar los bordes de una manera mucho mejor que los lineales además pueden producir resultados que varían de una manera no intuitiva \cite{RuchikaGaurav}.
+El propósito del filtrado de imágenes es reducir el ruido y mejorar la calidad visual de la imagen. Hay muchas maneras de eliminar el ruido de una imagen y se utilizan una variedad de algoritmos \cite{MandarMeghana, PawanManojSumitAshok} para ello. La propiedad mas importante de un buen modelo de eliminación de ruidos en imágenes, es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes \cite{PawanManojSumitAshok}. El filtrado de imágenes hace posible varias tareas útiles en el procesamiento de imágenes. Se puede aplicar un filtro para reducir la cantidad de ruido no deseado en una imagen (ver Fig. \ref{fig:filters}) o para revertir los efectos de desenfoque en la misma \cite{RuchikaGaurav}. Existen principalmente dos tipos de algoritmos, lineales y no lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen \cite{PawanManojSumitAshok}. Los filtros no lineales tienen un comportamiento bastante diferente en comparación con los filtros lineales, puesto que pueden manejar los bordes de una manera mucho mejor que los lineales además pueden producir resultados que varían de una manera no intuitiva \cite{RuchikaGaurav}.
 
-\textbf{Mediana}
-El filtro de mediana es una técnica de filtrado digital no lineal, el cuál se basa en la clasificación de los valores de píxel contenidos en la región del filtro \cite{MandarMeghana}. Este es un filtro robusto y bastante popular para reducir ciertos tipos de ruido, es muy utilizado en el procesamiento digital de imágenes \cite{RuchikaGaurav}, puesto que bajo ciertas condiciones preserva los bordes de las imágenes mientras elimina el ruido. La idea principal es ir reemplazando cada pixel con la mediana de los pixeles vecinos en una ventana. Si la ventana tiene un número impar de entradas, entonces la mediana es simple de definir: \textit{valor medio de todas las entradas en la ventana ordenadas numéricamente}. Para un número par de entradas se utiliza para reemplazar el promedio de los dos valores de los píxeles del medio \cite{PawanManojSumitAshok}. Una gran ventaja de este filtro sobre filtros lineales es que puede eliminar el efecto de los valores de ruido de entrada con magnitudes extremadamente grandes \cite{MandarMeghana}, en cambio los filtros lineales son sensibles a este tipo de ruido, es decir, la salida puede degradarse severamente incluso por una pequeña fracción de los valores anómalos de ruido \cite{JamesYixinStephen}\cite{PawanManojSumitAshok}.
+\textbf{Promedio}
+El filtrado medio o promedio es un método simple, intuitivo y fácil de implementar para suavizar imágenes \cite{RajeshUday}. Este filtro lineal es pobre para mantener los bordes dentro de la imagen \cite{JamesYixinStephen}. Se utiliza mayormente en la eliminación de ruido de grano \cite{PawanManojSumitAshok}, dado que tiene el efecto de eliminar los valores de píxeles que no son representativos de su entorno \cite{RajeshUday}. La idea del filtrado promedio es simplemente reemplazar cada valor de píxel en una imagen con el valor promedio de sus vecinos, incluido él mismo \cite{RajeshUday}. La forma y el tamaño del vecindario es representado por una ventana sobre cada píxel \cite{PawanManojSumitAshok}. La ventana suele ser cuadrada pero puede tener cualquier forma \cite{MandarMeghana}. A menudo se usa una ventana cuadrada de $3 x 3$, aunque se pueden usar ventanas más grandes para un alisado más severo. Una ventana pequeña se puede aplicar más de una vez para producir un efecto similar, pero no idéntico, como una sola pasada con una ventana grande\cite{RajeshUday}.
 
-\begin{figure}[!h]
+\begin{figure}[b]
     \centering
-    \begin{subfigure}[b]{0.49\linewidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-	    \includegraphics[width=5cm]{Graphics/Median-Filter-Original.png}
+	    \includegraphics[width=4cm]{Graphics/Filter-Original.png}
         \caption{Original}
     \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-	    \includegraphics[width=5cm]{Graphics/Median-Filter-Filtered.png}
-        \caption{Filtrada}
+	    \includegraphics[width=4cm]{Graphics/Mean-Filter-Filtered.png}
+        \caption{Filtro Medio}
     \end{subfigure}
-    \caption{Filtro de Mediana}
-    \label{fig:MedianFilter}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \centering
+	    \includegraphics[width=4cm]{Graphics/Median-Filter-Filtered.png}
+        \caption{Filtro Mediana}
+    \end{subfigure}
+    \caption{Filtros}
+    \label{fig:filters}
 \end{figure}
 
-\section{Thresholding}
+\textbf{Mediana}
+El filtro de mediana es una técnica de filtrado digital no lineal, el cuál se basa en la clasificación de los valores de píxel contenidos en la región del filtro \cite{MandarMeghana}. Este es un filtro robusto y bastante popular para reducir ciertos tipos de ruido, es muy utilizado en el procesamiento digital de imágenes \cite{RuchikaGaurav}, puesto que bajo ciertas condiciones preserva los bordes de las imágenes mientras elimina el ruido. La idea principal es ir reemplazando cada pixel con la mediana de los pixeles vecinos en una ventana. Si la ventana tiene un número impar de entradas, entonces la mediana es simple de definir: \textit{valor medio de todas las entradas en la ventana ordenadas numéricamente}. Para un número par de entradas se utiliza para reemplazar el promedio de los dos valores de los píxeles del medio \cite{PawanManojSumitAshok}. Una gran ventaja de este filtro sobre filtros lineales es que puede eliminar el efecto de los valores de ruido de entrada con magnitudes extremadamente grandes \cite{MandarMeghana}, en cambio los filtros lineales son sensibles a este tipo de ruido, es decir, la salida puede degradarse severamente incluso por una pequeña fracción de los valores anómalos de ruido \cite{JamesYixinStephen, PawanManojSumitAshok}.
 
+
+\section{Background Subtraction}
+
+Background Subtraction (BS) es una de las tareas más frecuentes en los sistemas de seguimiento y análisis de video. Es el primer paso para todo tipo de aplicaciones en el campo de visión por computadora, como análisis de video, seguimiento de objetos, videovigilancia, recuento de objetos, análisis de tráfico, etc \cite{GuangleTaoJiandanPingWenwu}. Por esta razón, generalmente se requiere que sea lo más rápido y simple posible. La popularidad de los algoritmos de background subtraction proviene en gran medida de su eficiencia computacional, que permite que aplicaciones antes mencionadas cumplan con sus objetivos en tiempo real \cite{DeepjoySarat}.
+
+La idea básica en el enfoque, es detectar los objetos en movimiento a partir de la diferencia entre el cuadro actual y un cuadro de referencia, que se denomina imagen de fondo o modelo de fondo \cite{DeepjoySarat}. Esta solución ha demostrado ser exitosa siempre que la cámara esté rigurosamente estática con un fondo fijo libre de ruido \cite{YannickPierreMarcBrunoHeleneChristophe}. La imagen de fondo debe ser lo suficientemente buena para representar la escena y actualizarse periódicamente para que se adapte a las diferentes condiciones de luminancia y configuraciones de geometría. Una imagen de fondo deficiente puede dar lugar a resultados pobres de background subtraction, ya que se restará con la imagen actual para obtener el resultado final \cite{DeepjoySarat}.
+
+Algunos videos con una pobre relación señal-ruido causada por una cámara de baja calidad, artefactos de compresión o un entorno ruidoso, es probable que generen numerosos falsos positivos. Los falsos positivos también pueden ser inducidos por cambios en la iluminación (gradual o repentino), un fondo animado (ondas en el agua, árboles sacudidos por el viento) o inestabilidad de la cámara por nombrar algunos \cite{YannickPierreMarcBrunoHeleneChristophe}.
+
+Desde la década de 1990, se ha propuesto una gran cantidad de algoritmos BS y se han lanzado diferentes tipos de conjuntos de datos y puntos de referencia para evaluar los algoritmos BS \cite{GuangleTaoJiandanPingWenwu}.
+
+\subsection{Algoritmos de Background Subtraction}
+
+Aunque diferentes, la mayoría de las técnicas de BS comparten un denominador común: \textit{suponen que la secuencia de video observada $I$ está hecha de un fondo estático $B$ frente a los objetos en movimiento que se observan} \cite{YannickPierreMarcBrunoHeleneChristophe}. Con la suposición de que cada objeto en movimiento está hecho de un color o una distribución de color diferente del observado en $B$, numerosos métodos de BS se pueden resumir con la siguiente fórmula:
+$$
+X_t(s) = \left\{
+\begin{array}{ll}
+	1 & \mbox{if } d(I_{s,t}, B_s) > \tau \\
+	0               & \mbox{en otro caso}        
+\end{array}
+\right.
+$$
+donde $\tau$ es un umbral, $X_t$ es el campo de etiqueta de movimiento en el tiempo $t$ (también llamado máscara de movimiento), $d$ es la distancia entre $I_{s,t}$ color en el tiempo $t$ y el píxel $s$ y $B_s$ modelo de fondo en el pixel $s$. La diferencia principal entre varios métodos BS es cómo se modela $B$ y qué medida de distancia $d$ usan.
+
+\textbf{Diferencia de Fotograma.}
+La diferencia de fotograma es la forma más simple de background subtraction \cite{DeepjoySarat}. El fotograma actual simplemente se resta del fotograma anterior, y si la diferencia en los valores de píxel para un píxel dado es mayor que un umbral $T_h$, entonces el píxel se considera parte del primer plano.
+
+$$\mid frame_i - frame_{i-1} \mid > T_h$$
+
+Este método no necesita de un historial de fotogramas, ni de realizar varios cálculos, lo cuál presupone una ventaja ya que no consume tiempo ni memoria \cite{InsafSlimane} y se adapta a los cambios en el fondo más rápido que cualquier otro método, puesto que, el fondo es solo el fotograma anterior. Sin embargo, como no se conoce el historial de fotogramas, no se puede mantener el fondo multimodal y es imposible evitar la detección de objetos espurios, como el balanceo de las ramas de los árboles. Esto también se conoce como el problema de apertura descrito en \cite{ApewokinApewokinWillsWillsGentile} y \cite{KentaroJohnBarryBrian}.
+
+\textbf{Mezcla Gaussiana.}
 
 
 \section{RANSAC}
-
-
-
-\subsection{Mínimos Cuadrados}
