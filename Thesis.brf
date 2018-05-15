@@ -1,3 +1,6 @@
+\backcite {David}{{\es@scroman {iii}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {iii}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {iii}}{(document)}{Doc-Start}}
 \backcite {Pitchf/x}{{1}{(document)}{Doc-Start}}
 \backcite {Sportvision}{{1}{(document)}{Doc-Start}}
 \backcite {MLB}{{2}{(document)}{Doc-Start}}
@@ -7,44 +10,62 @@
 \backcite {SprintSpeed}{{3}{(document)}{Doc-Start}}
 \backcite {PlayStationEye}{{4}{(document)}{Doc-Start}}
 \backcite {PlayStationMove}{{4}{(document)}{Doc-Start}}
-\backcite {PawanManojSumitAshok}{{7}{1.2}{section.1.2}}
-\backcite {topic5}{{7}{1.2}{section.1.2}}
-\backcite {AjayBrijendra}{{7}{1.2}{section.1.2}}
-\backcite {MandarMeghana, PawanManojSumitAshok}{{7}{1.2}{section.1.2}}
-\backcite {MandarMeghana}{{7}{1.2.1}{subsection.1.2.1}}
-\backcite {AjayBrijendra,Dougherty}{{8}{1.2.2}{subsection.1.2.2}}
-\backcite {MandarMeghana}{{8}{1.2.2}{subsection.1.2.2}}
-\backcite {AjayBrijendra2}{{8}{1.2.2}{subsection.1.2.2}}
-\backcite {AjayBrijendra}{{8}{1.2.2}{subsection.1.2.2}}
-\backcite {HaidiTheamSin}{{9}{1.2.2}{figure.caption.7}}
-\backcite {MandarMeghana}{{9}{1.2.2}{figure.caption.7}}
-\backcite {MandarMeghana, PawanManojSumitAshok}{{9}{1.2.3}{subsection.1.2.3}}
-\backcite {PawanManojSumitAshok}{{9}{1.2.3}{subsection.1.2.3}}
-\backcite {RuchikaGaurav}{{9}{1.2.3}{subsection.1.2.3}}
-\backcite {PawanManojSumitAshok}{{9}{1.2.3}{subsection.1.2.3}}
-\backcite {RuchikaGaurav}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {RajeshUday}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {JamesYixinStephen}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {PawanManojSumitAshok}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {RajeshUday}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {RajeshUday}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {PawanManojSumitAshok}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {MandarMeghana}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {RajeshUday}{{10}{1.2.3}{subsection.1.2.3}}
-\backcite {MandarMeghana}{{10}{1.2.3}{figure.caption.9}}
-\backcite {RuchikaGaurav}{{10}{1.2.3}{figure.caption.9}}
-\backcite {PawanManojSumitAshok}{{11}{1.2.3}{figure.caption.9}}
-\backcite {MandarMeghana}{{11}{1.2.3}{figure.caption.9}}
-\backcite {JamesYixinStephen, PawanManojSumitAshok}{{11}{1.2.3}{figure.caption.9}}
-\backcite {GuangleTaoJiandanPingWenwu}{{11}{1.3}{section.1.3}}
-\backcite {DeepjoySarat}{{11}{1.3}{section.1.3}}
-\backcite {DeepjoySarat}{{11}{1.3}{section.1.3}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{11}{1.3}{section.1.3}}
-\backcite {DeepjoySarat}{{11}{1.3}{section.1.3}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{11}{1.3}{section.1.3}}
-\backcite {GuangleTaoJiandanPingWenwu}{{11}{1.3}{section.1.3}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{12}{1.3.1}{subsection.1.3.1}}
-\backcite {DeepjoySarat}{{12}{1.3.1}{subsection.1.3.1}}
-\backcite {InsafSlimane}{{12}{1.3.1}{subsection.1.3.1}}
-\backcite {ApewokinApewokinWillsWillsGentile}{{12}{1.3.1}{subsection.1.3.1}}
-\backcite {KentaroJohnBarryBrian}{{12}{1.3.1}{subsection.1.3.1}}
+\backcite {RichardAndrew}{{7}{1.1}{section.1.1}}
+\backcite {David}{{7}{1.1}{figure.caption.7}}
+\backcite {David}{{7}{1.1}{figure.caption.7}}
+\backcite {David}{{7}{1.1}{figure.caption.7}}
+\backcite {RichardAndrew}{{8}{1.1}{equation.1.1.1}}
+\backcite {GaryAdrian}{{8}{1.1}{equation.1.1.1}}
+\backcite {GaryAdrian}{{8}{1.1}{equation.1.1.1}}
+\backcite {David}{{8}{1.1}{equation.1.1.1}}
+\backcite {JamesAndriesStevenJohnRichard}{{8}{1.1}{equation.1.1.2}}
+\backcite {Nicolas}{{8}{1.1.1}{figure.caption.8}}
+\backcite {David}{{9}{1.2}{figure.caption.8}}
+\backcite {David}{{9}{1.1.1}{figure.caption.8}}
+\backcite {GaryAdrian}{{9}{1.1.1}{figure.caption.8}}
+\backcite {David}{{10}{1.3}{figure.caption.9}}
+\backcite {GaryAdrian}{{10}{1.2}{section.1.2}}
+\backcite {GaryAdrian}{{10}{1.2}{section.1.2}}
+\backcite {David}{{11}{1.2}{section.1.2}}
+\backcite {David}{{11}{1.2}{section.1.2}}
+\backcite {PawanManojSumitAshok}{{11}{1.3}{section.1.3}}
+\backcite {topic5}{{11}{1.3}{section.1.3}}
+\backcite {AjayBrijendra}{{11}{1.3}{section.1.3}}
+\backcite {MandarMeghana, PawanManojSumitAshok}{{11}{1.3}{section.1.3}}
+\backcite {MandarMeghana}{{12}{1.3.1}{subsection.1.3.1}}
+\backcite {AjayBrijendra,Dougherty}{{12}{1.3.2}{subsection.1.3.2}}
+\backcite {HaidiTheamSin}{{12}{1.3.2}{subsection.1.3.2}}
+\backcite {MandarMeghana}{{12}{1.3.2}{subsection.1.3.2}}
+\backcite {MandarMeghana}{{13}{1.3.2}{figure.caption.10}}
+\backcite {AjayBrijendra2}{{13}{1.3.2}{figure.caption.10}}
+\backcite {AjayBrijendra}{{13}{1.3.2}{figure.caption.10}}
+\backcite {MandarMeghana, PawanManojSumitAshok}{{13}{1.3.3}{subsection.1.3.3}}
+\backcite {PawanManojSumitAshok}{{13}{1.3.3}{subsection.1.3.3}}
+\backcite {RuchikaGaurav}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {PawanManojSumitAshok}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {RuchikaGaurav}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {RajeshUday}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {JamesYixinStephen}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {PawanManojSumitAshok}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {RajeshUday}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {RajeshUday}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {PawanManojSumitAshok}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {MandarMeghana}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {RajeshUday}{{14}{1.3.3}{subsection.1.3.3}}
+\backcite {MandarMeghana}{{15}{1.3.3}{subsection.1.3.3}}
+\backcite {RuchikaGaurav}{{15}{1.3.3}{subsection.1.3.3}}
+\backcite {PawanManojSumitAshok}{{15}{1.3.3}{subsection.1.3.3}}
+\backcite {MandarMeghana}{{15}{1.3.3}{subsection.1.3.3}}
+\backcite {JamesYixinStephen, PawanManojSumitAshok}{{15}{1.3.3}{subsection.1.3.3}}
+\backcite {GuangleTaoJiandanPingWenwu}{{15}{1.4}{section.1.4}}
+\backcite {DeepjoySarat}{{16}{1.4}{section.1.4}}
+\backcite {DeepjoySarat}{{16}{1.4}{section.1.4}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{16}{1.4}{section.1.4}}
+\backcite {DeepjoySarat}{{16}{1.4}{section.1.4}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{16}{1.4}{section.1.4}}
+\backcite {GuangleTaoJiandanPingWenwu}{{16}{1.4}{section.1.4}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{16}{1.4.1}{figure.caption.13}}
+\backcite {DeepjoySarat}{{17}{1.4.1}{equation.1.4.3}}
+\backcite {InsafSlimane}{{17}{1.4.1}{equation.1.4.3}}
+\backcite {ApewokinApewokinWillsWillsGentile}{{17}{1.4.1}{equation.1.4.3}}
+\backcite {KentaroJohnBarryBrian}{{17}{1.4.1}{equation.1.4.3}}
