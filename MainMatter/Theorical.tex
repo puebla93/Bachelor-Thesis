@@ -80,8 +80,8 @@ $$f(r)=a_0+a_1r+a_2r^2+\dots$$
 
 Dado que se asume que no hay distorsión en el centro de la imagen se tiene que $f(0)=0$ y por tanto $a_0=0$, como $f$ es simétrica en $r$, todos los coeficientes de las potencias impares son nulos. En general, la distorsión radial se modela utilizando las ecuaciones:
 \begin{gather*}
-    x_c = x(1 + k_1 r_2 + k_2 r_4 + k_3 r_6)\\
-    y_c = y(1 + k_1 r_2 + k_2 r_4 + k_3 r_6)
+    x_c = x(1 + k_1 r^2 + k_2 r^4 + k_3 r^6)\\
+    y_c = y(1 + k_1 r^2 + k_2 r^4 + k_3 r^6)
 \end{gather*}
 
 Donde $(x, y)$ son las coordenadas originales, $k_1$, $k_2$ y $k_3$ son los términos de la serie de Taylor $a_2$, $a_4$ y $a_6$ respectivamente y $(x_c, y_c)$ es la nueva posición rectificada. En la mayoría de los casos no es necesario tener en cuenta el parámetro $k_3$ a excepción de las cámaras con lentes que provocan una deformación radial extrema \cite{David}.\\
@@ -111,8 +111,8 @@ Para calcular los parámetros intrínsecos, $f_x$, $f_y$, $c_x$, $c_y$ y el vect
     \begin{split}
         q'=sHQ',\quad\text{donde}\qquad &
         \begin{split}
-            q' & = \begin{bmatrix}x&y&1\end{bmatrix}\\
-            Q' & = \begin{bmatrix}X&Y&Z&1\end{bmatrix}\\
+            q' & = \begin{bmatrix}x&y&1\end{bmatrix}^T\\
+            Q' & = \begin{bmatrix}X&Y&Z&1\end{bmatrix}^T\\
             H & = sMW\\
             M & = \begin{bmatrix}
 	            f_x & 0 & c_x \\
@@ -287,7 +287,7 @@ Tres importantes métricas de evaluación se calculan con las siguientes ecuacio
     \end{split}
 \end{equation*}
 
-La precisión se puede ver como una métrica de exactitud o calidad, mientras que la recuperación es una medida de integridad o cantidad. Para un mejor algoritmo de BS, los puntajes de precisión y recuperación deben ser altos, pero existe una relación inversa entre estos, donde es posible aumentar uno al costo de reducir al otro \cite{GuangleTaoJiandanPingWenwu}. Como un umbral $\tau$ para un método produce una sola pareja de precisión/recuperación por video, se usan 15 umbrales diferentes para producir curvas. De esta manera, la comparación entre métodos se hace más fácil ya que no tenemos que encontrar el mejor umbral para cada método sobre cada video \cite{YannickPierreMarcBrunoHeleneChristophe}. La \textit{Medida-F}, que es un medio armónico de precisión y recuperación, puede verse como un compromiso entre ambas. Equilibra la precisión y la recuperación con pesos iguales, y solo es alta cuando tanto la recuperación como la precisión son altas. Una puntuación más alta de \textit{Medida-F} significa que el rendimiento del algoritmo BS es mejor.
+La precisión se puede ver como una métrica de exactitud o calidad, mientras que la recuperación es una medida de integridad o cantidad. Para un mejor algoritmo de BS, los puntajes de precisión y recuperación deben ser altos, pero existe una relación inversa entre estos, donde es posible aumentar uno al costo de reducir al otro \cite{GuangleTaoJiandanPingWenwu}. Como un umbral $\tau$ para un método produce una sola pareja de precisión/recuperación por video, se usan 15 umbrales diferentes para producir curvas. De esta manera, la comparación entre métodos se hace más fácil ya que no tenemos que encontrar el mejor umbral para cada método sobre cada video \cite{YannickPierreMarcBrunoHeleneChristophe}. La \textit{Medida-F}, que es un medio armónico de precisión y recuperación, puede verse como un compromiso entre ambas. Equilibra la precisión y la recuperación con pesos iguales, y solo es alta cuando tanto la recuperación como la precisión son altas. Una puntuación más alta de \textit{Medida-F} significa que el rendimiento del algoritmo BS es mejor \cite{GuangleTaoJiandanPingWenwu}.
 
 \section{RANSAC}
 
