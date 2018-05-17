@@ -247,6 +247,55 @@ donde el modelo $B_s$ se define como $I_{s,t-1}$ y la medida de distancia $d$ es
 
 Este método no necesita de un historial de fotogramas, ni de realizar varios cálculos, lo cuál presupone una ventaja ya que no consume tiempo ni memoria \cite{InsafSlimane}, otra ventaja es que se adapta a los cambios en el fondo más rápido que cualquier otro método, puesto que, el fondo es solo el fotograma anterior. Sin embargo, como no se conoce el historial de fotogramas, no se puede mantener el fondo multimodal y es imposible evitar la detección de objetos espurios, como el balanceo de las ramas de los árboles, lo cuál también se conoce como el problema de apertura descrito en \cite{ApewokinApewokinWillsWillsGentile} y \cite{KentaroJohnBarryBrian}.\\
 
-\textbf{text.}
+\textbf{Gaussiano Simple.}
+Modelar $B$ con una sola imagen como el método \textit{Diferencia de Fotograma} requiere un fondo rigurosamente fijo y libre de ruido. Como este requisito no se puede satisfacer en todos los escenarios de la vida real, muchos algoritmos modelan cada píxel de fondo con una función de densidad de probabilidad (PDF) aprendida sobre una serie de marcos de entrenamiento \cite{YannickPierreMarcBrunoHeleneChristophe}. En este caso, el problema de BS se convierte en un problema de umbral de PDF para el cual es probable que un píxel con baja probabilidad corresponda a un objeto en movimiento en primer plano. Por ejemplo, para tener en cuenta el ruido, \cite{WrenAzarbayejaniDarrellPentland} modela cada píxel de fondo con una distribución gaussiana $\Gamma(\mu_{s,t}, \Sigma_{s,t})$ donde  $\mu_{s,t}$ y $\Sigma_{s,t}$ representan respectivamente el color de fondo promedio y la matriz de covarianza en el píxel $s$ y tiempo $t$. En este contexto, la métrica de distancia puede ser la siguiente probabilidad de registro \cite{YannickPierreMarcBrunoHeleneChristophe}:
+
+$$d_G = \frac{1}{2}\log((2\pi)^3\mid\Sigma_{s,t}\mid)+\frac{1}{2}(I_{s,t}-\mu_{s,t})\Sigma_{s,t}^{-1}(I_{s,t}-\mu_{s,t})^T$$
+
+o una distancia Mahalanobis:
+
+$$d_M = \mid I_{s,t}-\mu_{s,t}\mid\Sigma_{s,t}^{-1}\mid I_{s,t}-\mu_{s,t}\mid^T$$
+
+Los valores de píxeles que difieren más de una constante multiplicada por la desviación estándar de su media se consideran parte del primer plano. Como la iluminación a menudo cambia con el tiempo, la media y la covarianza de cada píxel también se pueden actualizar iterativamente utilizando una constante de actualización \cite{YannickPierreMarcBrunoHeleneChristophe}:
+\begin{gather*}
+    \begin{split}
+        \mu_{s,t+1} & = (1-\alpha)\mu_{s,t}+\alpha I_{s,t}\\
+        \Sigma_{s,t+1} & = (1-\alpha)\Sigma_{s,t}+\alpha(I_{s,t}-\mu_{s,t})(I_{s,t}-\mu_{s,t})^T
+    \end{split}
+\end{gather*}
+
+Las ventajas y desventajas del método se pueden ver en \cite{BenezethJodoinEmileLaurentRosenberger} y \cite{GreffBrandoKrauStrickerClua}. En \cite{BenezethJodoinEmileLaurentRosenberger}, el \textit{Gaussiano ponderado por una matriz de covarianza} compensó las inestabilidades de fondo y en \cite{GreffBrandoKrauStrickerClua} el \textit{Gaussiano Simple} se vió afectado por las altas varianzas de píxeles alternados y la baja varianza de píxeles estables.
+
+\subsection{Métricas de Evaluación}
+
+Background subtraction se considera un problema de clasificación binaria: \textit {un píxel se etiqueta como fondo o primer plano} \cite{GuangleTaoJiandanPingWenwu}. Como se muestra en la Figura \ref{fig:BSMetrics}, el círculo y el cuadrado respectivamente representan el primer plano verdadero y el detectado. TP es el número de verdaderos positivos, TN es el número de negativos verdaderos, FN es el número de falsos negativos y FP es el número de falsos positivos.\\
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=8cm]{Graphics/BSMetrics.png}
+    \caption{Primer Plano verdadero y detectado en BS.}
+    \label{fig:BSMetrics}
+\end{figure}
+
+Tres importantes métricas de evaluación se calculan con las siguientes ecuaciones:
+
+\begin{equation*}
+    \begin{split}
+        \text{Precisión} & = TP/(TP + FP)\\
+        Recobrado & = TP/(TP + FN)\\
+        Medida-F & =  2 * Recobrado * \text{Precisión}/(Recobrado + \text{Precisión})
+    \end{split}
+\end{equation*}
+
+La precisión se puede ver como una métrica de exactitud o calidad, mientras que la recuperación es una medida de integridad o cantidad. Para un mejor algoritmo de BS, los puntajes de precisión y recuperación deben ser altos, pero existe una relación inversa entre estos, donde es posible aumentar uno al costo de reducir al otro \cite{GuangleTaoJiandanPingWenwu}. Como un umbral $\tau$ para un método produce una sola pareja de precisión/recuperación por video, se usan 15 umbrales diferentes para producir curvas. De esta manera, la comparación entre métodos se hace más fácil ya que no tenemos que encontrar el mejor umbral para cada método sobre cada video \cite{YannickPierreMarcBrunoHeleneChristophe}. La \textit{Medida-F}, que es un medio armónico de precisión y recuperación, puede verse como un compromiso entre ambas. Equilibra la precisión y la recuperación con pesos iguales, y solo es alta cuando tanto la recuperación como la precisión son altas. Una puntuación más alta de \textit{Medida-F} significa que el rendimiento del algoritmo BS es mejor.
 
 \section{RANSAC}
+
+RANSAC o ``RANdom SAmple Consensus''
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\linewidth]{Graphics/RANSACGraphic.png}
+    \caption{Ejemplo del algoritmo RANSAC}
+    \label{fig:RansacExample}
+\end{figure}
