@@ -372,6 +372,15 @@ INPUT ./Graphics/Mean-Filter-Filtered.png
 INPUT Graphics/Median-Filter-Filtered.png
 INPUT ./Graphics/Median-Filter-Filtered.png
 INPUT ./Graphics/Median-Filter-Filtered.png
+INPUT Graphics/BSExampleBackground.png
+INPUT ./Graphics/BSExampleBackground.png
+INPUT ./Graphics/BSExampleBackground.png
+INPUT Graphics/BSExampleCurrentFrame.png
+INPUT ./Graphics/BSExampleCurrentFrame.png
+INPUT ./Graphics/BSExampleCurrentFrame.png
+INPUT Graphics/BSExampleDetected.png
+INPUT ./Graphics/BSExampleDetected.png
+INPUT ./Graphics/BSExampleDetected.png
 INPUT Graphics/BSParadigm.png
 INPUT ./Graphics/BSParadigm.png
 INPUT ./Graphics/BSParadigm.png
@@ -381,6 +390,9 @@ INPUT ./Graphics/BSMetrics.png
 INPUT Graphics/RANSACGraphic.png
 INPUT ./Graphics/RANSACGraphic.png
 INPUT ./Graphics/RANSACGraphic.png
+INPUT Graphics/RANSACAlgorithm1.png
+INPUT ./Graphics/RANSACAlgorithm1.png
+INPUT ./Graphics/RANSACAlgorithm1.png
 OUTPUT MainMatter/Description.aux
 INPUT MainMatter/Description.tex
 INPUT MainMatter/Description.tex

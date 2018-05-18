@@ -173,7 +173,7 @@ donde $z$ representa el nivel de gris, $\bar{z}$ el valor medio y $\sigma$ la de
 
 \subsection{Filtros}
 
-El propósito del filtrado de imágenes es reducir el ruido y mejorar la calidad visual de la imagen. Hay muchas maneras de eliminar el ruido de una imagen y se utilizan una variedad de algoritmos \cite{MandarMeghana, PawanManojSumitAshok} para ello. La propiedad mas importante de un buen modelo de eliminación de ruidos en imágenes, es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes \cite{PawanManojSumitAshok}. El filtrado de imágenes hace posible varias tareas útiles en el procesamiento de imágenes. Se puede aplicar un filtro para reducir la cantidad de ruido no deseado en una imagen (ver Fig. \ref{fig:filters}) o para revertir los efectos de desenfoque en la misma \cite{RuchikaGaurav}. Existen principalmente dos tipos de algoritmos, lineales y no lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen \cite{PawanManojSumitAshok}. Los filtros no lineales tienen un comportamiento bastante diferente en comparación con los filtros lineales, puesto que pueden manejar los bordes de una manera mucho mejor que los lineales además pueden producir resultados que varían de una manera no intuitiva \cite{RuchikaGaurav}.\\
+El propósito del filtrado de imágenes es reducir el ruido y mejorar la calidad visual de la imagen. Hay muchas maneras de eliminar el ruido de una imagen y se utilizan una variedad de algoritmos \cite{MandarMeghana, PawanManojSumitAshok} para ello. La propiedad más importante de un buen modelo de eliminación de ruidos en imágenes, es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes \cite{PawanManojSumitAshok}. El filtrado de imágenes hace posible varias tareas útiles en el procesamiento de imágenes. Se puede aplicar un filtro para reducir la cantidad de ruido no deseado en una imagen (ver Fig. \ref{fig:filters}) o para revertir los efectos de desenfoque en la misma \cite{RuchikaGaurav}. Existen principalmente dos tipos de algoritmos, lineales y no lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen \cite{PawanManojSumitAshok}. Los filtros no lineales tienen un comportamiento bastante diferente en comparación con los filtros lineales, puesto que pueden manejar los bordes de una manera mucho mejor que los lineales además pueden producir resultados que varían de una manera no intuitiva \cite{RuchikaGaurav}.\\
 
 \textbf{Promedio}
 El filtrado medio o promedio es un método simple, intuitivo y fácil de implementar para suavizar imágenes \cite{RajeshUday}. Este filtro lineal es pobre para mantener los bordes dentro de la imagen \cite{JamesYixinStephen}. Se utiliza mayormente en la eliminación de ruido de grano \cite{PawanManojSumitAshok}, dado que tiene el efecto de eliminar los valores de píxeles que no son representativos de su entorno \cite{RajeshUday}. La idea del filtrado promedio es simplemente reemplazar cada valor de píxel en una imagen con el valor promedio de sus vecinos, incluido él mismo \cite{RajeshUday}. La forma y el tamaño del vecindario es representado por una ventana sobre cada píxel \cite{PawanManojSumitAshok}. La ventana suele ser cuadrada pero puede tener cualquier forma \cite{MandarMeghana}. A menudo se usa una ventana cuadrada de $3 x 3$, aunque se pueden usar ventanas más grandes para un alisado más severo. Una ventana pequeña se puede aplicar más de una vez para producir un efecto similar, pero no idéntico, como una sola pasada con una ventana grande\cite{RajeshUday}.\\
@@ -185,17 +185,17 @@ El filtro de mediana es una técnica de filtrado digital no lineal, el cuál se 
     \centering
     \begin{subfigure}[b]{0.32\linewidth}
         \centering
-	    \includegraphics[width=4cm]{Graphics/Filter-Original.png}
+	    \includegraphics[width=\linewidth]{Graphics/Filter-Original.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \centering
+	    \includegraphics[width=\linewidth]{Graphics/Mean-Filter-Filtered.png}
         \caption{}
     \end{subfigure}    
     \begin{subfigure}[b]{0.32\linewidth}
         \centering
-	    \includegraphics[width=4cm]{Graphics/Mean-Filter-Filtered.png}
-        \caption{}
-    \end{subfigure}    
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-	    \includegraphics[width=4cm]{Graphics/Median-Filter-Filtered.png}
+	    \includegraphics[width=\linewidth]{Graphics/Median-Filter-Filtered.png}
         \caption{}
     \end{subfigure}    
     \caption{Filtros : (a) Imagen Original, (b) Filtro Promedio, (c) Filtro Mediana.}
@@ -214,13 +214,29 @@ Desde la década de 1990, se ha propuesto una gran cantidad de algoritmos BS y s
 
 \subsection{Algoritmos de Background Subtraction}
 
-Muchos algoritmos de BS han sido diseñados para segmentar los objetos de primer plano del fondo de una secuencia, y generalmente comparten el mismo esquema (ver Fig. \ref{fig:BSParadigm}). 
+Muchos algoritmos de BS han sido diseñados para segmentar los objetos de primer plano del fondo de una secuencia (ver Fig. \ref{fig:BSExample}), y generalmente comparten el mismo esquema (ver Fig. \ref{fig:BSParadigm}).
+
 \begin{figure}[h!]
-    \centering
-    \includegraphics{Graphics/BSParadigm.png}
-    \caption{Paradigma de Background Subtraction.}
-    \label{fig:BSParadigm}
+	\centering
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/BSExampleBackground.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/BSExampleCurrentFrame.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/BSExampleDetected.png}
+		\caption{}
+	\end{subfigure}
+	\caption{Ejemplo de Background Subtraction : (a) Fondo, (b) Frame Actual, (c) Fondo Detectado.}
+	\label{fig:BSExample}
 \end{figure}
+
 Este esquema esta dado debido a que la mayoría de las técnicas de BS comparten un denominador común: \textit{suponen que la secuencia de video observada $I$ está hecha de un fondo estático $B$ frente a los objetos en movimiento que se observan} \cite{YannickPierreMarcBrunoHeleneChristophe}. Con la suposición de que cada objeto en movimiento está hecho de un color o una distribución de color diferente del observado en $B$, numerosos métodos de BS se pueden resumir con la siguiente fórmula:
 \begin{equation}
 X_t(s) = \left\{
@@ -233,13 +249,20 @@ X_t(s) = \left\{
 \end{equation}
 donde $\tau$ es un umbral, $X_t$ es el campo de etiqueta de movimiento en el tiempo $t$ (también llamado máscara de movimiento), $d$ es la distancia entre $I_{s,t}$ color en el tiempo $t$ y el píxel $s$ y $B_s$ modelo de fondo en el pixel $s$. La diferencia principal entre varios métodos BS es cómo se modela $B$ y qué medida de distancia $d$ usan.\\
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=11cm]{Graphics/BSParadigm.png}
+	\caption{Paradigma de Background Subtraction.}
+	\label{fig:BSParadigm}
+\end{figure}
+
 \textbf{Diferencia de Fotograma.}
 La diferencia de fotograma es la forma más simple de background subtraction \cite{DeepjoySarat}. El fotograma actual simplemente se resta del fotograma anterior, y si la diferencia en los valores de píxel para un píxel dado es mayor que un umbral $\tau$, entonces el píxel se considera parte del primer plano. Dada la equación \ref{eq:BSFormula} podemos formular el método de la siguiente forma:
 $$
 X_t(s) = \left\{
 \begin{array}{ll}
 	1 & \mbox{if } \mid I_{s,t} - I_{s,t-1} \mid > \tau \\
-	0               & \mbox{en otro caso}        
+	0 & \mbox{en otro caso}
 \end{array}
 \right.
 $$
@@ -291,11 +314,105 @@ La precisión se puede ver como una métrica de exactitud o calidad, mientras qu
 
 \section{RANSAC}
 
-RANSAC o ``RANdom SAmple Consensus''
+Las técnicas generales de estimación de parámetros se basan en la suposición de que el ruido en los datos de entrenamiento es ruido gaussiano con media cero. Por lo tanto, se suavizaría después de la optimización de parámetros que promedia todos los datos. Sin embargo, esta suposición no se cumple cuando existen errores graves que pueden ocurrir con valores extremos de ruido o con mediciones incorrectas durante el muestreo. Este tipo de errores en realidad no se ajustan al modelo y deben rechazarse durante el entrenamiento para obtener mejores ajustes para el modelo.
+
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=10cm]{Graphics/RANSACGraphic.png}
+    \caption{Ejemplo del algoritmo RANSAC}
+    \label{fig:RANSACExample}
+\end{figure}
+
+El algoritmo \textit{RANSAC} (\textit{RANdom SAmple Consensus}) propuesto por \cite{FischlerBolles} es un algoritmo iterativo utilizado para estimar los parámetros de un modelo matemático de un conjunto de datos que contiene outliers \cite{PabloJuan}. Otros métodos para estimar parámetros de modelos como mínimos cuadrados le dan el mismo peso a todos los datos, por lo que la presencia de un outlier puede llegar a distorsionar el modelo obtenido (Ver Fig. \ref{fig:RANSACExample}). Este algoritmo utiliza una técnica de remuestreo que genera soluciones candidatas mediante el uso del número mínimo de observaciones (puntos de datos) necesarias para estimar los parámetros del modelo subyacente \cite{Konstantinos}.
+
+\subsection{Algoritmo}
+
+Para entender mejor lo que RANSAC hace, se describe el flujo del algoritmo genéricamente de la siguiente manera:
 
 \begin{figure}[!h]
-    \centering
-    \includegraphics[width=\linewidth]{Graphics/RANSACGraphic.png}
-    \caption{Ejemplo del algoritmo RANSAC}
-    \label{fig:RansacExample}
+	\centering
+	\includegraphics[width=\linewidth]{Graphics/RANSACAlgorithm1.png}
+	\caption{Algoritmo RANSAC}
+	\label{fig:RANSACAlgorithm}
 \end{figure}
+
+% \begin{algorithm}[!h]
+% 	\SetAlgoLined
+% 	\KwData{data - a set of observed data points\\
+%             model - a model that can be fitted to data points\\
+%             n - the minimum number of data values required to fit the model
+%             k - the maximum number of iterations allowed in the algorithm
+%             t - a threshold value for determining when a data point fits a model
+%             d - the number of close data values required to assert that a model fits well to data}
+% 	\KwResult{bestfit - model parameters which best fit the data (or nil if no good model is found)}
+%     \everypar={\nl}
+%     iterations = 0\;
+%     bestfit = nil\;
+%     besterr = something really large\;
+%     \While{$iterations < k$}{
+% 	maybeinliers = n randomly selected values from data\;
+% 	maybemodel = model parameters fitted to maybeinliers\;
+%     alsoinliers = empty set\;
+% 	\For {every point in data not in maybeinliers} {
+% 		\If{point fits maybemodel with an error smaller than t}
+% 		    {add point to alsoinliers\;}
+% 	}
+% 	\If{the number of elements in alsoinliers is > d} {
+% 		% this implies that we may have found a good model
+% 		% now test how good it is
+% 		bettermodel = model parameters fitted to all points in maybeinliers and alsoinliers\;
+% 		thiserr = a measure of how well model fits these points\;
+% 		\If {thiserr < besterr} {
+% 			bestfit = bettermodel\;
+% 			besterr = thiserr\;
+% 		}
+% 	}
+% 	increment iterations\;
+% }
+% return bestfit\;
+%     \caption{RANSAC}
+%     \label{alg:RANSAC}    
+% \end{algorithm}
+
+Como se describe al principio del flujo del algoritmo, RANSAC necesita algunos parámetros predefinidos para ejecutarse: tamaño del subconjunto de muestra ($n$), umbral de tolerancia de error ($t$), umbral de consenso mínimo ($d$) y número de iteraciones ($k$).
+
+\subsection{Parámetros}
+
+Como RANSAC es un algoritmo aleatorizado, es esencial estimar verdaderamente los parámetros, a fin de aumentar la probabilidad de encontrar el modelo óptimo, manteniendo las ventajas computacionales de un algoritmo aleatorizado frente a un algoritmo determinista exhaustivo.\\
+
+\textbf{Tamaño del Subconjunto de Muestra.}
+El tamaño del subconjunto de muestra es el número de muestras que RANSAC elige para ajustar el modelo en cada iteración. RANSAC usa la cantidad mínima de muestras necesarias para definir el modelo. Por ejemplo, para ajustarse a un modelo lineal, elige 2 muestras de datos o para ajustarse a un modelo cuadrático, selecciona 3 muestras de datos.
+
+$$n = \text{número mínimo de muestras para definir el modelo}$$
+
+Se podría pensar que al usar más muestras de datos, el subconjunto mínimo sería ventajoso, ya que se puede obtener inicialmente una estimación mejor y más precisa del modelo. Sin embargo, tener más muestras en el subconjunto de muestra aumentaría el espacio de búsqueda para la selección del subconjunto. Entonces, para mantener la probabilidad de encontrar el modelo óptimo en el mismo nivel, deberíamos probar más subconjunto de muestra. Por lo tanto, se requiere un aumento en el número de iteraciones, que en su mayoría provoca un aumento en la complejidad computacional que supera las ventajas de tener un subconjunto de muestra más grande.\\
+
+\textbf{Umbral de Tolerancia de Error.}
+El umbral de tolerancia de error ($t$) es utilizado por RANSAC para determinar si una muestra de datos concuerda con un modelo o no. Nos gustaría elegir este umbral, tal que con una probabilidad $\alpha$ el punto sea un inlier. Este cálculo requiere la distribución de probabilidad para la distancia de un inlier del modelo. En la práctica, el umbral generalmente se elige empíricamente, sin embargo, si se supone que el error de medición es gaussiano con media cero y desviación estándar $\sigma$, entonces se puede calcular un valor para $t$ \cite{RichardAndrew}. En este caso, el cuadrado de la distancia del punto ($d^2$), es una suma de variables gaussianas al cuadrado y sigue una distribución de $\chi_{m}^2$ con $m$ grados de libertad, donde $m$ es igual a la codificación del modelo. Para una línea, la codificación es $1$, solo se mide la distancia perpendicular a la línea. Si el modelo es un punto, la codificación es $2$, y el cuadrado de la distancia es la suma de los errores de medición $x$ e $y$ al cuadrado \cite{RichardAndrew}.
+
+La probabilidad de que el valor de una variable aleatoria de $\chi_{m}^2$ sea menor que $k^2$ viene dada por la distribución acumulada de chi-cuadrado, $F_m(k^2) = \int_{0}^{k^2} \chi_{m}^2(\xi)d\xi$ \cite{RichardAndrew}.
+
+$$
+\left\{
+\begin{array}{ll}
+	inlier & d^2 < t^2\\
+	outlier & d^2 \geq t^2
+\end{array}
+\right.
+\mbox{ with } t^2 = F_{m}^{-1}(\alpha)\sigma^2
+$$
+
+Por lo general, $\alpha$ se elige como $0,95$, por lo que hay un 95\% de probabilidad de que el punto sea un inlier. Esto significa que un inlier solo será rechazado incorrectamente el 5\% del tiempo \cite{RichardAndrew}.\\
+
+\textbf{Umbral de Consenso Mínimo.}
+El umbral de consenso mínimo es el número mínimo de muestras que se aceptarían como un consenso válido para generar un modelo final para esa iteración. Una regla empírica es terminar si el tamaño del conjunto de consenso es similar al número de inliers que se cree que están en el conjunto de datos dada la proporción supuesta de outliers, es decir, para $n$ puntos de datos $d = (1 - \epsilon)n$ \cite{RichardAndrew}.\\
+
+\textbf{Número de Iteraciones.}
+Los algoritmos deterministas exhaustivos probarían todos los subconjuntos de muestras posibles para encontrar el mejor, pero en realidad no solo es computacionalmente inviable, sino también innecesario. Por lo tanto, en lugar de una forma determinista, RANSAC elige un subconjunto de muestras al azar. Pero, también es importante determinar el número de estas elecciones aleatorias para obtener una alta probabilidad de que RANSAC elija un subconjunto de muestra que no incluya outliers.
+El número de iteraciones $k$ se calcula en función de la probabilidad ($p$) de que por lo menos un subconjunto que se elija aleatoriamente este libre de outliers. $\omega$ es la probabilidad de que un punto dentro del conjunto de datos sea un inlier, por lo tanto $\epsilon = 1-\omega$ es la probabilidad de encontrar un outlier \cite{PabloJuan}. Para que se cumpla la probabilidad $p$ se tiene que cumplir:
+
+$$1 - p = (1 - u^m)^k$$
+
+Despejando $k$ obtenemos:
+
+$$k = \frac{\log(1 - p)}{\log(1 - (1 - \epsilon)^s)}$$
