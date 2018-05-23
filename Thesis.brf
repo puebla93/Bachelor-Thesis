@@ -1,6 +1,6 @@
-\backcite {David}{{\es@scroman {iii}}{(document)}{Doc-Start}}
-\backcite {David}{{\es@scroman {iii}}{(document)}{Doc-Start}}
-\backcite {David}{{\es@scroman {iii}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {v}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {v}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {v}}{(document)}{Doc-Start}}
 \backcite {Pitchf/x}{{1}{(document)}{Doc-Start}}
 \backcite {Sportvision}{{1}{(document)}{Doc-Start}}
 \backcite {MLB}{{2}{(document)}{Doc-Start}}
@@ -90,3 +90,7 @@
 \backcite {RichardAndrew}{{23}{1.5.2}{subsection.1.5.2}}
 \backcite {RichardAndrew}{{23}{1.5.2}{subsection.1.5.2}}
 \backcite {PabloJuan}{{23}{1.5.2}{subsection.1.5.2}}
+\backcite {MLB}{{24}{2.1}{section.2.1}}
+\backcite {PlayStationEye}{{26}{2.2}{section.2.2}}
+\backcite {PlayStationMove}{{26}{2.2}{section.2.2}}
+\backcite {PitcherSpeed}{{27}{2.3.1}{subsection.2.3.1}}

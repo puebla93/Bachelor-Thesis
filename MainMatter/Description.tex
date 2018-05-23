@@ -1,1 +1,134 @@
 \chapter{Descripción del Sistema}\label{chapter:description}
+
+En este capítulo se describen los algoritmos seleccionados en cada una de las etapas descritas en el primer capítulo y se exponen las características de la cámara utilizada. Se definen formalmente algunas de las reglas y/o definiciones del béisbol que fueron tomadas en cuenta en el desarrolo del sistema y se propone una ubicación para la cámara dadas las características expuestas de la misma.
+
+\section{Definiciones del Béisbol}
+
+En el béisbol existen un conjunto de reglas o definiciones extremadamente importantes como es el caso de \textit{Zona de Strike}, \textit{Strike}, \textit{Bola}, etc. Para el desarrollo de este sistema fue necesario el conocimiento previo de varias de estas definiciones, las cuales serán presentadas formalmente en esta sección. Todas estas definiciones fueron tomadas de \cite{MLB}.
+
+\subsection{Zona de Strike}
+
+En el béisbol, la zona de strike es el volumen de espacio por el que debe pasar un lanzamiento para contar como strike. La zona de strike oficial es el área sobre el home plate desde el punto medio entre los hombros de un bateador y la parte superior de los pantalones del uniforme, cuando el bateador está en su posición y preparado para golpear una bola lanzada, y un punto justo debajo de la rótula (ver Fig. \ref{fig:StrikeZone}).
+
+En las ligas juveniles, la zona de strike puede ser diferente. A menudo, la parte superior de la zona de strike está en las axilas, para que sea un poco más grande y más fácil para los árbitros.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=12cm]{Graphics/StrikeZone.png}
+    \caption{Zona de Strike.}
+    \label{fig:StrikeZone}
+\end{figure}
+
+\subsection{Cronología de la Zona de Strike}
+
+Las especificaciones verticales de la zona de strike se han alterado varias veces durante la historia del béisbol (ver Fig. \ref{fig:StrikeZoneTimeLine}), la versión actual fue implementada en el año 1996.
+
+Desde 1950-62, la zona de strike fue desde las axilas hasta la parte superior de las rodillas.
+
+De 1963 hasta 1968, la zona de strike fue desde la parte superior de los hombros del bateador hasta las rodillas.
+
+Desde 1969 hasta 1987, la zona de strike fue desde las axilas hasta la parte superior de las rodillas. Esta zona de strike fue implementada junto con el decremento de la altura del montículo de 15 pulgadas a 10 pulgadas, en respuesta a una temporada de 1968, ahora conocida como el ``Año del lanzador'', en la que el dominio de los lanzadores alcanzó nuevas alturas.
+
+En los años comprendidos entre 1988 y 1995, la zona de strike fue desde el punto medio entre los hombros y la parte superior de los pantalones del uniforme, hasta la parte superior de las rodillas.
+
+La versión de la zona de strike utilizada desde 1963 hasta 1968 también se utilizó antes de 1950, y se remonta a fines del siglo XIX.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\linewidth]{Graphics/StrikeZoneTimeLine.jpg}
+    \caption{Cronología de la Zona de Strike.}
+    \label{fig:StrikeZoneTimeLine}
+\end{figure}
+
+\subsection{Strike}
+
+Para determinar si un lanzamiento es una bola o un strike, el árbitro usa una zona de strike. La pelota debe estar dentro de la zona de strike para ser llamada strike. Durante cada turno al bate en el béisbol, el bateador recibe hasta tres strikes para golpear la pelota. Un strike es cada vez que el bateador se balancea en un lanzamiento y falla o cualquier lanzamiento que se encuentre en la zona de strike, ya sea que el bateador se balancee o no. ¡Tres strike y el bateador está afuera!
+
+\subsection{Bola}
+
+Se anota como bola (B) aquel lanzamiento del pitcher hacia el home que se encuentre fuera de la zona de strike.
+
+\section{Cámara}
+
+Para capturar las imágenes fue utilizada una cámara PlayStation Eye \cite{PlayStationEye} (ver Fig. \ref{fig:PlayStationEye}). Este dispositivo se lanzó en el año 2007 con un precio de 20\textit{usd} como parte del sistema PlayStation Move \cite{PlayStationMove}, una tecnología que permite a los usuarios interactuar con los juegos a partir de la detección del movimiento de un control remoto y el reconocimiento de gestos. También cuenta con un arreglo de cuatro micrófonos que permite el reconocimiento de voz.
+
+Para que la detección de los movimientos sea precisa, la cámara PlayStation Eye es capaz de capturar imágenes a una velocidad de 60 cuadros por segundo (\textit{fps}) con una resolución de 640x480 pixeles y 120\textit{fps} a 320x240. La mayor velocidad de \textit{fps}, es de 187\textit{fps} a 320x240 o 640x480 a 75\textit{fps} y se puede seleccionar con aplicaciones específicas como \textit{Freetrack} y \textit{Linuxtrack}. 
+
+La cámara cuenta con un lente zoom de enfoque fijo ajustable en dos posiciones. Seleccionado manualmente al girar el cuerpo del lente, PlayStation Eye se puede configurar en un ángulo de visión de 56 grados (\textit{punto rojo}), para el encuadre de primer plano en aplicaciones de chat o un ángulo de visión de 75 grados (\textit{punto azul}) para el encuadre \textit{long-shot} en aplicaciones interactivas de juegos físicos.
+
+La interfaz de conexión es USB 2.0, por tanto puede utilizarse sin problemas en una computadora personal. La resolución, el precio y la alta velocidad de captura son los factores principales que influyeron en la elección de esta cámara para este sistema.
+
+\section{Posición y Configuración de la Cámara}
+
+Los sistemas existentes en su gran mayoría utilizan cámaras estereoscópicas de muy alta calidad, con una gran resolución y una alta velocidad de captura. Estas características se deben tener muy en cuenta en el análisis de en que parte del estadio de béisbol serán ubicadas y el posicionamiento que tendrán dichas cámaras. En el caso de este sistema en particular se hizo un amplio estudio de las características que posee el dispositivo PlayStation Eye para lograr una posición y ubicación donde sean aprovechadas al máximo las ventajas brindadas por la cámara.
+
+\subsection{Configuración}
+
+El ángulo de visión seleccionado fue de 75 grados (\textit{punto azul}), puesto que nos proporciona una campo de visión más amplio del terreno en comparación con la otra posible configuración ofrecida por la cámara, la cuál es de 56 grados, mucho menor que la seleccionada.
+
+Puesto que los lanzamientos en el béisbol son bastante rápidos (la bola rápida (recta) promedio de un lanzador de Grandes Ligas alcanza una velocidad de \textit{91mph} \cite{PitcherSpeed}) y que mientras más veces el sistema obtenga la posición de la pelota en un lanzamiento mejor será la aproximación de la función que describe su trayectoria, es necesario que la cámara utilizada posea una alta velocidad de captura. Con el objetivo de un mejor funcionamiento la cámara utilizada por el sistema fue ajustada a una configuración de 187\textit{fps} a 320x240, puesto que el dispositivo PlayStation Eye permite configurar la velocidad de captura y resolución como fue expuesto anteriormente. Aunque esta resolución es un poco pobre, la velocidad de captura es considerablemente alta y birnda la posibilidad de poder capturar la pelota varias veces en cada lanzamiento.
+
+\subsection{Posición}
+
+La cámara fue posicionada a una altura de aproximadamente $2.25$ metros sobre el Home Plate, lo que proporciona un campo de visión de aproximadamente $3.45$ metros de largo (ver Fig. \ref{fig:CameraPosition}).
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=10cm]{Graphics/CameraPosition.jpg}
+    \caption{Posición de la cámara.}
+    \label{fig:CameraPosition}
+\end{figure}
+
+Dada una mayor altura de la cámara con respecto a Home Plate el campo de visión obtenido es más amplio (ver Fig. \ref{fig:VisionAreaGraphic}):
+$$d=2*tan(\alpha/2)*h$$
+donde $h$ es la altura de la cámara con respecto a Home Plate ($2.25$ metros en nuestro caso), $\alpha$ el ángulo de visión (75 grados) y $d$ es el largo del campo de visión ($3.45$ metros).
+
+\begin{figure}[!h]
+        \centering
+        \includegraphics[width=10cm]{Graphics/VisionAreaGraphic.png}
+        \caption{Relación largo del campo de visión y altura de la cámara.}
+        \label{fig:VisionAreaGraphic}
+\end{figure}
+
+A una mayor altura la cámara contará con un campo de visón más amplio lo que supone una ventaja pero también tiene un inconveniente, al colocar la cámara a una gran altura necesitariamos que la cámara posea una mayor resolución, puesto que a mayor altura más lejos se observarán los objetos que se muestran en la imagen. La resolución en la configuración utilizada es de 320x240 por lo que no sería factible alejarse mucho más de la zona por donde pasa la pelota.
+
+Un dato que interesa conocer es en cuantos frames se podrá observar la pelota en un lanzamiento a velocidad promedio. Para conocer este dato es necesario calcular el tiempo en que la pelota recorre los $3.45$ metros del campo de visión:
+$$t = \frac{d}{v}, \quad t = \frac{2*tan(37.5^{\circ})*2.25m}{91mph}, \quad t = 84.9ms (milisegundos)$$
+Calculado este tiempo sabemos entonces que la pelota a una velocidad de \textit{91mph} recorre los $3.45$ metros del campo de visión en $84.9ms$. Dada la velocidad de captura utilizada (\textit{187fps}) y $t$ obtenemos:
+$$n=\frac{2*tan(37.5^{\circ})*2.25m}{91mph}*187fps, \quad n=15.87 frames$$
+La gráfica que muestra la relación entre el número de frames donde se observa la pelota en un lanzamiento y la velocidad de captura se muestra en la figura \ref{fig:NumberOfFrames}.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=10cm]{Graphics/NumberOfFrames.png}
+    \caption{Relación número de frames donde se observa la pelota y velocidad de captura en fps.}
+    \label{fig:NumberOfFrames}
+\end{figure}
+
+\section{Detección de Home Plate}
+
+Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee el objeto a detectar. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un Home Plate (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en la detección del Home Plate.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=8cm]{Graphics/HomePlate.png}
+    \caption{Dimensiones del Home Plate.}
+    \label{fig:HomePlateDimentions}
+\end{figure}
+
+Primeramente el sitema 
+
+\section{Detección de la Pelota}
+
+Detección de la Pelota
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=7cm]{Graphics/Ball.jpg}
+    \caption{Dimensiones de la Pelota.}
+    \label{fig:BallDimentions}
+\end{figure}
+
+\section{RANSAC}
+
+

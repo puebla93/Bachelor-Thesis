@@ -15,7 +15,7 @@ Para comprender la solución que se propone en este trabajo se enumeran las cuat
     \item Modelación de la trayectoria de la pelota.
 \end{itemize}
 
-A lo largo de este capítulo se pretende describir el fundamento teórico y los principales algoritmos utilizados en cada etapa
+A lo largo de este capítulo se pretende describir el fundamento teórico y los principales algoritmos utilizados en cada etapa.
 
 \section{Modelo de cámara}
 
@@ -274,7 +274,6 @@ Este método no necesita de un historial de fotogramas, ni de realizar varios c�
 Modelar $B$ con una sola imagen como el método \textit{Diferencia de Fotograma} requiere un fondo rigurosamente fijo y libre de ruido. Como este requisito no se puede satisfacer en todos los escenarios de la vida real, muchos algoritmos modelan cada píxel de fondo con una función de densidad de probabilidad (PDF) aprendida sobre una serie de marcos de entrenamiento \cite{YannickPierreMarcBrunoHeleneChristophe}. En este caso, el problema de BS se convierte en un problema de umbral de PDF para el cual es probable que un píxel con baja probabilidad corresponda a un objeto en movimiento en primer plano. Por ejemplo, para tener en cuenta el ruido, \cite{WrenAzarbayejaniDarrellPentland} modela cada píxel de fondo con una distribución gaussiana $\Gamma(\mu_{s,t}, \Sigma_{s,t})$ donde  $\mu_{s,t}$ y $\Sigma_{s,t}$ representan respectivamente el color de fondo promedio y la matriz de covarianza en el píxel $s$ y tiempo $t$. En este contexto, la métrica de distancia puede ser la siguiente probabilidad de registro \cite{YannickPierreMarcBrunoHeleneChristophe}:
 
 $$d_G = \frac{1}{2}\log((2\pi)^3\mid\Sigma_{s,t}\mid)+\frac{1}{2}(I_{s,t}-\mu_{s,t})\Sigma_{s,t}^{-1}(I_{s,t}-\mu_{s,t})^T$$
-
 o una distancia Mahalanobis:
 
 $$d_M = \mid I_{s,t}-\mu_{s,t}\mid\Sigma_{s,t}^{-1}\mid I_{s,t}-\mu_{s,t}\mid^T$$
@@ -319,7 +318,7 @@ Las técnicas generales de estimación de parámetros se basan en la suposición
 \begin{figure}[b]
     \centering
     \includegraphics[width=10cm]{Graphics/RANSACGraphic.png}
-    \caption{Ejemplo del algoritmo RANSAC}
+    \caption{Ejemplo del algoritmo RANSAC.}
     \label{fig:RANSACExample}
 \end{figure}
 
@@ -332,7 +331,7 @@ Para entender mejor lo que RANSAC hace, se describe el flujo del algoritmo gené
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=\linewidth]{Graphics/RANSACAlgorithm1.png}
-	\caption{Algoritmo RANSAC}
+	\caption{Algoritmo RANSAC.}
 	\label{fig:RANSACAlgorithm}
 \end{figure}
 
@@ -370,7 +369,7 @@ Para entender mejor lo que RANSAC hace, se describe el flujo del algoritmo gené
 % 	increment iterations\;
 % }
 % return bestfit\;
-%     \caption{RANSAC}
+%     \caption{RANSAC.}
 %     \label{alg:RANSAC}    
 % \end{algorithm}
 
@@ -412,7 +411,5 @@ Los algoritmos deterministas exhaustivos probarían todos los subconjuntos de mu
 El número de iteraciones $k$ se calcula en función de la probabilidad ($p$) de que por lo menos un subconjunto que se elija aleatoriamente este libre de outliers. $\omega$ es la probabilidad de que un punto dentro del conjunto de datos sea un inlier, por lo tanto $\epsilon = 1-\omega$ es la probabilidad de encontrar un outlier \cite{PabloJuan}. Para que se cumpla la probabilidad $p$ se tiene que cumplir:
 
 $$1 - p = (1 - u^m)^k$$
-
-Despejando $k$ obtenemos:
-
+despejando $k$ obtenemos:
 $$k = \frac{\log(1 - p)}{\log(1 - (1 - \epsilon)^s)}$$

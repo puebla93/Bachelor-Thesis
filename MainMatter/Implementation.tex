@@ -1,3 +1,19 @@
 \chapter{Implementación}
 
 En este capítulo se describe la estructura general del software y las herramientas utilizadas para la implementación del sistema. Además se exponen los resultados alcanzados a partir de la obtención de varias escenas de prueba.
+
+\section{Estructura General}
+
+% Antes de utilizar el dispositivo es necesario realizar la calibración. Este procedimiento
+% se hace cada vez que cambia la posición relativa entre las cámaras, por ejemplo cuando se
+% altera la línea base o ajusta la posición de alguna cámara en la estructura metálica. En el
+% algoritmo 2 está el seudocódigo para generar el mapa de profundidad.
+% En la línea 6 se crea un mapa que especifica la transformación de cada pixel en las
+% imágenes. Este paso evita tener que calcular la rectificación en cada iteración. El método
+% AdjustCameras(cam L , cam R ) modifica los parámetros de ganancia y exposición de las cáma-
+% ras para que se adapten a la iluminación de la escena y desactiva los ajustes automáticos.
+% Esto asegura que ambas cámaras mantengan los mismos parámetros. El ciclo en la línea 10,
+% donde se capturan las imágenes y se genera el mapa de disparidad, se realiza en un hilo
+% independiente.
+
+\subsection{Herramientas}
