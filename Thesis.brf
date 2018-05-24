@@ -1,6 +1,6 @@
-\backcite {David}{{\es@scroman {v}}{(document)}{Doc-Start}}
-\backcite {David}{{\es@scroman {v}}{(document)}{Doc-Start}}
-\backcite {David}{{\es@scroman {v}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {viii}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {viii}}{(document)}{Doc-Start}}
+\backcite {David}{{\es@scroman {viii}}{(document)}{Doc-Start}}
 \backcite {Pitchf/x}{{1}{(document)}{Doc-Start}}
 \backcite {Sportvision}{{1}{(document)}{Doc-Start}}
 \backcite {MLB}{{2}{(document)}{Doc-Start}}
@@ -11,19 +11,19 @@
 \backcite {PlayStationEye}{{4}{(document)}{Doc-Start}}
 \backcite {PlayStationMove}{{4}{(document)}{Doc-Start}}
 \backcite {RichardAndrew}{{7}{1.1}{section.1.1}}
-\backcite {David}{{7}{1.1}{figure.caption.7}}
-\backcite {David}{{7}{1.1}{figure.caption.7}}
-\backcite {David}{{7}{1.1}{figure.caption.7}}
+\backcite {David}{{7}{1.1}{figure.caption.10}}
+\backcite {David}{{7}{1.1}{figure.caption.10}}
+\backcite {David}{{7}{1.1}{figure.caption.10}}
 \backcite {RichardAndrew}{{8}{1.1}{equation.1.1.1}}
 \backcite {GaryAdrian}{{8}{1.1}{equation.1.1.1}}
 \backcite {GaryAdrian}{{8}{1.1}{equation.1.1.1}}
 \backcite {David}{{8}{1.1}{equation.1.1.1}}
 \backcite {JamesAndriesStevenJohnRichard}{{8}{1.1}{equation.1.1.2}}
-\backcite {Nicolas}{{8}{1.1.1}{figure.caption.8}}
-\backcite {David}{{9}{1.2}{figure.caption.8}}
-\backcite {David}{{9}{1.1.1}{figure.caption.8}}
-\backcite {GaryAdrian}{{9}{1.1.1}{figure.caption.8}}
-\backcite {David}{{10}{1.3}{figure.caption.9}}
+\backcite {Nicolas}{{8}{1.1.1}{figure.caption.11}}
+\backcite {David}{{9}{1.2}{figure.caption.11}}
+\backcite {David}{{9}{1.1.1}{figure.caption.11}}
+\backcite {GaryAdrian}{{9}{1.1.1}{figure.caption.11}}
+\backcite {David}{{10}{1.3}{figure.caption.12}}
 \backcite {GaryAdrian}{{10}{1.2}{section.1.2}}
 \backcite {GaryAdrian}{{10}{1.2}{section.1.2}}
 \backcite {David}{{11}{1.2}{section.1.2}}
@@ -36,9 +36,9 @@
 \backcite {AjayBrijendra,Dougherty}{{12}{1.3.2}{subsection.1.3.2}}
 \backcite {HaidiTheamSin}{{12}{1.3.2}{subsection.1.3.2}}
 \backcite {MandarMeghana}{{12}{1.3.2}{subsection.1.3.2}}
-\backcite {MandarMeghana}{{13}{1.3.2}{figure.caption.10}}
-\backcite {AjayBrijendra2}{{13}{1.3.2}{figure.caption.10}}
-\backcite {AjayBrijendra}{{13}{1.3.2}{figure.caption.10}}
+\backcite {MandarMeghana}{{13}{1.3.2}{figure.caption.13}}
+\backcite {AjayBrijendra2}{{13}{1.3.2}{figure.caption.13}}
+\backcite {AjayBrijendra}{{13}{1.3.2}{figure.caption.13}}
 \backcite {MandarMeghana, PawanManojSumitAshok}{{13}{1.3.3}{subsection.1.3.3}}
 \backcite {PawanManojSumitAshok}{{13}{1.3.3}{subsection.1.3.3}}
 \backcite {RuchikaGaurav}{{14}{1.3.3}{subsection.1.3.3}}
@@ -64,26 +64,26 @@
 \backcite {DeepjoySarat}{{16}{1.4}{section.1.4}}
 \backcite {YannickPierreMarcBrunoHeleneChristophe}{{16}{1.4}{section.1.4}}
 \backcite {GuangleTaoJiandanPingWenwu}{{16}{1.4}{section.1.4}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{17}{1.4.1}{figure.caption.13}}
-\backcite {DeepjoySarat}{{17}{1.4.1}{figure.caption.14}}
-\backcite {InsafSlimane}{{18}{1.4.1}{figure.caption.14}}
-\backcite {ApewokinApewokinWillsWillsGentile}{{18}{1.4.1}{figure.caption.14}}
-\backcite {KentaroJohnBarryBrian}{{18}{1.4.1}{figure.caption.14}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{18}{1.4.1}{figure.caption.14}}
-\backcite {WrenAzarbayejaniDarrellPentland}{{18}{1.4.1}{figure.caption.14}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{18}{1.4.1}{figure.caption.14}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{18}{1.4.1}{figure.caption.14}}
-\backcite {BenezethJodoinEmileLaurentRosenberger}{{19}{1.4.1}{figure.caption.14}}
-\backcite {GreffBrandoKrauStrickerClua}{{19}{1.4.1}{figure.caption.14}}
-\backcite {BenezethJodoinEmileLaurentRosenberger}{{19}{1.4.1}{figure.caption.14}}
-\backcite {GreffBrandoKrauStrickerClua}{{19}{1.4.1}{figure.caption.14}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{17}{1.4.1}{figure.caption.16}}
+\backcite {DeepjoySarat}{{17}{1.4.1}{figure.caption.17}}
+\backcite {InsafSlimane}{{18}{1.4.1}{figure.caption.17}}
+\backcite {ApewokinApewokinWillsWillsGentile}{{18}{1.4.1}{figure.caption.17}}
+\backcite {KentaroJohnBarryBrian}{{18}{1.4.1}{figure.caption.17}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{18}{1.4.1}{figure.caption.17}}
+\backcite {WrenAzarbayejaniDarrellPentland}{{18}{1.4.1}{figure.caption.17}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{18}{1.4.1}{figure.caption.17}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{18}{1.4.1}{figure.caption.17}}
+\backcite {BenezethJodoinEmileLaurentRosenberger}{{19}{1.4.1}{figure.caption.17}}
+\backcite {GreffBrandoKrauStrickerClua}{{19}{1.4.1}{figure.caption.17}}
+\backcite {BenezethJodoinEmileLaurentRosenberger}{{19}{1.4.1}{figure.caption.17}}
+\backcite {GreffBrandoKrauStrickerClua}{{19}{1.4.1}{figure.caption.17}}
 \backcite {GuangleTaoJiandanPingWenwu}{{19}{1.4.2}{subsection.1.4.2}}
-\backcite {GuangleTaoJiandanPingWenwu}{{19}{1.4.2}{figure.caption.15}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{20}{1.4.2}{figure.caption.15}}
-\backcite {GuangleTaoJiandanPingWenwu}{{20}{1.4.2}{figure.caption.15}}
-\backcite {FischlerBolles}{{20}{1.5}{figure.caption.16}}
-\backcite {PabloJuan}{{21}{1.5}{figure.caption.16}}
-\backcite {Konstantinos}{{21}{1.5}{figure.caption.16}}
+\backcite {GuangleTaoJiandanPingWenwu}{{19}{1.4.2}{figure.caption.18}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{20}{1.4.2}{figure.caption.18}}
+\backcite {GuangleTaoJiandanPingWenwu}{{20}{1.4.2}{figure.caption.18}}
+\backcite {FischlerBolles}{{20}{1.5}{figure.caption.19}}
+\backcite {PabloJuan}{{21}{1.5}{figure.caption.19}}
+\backcite {Konstantinos}{{21}{1.5}{figure.caption.19}}
 \backcite {RichardAndrew}{{22}{1.5.2}{subsection.1.5.2}}
 \backcite {RichardAndrew}{{22}{1.5.2}{subsection.1.5.2}}
 \backcite {RichardAndrew}{{23}{1.5.2}{subsection.1.5.2}}
@@ -94,3 +94,7 @@
 \backcite {PlayStationEye}{{26}{2.2}{section.2.2}}
 \backcite {PlayStationMove}{{26}{2.2}{section.2.2}}
 \backcite {PitcherSpeed}{{27}{2.3.1}{subsection.2.3.1}}
+\backcite {Contours}{{31}{2.4.1}{subsection.2.4.1}}
+\backcite {AdaptiveThreshold}{{31}{2.4.1}{subsection.2.4.1}}
+\backcite {AdaptiveThresholdOpenCV}{{31}{2.4.1}{subsection.2.4.1}}
+\backcite {AdaptiveThresholdOpenCV}{{31}{2.4.1}{subsection.2.4.1}}

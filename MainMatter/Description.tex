@@ -92,10 +92,12 @@ donde $h$ es la altura de la cámara con respecto a Home Plate ($2.25$ metros en
 
 A una mayor altura la cámara contará con un campo de visón más amplio lo que supone una ventaja pero también tiene un inconveniente, al colocar la cámara a una gran altura necesitariamos que la cámara posea una mayor resolución, puesto que a mayor altura más lejos se observarán los objetos que se muestran en la imagen. La resolución en la configuración utilizada es de 320x240 por lo que no sería factible alejarse mucho más de la zona por donde pasa la pelota.
 
-Un dato que interesa conocer es en cuantos frames se podrá observar la pelota en un lanzamiento a velocidad promedio. Para conocer este dato es necesario calcular el tiempo en que la pelota recorre los $3.45$ metros del campo de visión:
+Un dato que interesa conocer es en cuantos frames se podrá observar la pelota en un lanzamiento a velocidad promedio. Para conocer este dato es necesario calcular el tiempo $t$ en que la pelota recorre los $3.45$ metros del campo de visión:
 $$t = \frac{d}{v}, \quad t = \frac{2*tan(37.5^{\circ})*2.25m}{91mph}, \quad t = 84.9ms (milisegundos)$$
 Calculado este tiempo sabemos entonces que la pelota a una velocidad de \textit{91mph} recorre los $3.45$ metros del campo de visión en $84.9ms$. Dada la velocidad de captura utilizada (\textit{187fps}) y $t$ obtenemos:
 $$n=\frac{2*tan(37.5^{\circ})*2.25m}{91mph}*187fps, \quad n=15.87 frames$$
+donde $n$ es el número de frames en que se podrá observar la pelota en un lanzamiento.
+
 La gráfica que muestra la relación entre el número de frames donde se observa la pelota en un lanzamiento y la velocidad de captura se muestra en la figura \ref{fig:NumberOfFrames}.
 
 \begin{figure}[!h]
@@ -107,7 +109,7 @@ La gráfica que muestra la relación entre el número de frames donde se observa
 
 \section{Detección de Home Plate}
 
-Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee el objeto a detectar. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un Home Plate (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en la detección del Home Plate.
+Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee dicho objeto. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un Home Plate (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en el proceso de detección de Home Plate, en el cual se hayaron todos los contornos sobre la imagen (ver Fig. \ref{fig:ImagesContours}) para luego ir filtrandolos por las características geométricas que mejor lo describan.
 
 \begin{figure}[!h]
     \centering
@@ -116,16 +118,91 @@ Para poder detectar correctamente un objeto en una imagen es necesario el conoci
     \label{fig:HomePlateDimentions}
 \end{figure}
 
-Primeramente el sitema 
+\subsection{Contornos}
+
+Los contornos se pueden explicar simplemente como una curva que une todos los puntos continuos (a lo largo del límite), teniendo el mismo color o intensidad. Los contornos son una herramienta útil para el análisis de formas, la detección de objetos y su reconocimiento \cite{Contours}. Para una mayor precisión, los contornos se hayan sobre imágenes binarias, por lo que antes de buscar un contorno sobre una imagen se aplica un umbral sobre la misma.
+
+El umbral utilizado sobre la imagen para hayar los contornos fue el umbral adaptativo \cite{AdaptiveThreshold}. La principal razón por la cuál se utilizó este umbral es debido a que pueden haber condiciones donde la imagen tenga diferente iluminación en diferentes áreas \cite{AdaptiveThresholdOpenCV}. El algoritmo de umbral adaptativo calcula el umbral para una pequeña región de la imagen, por lo que obtenemos diferentes umbrales para diferentes regiones de la misma imagen y nos da mejores resultados para las imágenes con iluminación variable \cite{AdaptiveThresholdOpenCV}.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/ColorImage.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/ImageThresh.png}
+		\caption{}
+	\end{subfigure}    
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/AllContours.png}
+		\caption{}
+	\end{subfigure}    
+	\caption{Contornos en una imagen : (a) Imagen original, (b) Imagen binaria, (c) Contornos en la imagen.}
+	\label{fig:ImagesContours}
+\end{figure}    
+
+\subsection{Filtros al Home Plate}
+
+Luego de haber hayado todos los contornos en la imagen tenemos que encontrar el contorno del Home Plate. Para esto se fueron filtrando los contornos utilizando diferentes criterios, dichos criterios mayormente formaban parte de las características geométricas que definen al Home Plate (ver Fig. \ref{fig:FilteredContours}).
+
+El primer filtro utilizado fue el filtrado por área, donde se tienen dos umbrales uno máximo y otro mínimo. Estos umbrales son porcentuales con respecto a la imagen, lo que permite utilizar diferentes tipos de resolución sin afectar la correctitud del sistema. Un contorno de área $X$ pasa el filtro de área (posible Home Plate) si:
+$$cpa \leq max\_cpa \quad \text{y} \quad cpa \geq min\_cpa \quad \text{con} \quad cpa = 100 * X / IA$$
+donde $IA$ el área de la imagen, $cpa$ es el porciento del área de la imagen que ocupa el contorno, $max\_cpa$ es el umbral máximo y $min\_cpa$ el umbral mínimo. Los umbrales seleccionados para el sistema fueron $max\_cpa = 10$ y $min\_cpa = 1$ debido al campo de visión de la cámara.
+
+Una de las características geométricas que posee el Home Plate es que es un polígono de 5 lados (pentágono). Esta característica es un buen filtro debido a que muchos contornos en la imagen aunque sean un polígono no serán un pentágono (tendrán 5 lados).
+
+Otro de los filtros utilizados es el filtro de relación entre los lados. Como se muestra en la figura \ref{fig:HomePlateDimentions} el Home Plate tiene dos pares de lados iguales, lo que supone una característica bastante particular de este pentágono. Al igual que en el filtrado por área la relación entre los lados iguales es porcentual y se tiene un umbral de diferencia entre los lados, esto está dado debido a que los lados rara vez van a ser exactamente iguales. Un lado de longitud $d_1$ es igual a otro de longitud $d_2$ si:
+$$psd \leq psr \quad \text{con} \quad psd = \frac{100 * \mid d_1 - d_2 \mid}{min(d_1, d_2)}$$
+donde $psd$ \textbf{es el porciento del valor absoluto de la diferencia entre $d_1$ y $d_2$ y el menor de los dos lados} y $psr$ es el umbral de diferencia entre los dos lados. El umbral seleccionado para el sistema fue $psr = 20$ debido al campo de visión de la cámara.
+
+El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la figura \ref{fig:HomePlateDimentions} el HomePlate tiene tres ángulos de 90º y dos de 135º, otra característica bastante particular de este pentágono. Al igual que en dos de los filtros anteriores este también cuanta con un umbral. Otra característica con relación a los ángulos es que estos siguen el patrón [90º, 90º, 135º, 90º, 135º] o cualquier rotación de este. Un contorno pasa el filtro de ángulos (posible Home Plate) si los 5 ángulos ordenados de forma consecutiva siguen el patrón anteriormente expuesto (o cualquiera de sus rotaciones) y:
+\begin{equation*}
+	\begin{split}
+		\begin{split}
+			& \mid \alpha_1 - 90^{\circ} \mid \\
+			& \mid \alpha_2 - 90^{\circ} \mid \\
+			& \mid \alpha_3 - 90^{\circ} \mid \\
+			& \mid \beta_1 - 135^{\circ} \mid \\
+			& \mid \beta_2 - 135^{\circ} \mid
+		\end{split}
+		& \quad \leq \quad umbral
+	\end{split}
+\end{equation*}
+donde $\alpha_1$, $\alpha_2$, $\alpha_3$ son los tres ángulos menores y $\beta_1$, $\beta_2$ son los dos mayores. El umbral seleccionado para el sistema fue $umbral = 5$.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/AllContours.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/FiltersContoursByArea.png}
+		\caption{}
+	\end{subfigure}    
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/FiltersContoursBySidesNumber.png}
+		\caption{}
+	\end{subfigure}    
+	\caption{Filtros a contornos : (a) Todos los contornos, (b) Contornos filtrados por área, (c) Contornos filtrados por número de lados.}
+	\label{fig:FilteredContours}
+\end{figure}    
 
 \section{Detección de la Pelota}
 
-Detección de la Pelota
+Una de las restricciones que impone el sistema es el hecho de que la cámara tiene una posición fija sobre el Home Plate. Esto nos brinda la ventaja de que el área observada por la cámara es estática, lo que implica que no cambia entre lanzamiento y lanzamiento.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=7cm]{Graphics/Ball.jpg}
-    \caption{Dimensiones de la Pelota.}
+    \caption{Dimensiones de la pelota.}
     \label{fig:BallDimentions}
 \end{figure}
 
