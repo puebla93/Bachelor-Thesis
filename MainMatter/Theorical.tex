@@ -9,7 +9,7 @@ El objetivo principal de este trabajo es desarrollar un sistema que permita cono
 Para comprender la solución que se propone en este trabajo se enumeran las cuatro etapas en que se dividió el proceso de caracterización de un lanzamiento:
 
 \begin{itemize}
-    \item Obtención de los cinco puntos que describen el Home Plate.
+    \item Obtención de los cinco puntos que describen el \textit{Home Plate}.
     \item Computar la matriz de tranformación de la imagen a una vista top-view.
     \item Detección de la pelota en la imagen.
     \item Modelación de la trayectoria de la pelota.
@@ -155,7 +155,7 @@ La media y la varianza de esta densidad están dadas por $\mu = \frac{(a+b)}{2}$
 \begin{figure}[h!]
     \centering
     \includegraphics[width=5cm]{Graphics/PDF-of-Uniform-Noise.png}
-    \caption{PDF de Ruido Uniforme.}
+    \caption{PDF de ruido uniforme.}
     \label{fig:PDFUniformNoise}
 \end{figure}
 
@@ -167,7 +167,7 @@ donde $z$ representa el nivel de gris, $\bar{z}$ el valor medio y $\sigma$ la de
 \begin{figure}[h!]
     \centering
     \includegraphics[width=5cm]{Graphics/PDF-of-Gaussian-Noise.png}
-    \caption{PDF de Ruido Gaussiano.}
+    \caption{PDF de ruido gaussiano.}
     \label{fig:PDFGaussianNoise}
 \end{figure}
 
@@ -202,7 +202,7 @@ El filtro de mediana es una técnica de filtrado digital no lineal, el cuál se 
     \label{fig:filters}
 \end{figure}    
 
-\section{Background Subtraction}
+\section{Background Subtraction}\label{sec:BS}
 
 Background Subtraction (BS) es una de las tareas más frecuentes en los sistemas de seguimiento y análisis de video. Es el primer paso para todo tipo de aplicaciones en el campo de visión por computadora, como análisis de video, seguimiento de objetos, videovigilancia, recuento de objetos, análisis de tráfico, etc \cite{GuangleTaoJiandanPingWenwu}. Por esta razón, generalmente se requiere que sea lo más rápido y simple posible. La popularidad de los algoritmos de background subtraction proviene en gran medida de su eficiencia computacional, permitiendo que aplicaciones como las antes mencionadas cumplan con sus objetivos en tiempo real \cite{DeepjoySarat}.
 
@@ -313,7 +313,7 @@ La precisión se puede ver como una métrica de exactitud o calidad, mientras qu
 
 \section{RANSAC}
 
-Las técnicas generales de estimación de parámetros se basan en la suposición de que el ruido en los datos de entrenamiento es ruido gaussiano con media cero. Por lo tanto, se suavizaría después de la optimización de parámetros que promedia todos los datos. Sin embargo, esta suposición no se cumple cuando existen errores graves que pueden ocurrir con valores extremos de ruido o con mediciones incorrectas durante el muestreo. Este tipo de errores en realidad no se ajustan al modelo y deben rechazarse durante el entrenamiento para obtener mejores ajustes para el modelo.
+Las técnicas generales de estimación de parámetros se basan en la suposición de que el ruido en los datos de entrenamiento es ruido gaussiano con media cero. Por lo tanto, este ruido se suavizaría después de la optimización de parámetros que promedia todos los datos. Sin embargo, esta suposición no se cumple cuando existen errores graves que pueden ocurrir con valores extremos de ruido o con mediciones incorrectas durante el muestreo. Este tipo de errores en realidad no se ajustan al modelo y deben rechazarse durante el entrenamiento para obtener mejores ajustes del modelo.
 
 \begin{figure}[b]
     \centering

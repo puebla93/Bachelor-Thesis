@@ -6,9 +6,9 @@ En este capítulo se describen los algoritmos seleccionados en cada una de las e
 
 En el béisbol existen un conjunto de reglas o definiciones extremadamente importantes como es el caso de \textit{Zona de Strike}, \textit{Strike}, \textit{Bola}, etc. Para el desarrollo de este sistema fue necesario el conocimiento previo de varias de estas definiciones, las cuales serán presentadas formalmente en esta sección. Todas estas definiciones fueron tomadas de \cite{MLB}.
 
-\subsection{Zona de Strike}
+\subsection{Zona de Strike Actual}
 
-En el béisbol, la zona de strike es el volumen de espacio por el que debe pasar un lanzamiento para contar como strike. La zona de strike oficial es el área sobre el home plate desde el punto medio entre los hombros de un bateador y la parte superior de los pantalones del uniforme, cuando el bateador está en su posición y preparado para golpear una bola lanzada, y un punto justo debajo de la rótula (ver Fig. \ref{fig:StrikeZone}).
+En el béisbol, la zona de strike es el volumen de espacio por el que debe pasar un lanzamiento para contar como strike. La zona de strike oficial es el área sobre el \textit{home plate} desde el punto medio entre los hombros de un bateador y la parte superior de los pantalones del uniforme, cuando el bateador está en su posición y preparado para golpear una bola lanzada, y un punto justo debajo de la rótula (ver Fig. \ref{fig:StrikeZone}).
 
 En las ligas juveniles, la zona de strike puede ser diferente. A menudo, la parte superior de la zona de strike está en las axilas, para que sea un poco más grande y más fácil para los árbitros.
 
@@ -68,20 +68,27 @@ El ángulo de visión seleccionado fue de 75 grados (\textit{punto azul}), puest
 
 Puesto que los lanzamientos en el béisbol son bastante rápidos (la bola rápida (recta) promedio de un lanzador de Grandes Ligas alcanza una velocidad de \textit{91mph} \cite{PitcherSpeed}) y que mientras más veces el sistema obtenga la posición de la pelota en un lanzamiento mejor será la aproximación de la función que describe su trayectoria, es necesario que la cámara utilizada posea una alta velocidad de captura. Con el objetivo de un mejor funcionamiento la cámara utilizada por el sistema fue ajustada a una configuración de 187\textit{fps} a 320x240, puesto que el dispositivo PlayStation Eye permite configurar la velocidad de captura y resolución como fue expuesto anteriormente. Aunque esta resolución es un poco pobre, la velocidad de captura es considerablemente alta y birnda la posibilidad de poder capturar la pelota varias veces en cada lanzamiento.
 
-\subsection{Posición}
+\subsection{Posición}\label{sec:Position}
 
-La cámara fue posicionada a una altura de aproximadamente $2.25$ metros sobre el Home Plate, lo que proporciona un campo de visión de aproximadamente $3.45$ metros de largo (ver Fig. \ref{fig:CameraPosition}).
+La cámara fue posicionada a una altura de aproximadamente $2.25$ metros sobre el \textit{Home Plate}, lo que proporciona un campo de visión de aproximadamente $3.45$ metros de largo (ver Fig. \ref{fig:CameraPosition}).
 
 \begin{figure}[!h]
-    \centering
-    \includegraphics[width=10cm]{Graphics/CameraPosition.jpg}
-    \caption{Posición de la cámara.}
+	\centering
+	\begin{subfigure}[b]{0.4\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/CameraPosition.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/ColorImage.png}
+		\caption{}
+	\end{subfigure}
+    \caption{Posicionamiento de la cámara : (a) Posición de la cámara, (b) Vista de la cámara.}
     \label{fig:CameraPosition}
 \end{figure}
 
-Dada una mayor altura de la cámara con respecto a Home Plate el campo de visión obtenido es más amplio (ver Fig. \ref{fig:VisionAreaGraphic}):
+Dada una mayor altura de la cámara con respecto a \textit{Home Plate} el campo de visión obtenido es más amplio (ver Fig. \ref{fig:VisionAreaGraphic}):
 $$d=2*tan(\alpha/2)*h$$
-donde $h$ es la altura de la cámara con respecto a Home Plate ($2.25$ metros en nuestro caso), $\alpha$ el ángulo de visión (75 grados) y $d$ es el largo del campo de visión ($3.45$ metros).
+donde $h$ es la altura de la cámara con respecto a \textit{Home Plate} ($2.25$ metros en nuestro caso), $\alpha$ el ángulo de visión (75 grados) y $d$ es el largo del campo de visión ($3.45$ metros).
 
 \begin{figure}[!h]
         \centering
@@ -107,14 +114,14 @@ La gráfica que muestra la relación entre el número de frames donde se observa
     \label{fig:NumberOfFrames}
 \end{figure}
 
-\section{Detección de Home Plate}
+\section{Detección de \textit{Home Plate}}
 
-Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee dicho objeto. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un Home Plate (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en el proceso de detección de Home Plate, en el cual se hayaron todos los contornos sobre la imagen (ver Fig. \ref{fig:ImagesContours}) para luego ir filtrandolos por las características geométricas que mejor lo describan.
+Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee dicho objeto. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un \textit{Home Plate} (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en el proceso de detección de \textit{Home Plate}, en el cual se hayaron todos los contornos sobre la imagen (ver Fig. \ref{fig:ImagesContours}) para luego ir filtrandolos por las características geométricas que mejor lo describan.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=8cm]{Graphics/HomePlate.png}
-    \caption{Dimensiones del Home Plate.}
+    \caption{Dimensiones del \textit{Home Plate} de béisbol.}
     \label{fig:HomePlateDimentions}
 \end{figure}
 
@@ -145,21 +152,21 @@ El umbral utilizado sobre la imagen para hayar los contornos fue el umbral adapt
 	\label{fig:ImagesContours}
 \end{figure}    
 
-\subsection{Filtros al Home Plate}
+\subsection{Filtros a los Contornos}
 
-Luego de haber hayado todos los contornos en la imagen tenemos que encontrar el contorno del Home Plate. Para esto se fueron filtrando los contornos utilizando diferentes criterios, dichos criterios mayormente formaban parte de las características geométricas que definen al Home Plate (ver Fig. \ref{fig:FilteredContours}).
+Luego de haber hayado todos los contornos en la imagen tenemos que encontrar el contorno del \textit{Home Plate}. Para esto se fueron filtrando los contornos utilizando diferentes criterios, dichos criterios mayormente formaban parte de las características geométricas que definen al \textit{Home Plate} (ver Fig. \ref{fig:FilteredContours}).
 
-El primer filtro utilizado fue el filtrado por área, donde se tienen dos umbrales uno máximo y otro mínimo. Estos umbrales son porcentuales con respecto a la imagen, lo que permite utilizar diferentes tipos de resolución sin afectar la correctitud del sistema. Un contorno de área $X$ pasa el filtro de área (posible Home Plate) si:
+El primer filtro utilizado fue el filtrado por área, donde se tienen dos umbrales uno máximo y otro mínimo. Estos umbrales son porcentuales con respecto a la imagen, lo que permite utilizar diferentes tipos de resolución sin afectar la correctitud del sistema. Un contorno de área $X$ pasa el filtro de área (posible \textit{Home Plate}) si:
 $$cpa \leq max\_cpa \quad \text{y} \quad cpa \geq min\_cpa \quad \text{con} \quad cpa = 100 * X / IA$$
 donde $IA$ el área de la imagen, $cpa$ es el porciento del área de la imagen que ocupa el contorno, $max\_cpa$ es el umbral máximo y $min\_cpa$ el umbral mínimo. Los umbrales seleccionados para el sistema fueron $max\_cpa = 10$ y $min\_cpa = 1$ debido al campo de visión de la cámara.
 
-Una de las características geométricas que posee el Home Plate es que es un polígono de 5 lados (pentágono). Esta característica es un buen filtro debido a que muchos contornos en la imagen aunque sean un polígono no serán un pentágono (tendrán 5 lados).
+Una de las características geométricas que posee el \textit{Home Plate} es que es un polígono de 5 lados (pentágono). Esta característica es un buen filtro debido a que muchos contornos en la imagen aunque sean un polígono no serán un pentágono (tendrán 5 lados).
 
-Otro de los filtros utilizados es el filtro de relación entre los lados. Como se muestra en la figura \ref{fig:HomePlateDimentions} el Home Plate tiene dos pares de lados iguales, lo que supone una característica bastante particular de este pentágono. Al igual que en el filtrado por área la relación entre los lados iguales es porcentual y se tiene un umbral de diferencia entre los lados, esto está dado debido a que los lados rara vez van a ser exactamente iguales. Un lado de longitud $d_1$ es igual a otro de longitud $d_2$ si:
+Otro de los filtros utilizados es el filtro de relación entre los lados. Como se muestra en la figura \ref{fig:HomePlateDimentions} el \textit{Home Plate} tiene dos pares de lados iguales, lo que supone una característica bastante particular de este pentágono. Al igual que en el filtrado por área la relación entre los lados iguales es porcentual y se tiene un umbral de diferencia entre los lados, esto está dado debido a que los lados rara vez van a ser exactamente iguales. Un lado de longitud $d_1$ es igual a otro de longitud $d_2$ si:
 $$psd \leq psr \quad \text{con} \quad psd = \frac{100 * \mid d_1 - d_2 \mid}{min(d_1, d_2)}$$
 donde $psd$ \textbf{es el porciento del valor absoluto de la diferencia entre $d_1$ y $d_2$ y el menor de los dos lados} y $psr$ es el umbral de diferencia entre los dos lados. El umbral seleccionado para el sistema fue $psr = 20$ debido al campo de visión de la cámara.
 
-El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la figura \ref{fig:HomePlateDimentions} el HomePlate tiene tres ángulos de 90º y dos de 135º, otra característica bastante particular de este pentágono. Al igual que en dos de los filtros anteriores este también cuanta con un umbral. Otra característica con relación a los ángulos es que estos siguen el patrón [90º, 90º, 135º, 90º, 135º] o cualquier rotación de este. Un contorno pasa el filtro de ángulos (posible Home Plate) si los 5 ángulos ordenados de forma consecutiva siguen el patrón anteriormente expuesto (o cualquiera de sus rotaciones) y:
+El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la figura \ref{fig:HomePlateDimentions} el HomePlate tiene tres ángulos de 90º y dos de 135º, otra característica bastante particular de este pentágono. Al igual que en dos de los filtros anteriores este también cuanta con un umbral. Otra característica geométrica es que la lista de los ángulos consecutivos es una rotación de la siguiente [90º, 90º, 135º, 90º, 135º]. Un contorno pasa el filtro de ángulos (posible \textit{Home Plate}) si los 5 ángulos ordenados de forma consecutiva siguen el patrón anteriormente expuesto (o cualquiera de sus rotaciones) y:
 \begin{equation*}
 	\begin{split}
 		\begin{split}
@@ -197,15 +204,33 @@ donde $\alpha_1$, $\alpha_2$, $\alpha_3$ son los tres ángulos menores y $\beta_
 
 \section{Detección de la Pelota}
 
-Una de las restricciones que impone el sistema es el hecho de que la cámara tiene una posición fija sobre el Home Plate. Esto nos brinda la ventaja de que el área observada por la cámara es estática, lo que implica que no cambia entre lanzamiento y lanzamiento.
+Una de las restricciones que impone el sistema es el hecho de que la cámara tiene una posición fija sobre el \textit{Home Plate}. Esto nos brinda la ventaja de que el área observada por la cámara es estática, lo que implica que no cambia entre lanzamiento y lanzamiento. Estas restricción del sistema y el hecho de que en un lanzamiento la pelota esta en constante movimiento son las principales bases del módulo de detección de la pelota. Un exelente algoritmo para identificar un objeto en movimiento dada una secuencia de frames y la cámara en una posición estática es Background Subtraction (ver sección \ref{sec:BS}).
+
+\subsection{Background Subtraction}
+
+Debido a que el uso del sistema propuesto será en exteriores, el modelo de BS seleccionado fue Mezcla Gaussiana (GMM). Este modelo brinda grandes ventajas en un ambiente de exteriores (al aire libre), puesto que funciona mejor cuando el fondo es inestable o cuando el nivel de ruido es significativamente grande \cite{YannickPierreMarcBrunoHeleneChristophe}. Esta ventaja esta dada debido a que el modelado de fondo se realiza como un fenómeno estadístico (aleatorio) en lugar de una constante. Los ruidos en las imagenes de esteriores estan dado mayormente por fluctuación de la cámara y cambio de luz, ruidos en los que el modelo GMM se adapta muy bien \cite{GMM}.
+
+Luego de aplicar GMM sobre la imagen al resultado obtenido se le aplica una transformación morfológica. Las transformaciones morfológicas son algunas operaciones simples basadas en la forma de la imagen, las cuales se realizan en imágenes binarias. Estas operaciones necesitan dos entradas, una es la imagen original, la segunda se llama elemento estructurador o \textit{kernel}, el cuál decide la naturaleza de la operación. Dos operadores morfológicos básicos son Erosión y Dilatación. Luego, sus variantes como apertura, cierre, gradiente, etc. también entran en juego \cite{MorphologicalTransformationsOpenCV}. La operación morfológica utilizada por el sistema es apertura, nombre que se le da a la operación de erosión seguida de dilatación. La forma del kernel utilizada es un círculo debido a que se ajusta mejor a la forma de la pelota.
+
+\subsection{Filtrado a la Pelota}
+
+Como el algoritmo de BS se consideran un problema de clasificación, es posible que se detecte un objeto como primer plano y que este no lo sea (falso positivo FP). Es por esto que luego de etiquetados todos los objetos que forman parte del primer plano, se filtran por su radio. Cada objeto es aproximado por un círculo, lo que nos proporciona el radio de dicho objeto y luego se aplica el filtro. El filtro de radio cuenta con dos umbrales uno máximo y otro mínimo, los cuales son porcentuales con respecto a la imagen. Un objeto de radio $r$ pasa el filtro de radio (posible pelota) si:
+$$rp \leq max\_rp \quad \text{y} \quad rp \geq min\_rp \quad \text{con} \quad rp = 100*r/IA$$
+donde $IA$ el área de la imagen, $rp$ es el porciento del área de la imagen que ocupa el radio, $max\_rp$ es el umbral máximo y $min\_rp$ el umbral mínimo. Los umbrales seleccionados para el sistema fueron $max\_rp = 0.01$ y $min\_rp = 0.002$ debido al campo de visión de la cámara. 
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=7cm]{Graphics/Ball.jpg}
-    \caption{Dimensiones de la pelota.}
+    \caption{Dimensiones de la pelota de béisbol.}
     \label{fig:BallDimentions}
 \end{figure}
 
-\section{RANSAC}
+\section{Aproximación de la trayectoria de la pelota}
 
+RANSAC
 
+\section{Herramientas}
+
+Para la calibración de la cámara y el procesamiento, análisis y manejo en general de las imágenes se utilizó la plataforma \textit{OpenCV} con el lenguaje \textit{Python}. Esta es una biblioteca de algoritmos de visión por computadoras que está enfocada principalmente en el procesamiento de imágenes en tiempo real. Para el trabajo con matrices y vectores fue utilizada la biblioteca \textit{NumPy}. Esta es una biblioteca de funciones matemáticas de alto nivel escrita en \textit{Python} y \textit{C}. Además de sus usos científicos, \textit{NumPy} también se puede usar como un contenedor multidimensional eficiente de datos genéricos, en el cual se pueden definir tipos de datos arbitrarios. Esto permite a la biblioteca integrarse de manera rápida y sin problemas con una amplia variedad de bases de datos.
+
+A pesar de que el trabajo se desarrolló en el sistema operativo \textit{Ubuntu 16.04}, la herramienta \textit{OpenCV} y la biblioteca \textit{NumPy} son multiplataforma, lo que permite portar el software principal con relativa facilidad a otros sistemas operativos.

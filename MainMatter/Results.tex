@@ -1,0 +1,128 @@
+\chapter{Resultados}
+
+En este capítulo se exponen los resultados alcanzados a partir de la obtención de varias escenas de prueba. Primeramente se expondrán los resultados obtenidos en la detección de \textit{Home Plate} y se abordarán los escenarios en que falla esta detección. Luego se expondrá el proceso de confección del conjunto de prueba para la deteción de la pelota. Por último se mostrarán los resultados obtenidos en la detección de la pelota.
+
+Las escenas utilizadas fueron selecionadas de manera tal que fueran comletamente diferentes, puesto que así es posible evaluar el sistema en dos escenarios distintos. Las principales diferencias que presentan estas escenas es en la iluminación de la imagen y la cantidad de ruido que presentan.
+
+\section{Resultados en la detección de \textit{Home Plate}}
+
+Para evaluar el desempeño de los algoritmos que intervienen en la detección de \textit{Home Plate} se analizó el resultado obtenido en cada escena. Estas escenas se seleccionaron de forma tal que incluyeran imágenes con distinta iluminación y distintos niveles de ruido.
+
+En la detección del \textit{Home Plate} que se muestra en la figura \ref{fig:DetectedHomeSEDER} la iluminación en toda la imagen no cambia, esto se debe a que es una escena al aire libre. El hecho de que no haya cambios drásticos en la iluminación conlleva a la obtención de una imagen con poco ruido y una detección de \textit{Home Plate} mucho más precisa.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeSEDER.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/DetectedHomeSEDER.png}
+        \caption{}
+    \end{subfigure}
+    \caption{Detección de \textit{Home Plate}. Escena terreno del SEDER : (a) Imagen original, (b)\textit{ Home Plat}e detectado.}
+    \label{fig:DetectedHomeSEDER}
+\end{figure}
+
+Por otra parte en la figura \ref{fig:DetectedHomeMATCOM} el ambiente es más desfavorable con relación al anterior, puesto que la imagen obtenida presenta mayor cantidad de ruido. Este ruido esta dado principalmente por el hecho de que el suelo refleja mucha luz y que una mitad de la imagen es un área bajo techo (poca iluminación) y la otra es al aire libre (mayor cantidad de luz), lo que proporciona un cambio de iluminación en la mitad de la imagen.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeMATCOM.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/DetectedHomeMATCOM.png}
+        \caption{}
+    \end{subfigure}
+    \caption{Detección de \textit{Home Plate}. Escena pasillo de MATCOM : (a) Imagen original, (b)\textit{ Home Plat}e detectado.}
+    \label{fig:DetectedHomeMATCOM}
+\end{figure}
+
+Uno de los posibles escenarios en la detección del \textit{Home Plate} es en el que la pelota pasa por encima de este o que en el momento de capturar la pelota el guante del receptor (mascota) se interponga entre el \textit{Home} y la cámara, aunque esto es menos probable debido a la ubicación del receptor. En la gran mayoría de los casos en que un objeto se interpone entre la cámara y el \textit{Home}, la detección de este se verá afectada.
+
+En la figura \ref{fig:WrongHomeBall} se muestra uno de los escenarios donde la pelota se encuentra sobre una de las esquinas del \textit{Home}. Como se puede apreciar el contorno no tiene las características geométricas propias de un \textit{Home Plate}, por lo que este no será detectado por el sistema en este frame.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongBallSEDER.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongContourBallSEDER.png}
+        \caption{}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongBallMATCOM.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongContourBallMATCOM.png}
+        \caption{}
+    \end{subfigure}
+    \caption{\textit{Home Plate} no detectado a causa de la posición de la pelota : (a) Imagen original SEDER, (b) Contorno detectado SEDER, (c) Imagen original MATCOM, (d) Contorno detectado MATCOM.}
+    \label{fig:WrongHomeBall}
+\end{figure}
+
+Otro de los posibles escenarios es cuando el guante del receptor se encuentra encima de Home (ver Fig. \ref{fig:WrongHomeGlove}), esto también provoca que el contorno detectado no posea las características geométricas requeridas por el sistema para ser identificado como \textit{Home}.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongGloveSEDER.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongContourGloveSEDER.png}
+        \caption{}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongGloveMATCOM.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/HomeWrongContourGloveMATCOM.png}
+        \caption{}
+    \end{subfigure}
+    \caption{\textit{Home Plate} no detectado a causa de la posición del guante del receptor : (a) Imagen original SEDER, (b) Contorno detectado SEDER, (c) Imagen original MATCOM, (d) Contorno detectado MATCOM.}
+    \label{fig:WrongHomeGlove}
+\end{figure}
+
+\section{Obtención del conjunto de prueba}
+
+Para la obtención del conjunto de prueba que medirá los resultados obtenidos en la detección de la pelota, se implementó una herramienta que permite seleccionar manualmente la posición de la misma. Esta selección se lleva a cabo sobre una imagen que no es la tomada por la cámara, sino otra que resulta de transformar la vista de la imagen tomada a \textit{top-view}, utilizando los cinco puntos del \textit{Home Plate} previamente identificados. El proceso de seleccionar manualmente la posición de la pelota se realiza mediante la obtención del rectángulo en el cual se encuentra inscrita. El dato obtenido con esta herraminta es un archivo en formato JSON (ver Fig. \ref{fig:JsonFile}) en el cual las llaves están conformadas por el nombre del frame en donde se encuentra una pelota y los valores son el centro y el radio de dicha pelota. Estos valores son los utilizados posteriormente en la comparación entre los valores de centro y radio brindados por el sistema y los obtenidos con la herramienta implementada.
+
+\begin{figure}[!h]
+    \centering
+	\includegraphics[width=5cm]{Graphics/Results/HomeWrongContourGloveMATCOM.png}
+    \caption{Archivo JSON generado por la herramienta que conforma el conjuto de prueba.}
+    \label{fig:JsonFile}
+\end{figure}
+
+Para la obtención de las imagenes que se utilizaron en la generación del conjunto de prueba, se construyó una estructura conformada por dos tripodes de $2.25$ metros de altura y una tabla de $2.20$ metros de largo donde fue colocada la cámara (ver Fig. \ref{fig:Structure}). Esta estructura fue posicionada encima del \textit{Home PLate}, posición seleccionada previamente en la sección \ref{sec:Position}. La estructura fue montada en el SEDER donde se realizarón los lanzamientos que forman parte del conjunto de prueba.
+
+Las imagenes tomadas poseen diferentes resoluciones como 320x240, 1280x720 y 1920x1080. Las imagenes con resolución de 320x240 fueron tomadas con la cámara del PlayStation Eye que es la cámara que usa el sistema. Las resoluciones de 1280x720 y 1920x1080 (\textit{fullHD}) fueron tomadas con el \textit{SmartPhone OnePlus 5T}. Estas imagenes de mayor resolución se tomarón con el objetivo de comparar los resultados obtenidos con la cámara del PlayStation Eye que son a un amenor resolución.
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Structure0.jpg}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Structure1.jpg}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Structure2.jpg}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Structure3.jpg}
+    \end{subfigure}
+	\caption{Estructura utilizada en el proceso de obtención las imagenes que se utilizaron en la generación del conjunto de prueba.}
+	\label{fig:Structure}
+\end{figure}
+
+\section{Resultados en la detección de la pelota}
+
+Resultados
