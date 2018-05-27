@@ -1,4 +1,8 @@
+%===================================================================================
+% Chapter: Description
+%===================================================================================
 \chapter{Descripción del Sistema}\label{chapter:description}
+%===================================================================================
 
 En este capítulo se describen los algoritmos seleccionados en cada una de las etapas descritas en el primer capítulo y se exponen las características de la cámara utilizada. Se definen formalmente algunas de las reglas y/o definiciones del béisbol que fueron tomadas en cuenta en el desarrolo del sistema y se propone una ubicación para la cámara dadas las características expuestas de la misma.
 
@@ -38,6 +42,17 @@ La versión de la zona de strike utilizada desde 1963 hasta 1968 también se uti
     \includegraphics[width=\linewidth]{Graphics/StrikeZoneTimeLine.jpg}
     \caption{Cronología de la Zona de Strike.}
     \label{fig:StrikeZoneTimeLine}
+\end{figure}
+
+\subsection{Zona de Strike Utilizada}
+
+La zona de strike utilizada fue una zona fija, esta zona está diseñada para ciertos análisis que se realizan luego de un partido de béisbol donde la altura del bateador no se conoce. Como la zona de strike se rigue por la estatura del bateador en turno, se utiliza una altura fija para estos, la cual es de 6 \textit{pies}. En función de esta altura el área de la zona de strike es calculada (ver Fig. \ref{fig:UsedStrikeZone}).
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=8cm]{Graphics/PG-Zone.png}
+    \caption{Zona de Strike utilizada.}
+    \label{fig:UsedStrikeZone}
 \end{figure}
 
 \subsection{Strike}
@@ -114,6 +129,50 @@ La gráfica que muestra la relación entre el número de frames donde se observa
     \label{fig:NumberOfFrames}
 \end{figure}
 
+\section{Eliminación de ruido}
+
+La cámara PlayStation Eye permite establecer manualmente la velocidad de captura. Mientras más imágenes se capturen en un segundo, menos tiempo tiene el sensor de la cámara para medir la iluminación de la escena, por tanto las imágenes son más oscuras (ver Fig. \ref{fig:ImageNoiseFPS}) y como se puede observar en la gráfica \ref{fig:NoiseSNR}, también aumenta el ruido \cite{DVD}.
+
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}[b]{0.24\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/ImageNoise15FPS.png}
+		\text{15 \textit{fps}}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.24\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/ImageNoise30FPS.png}
+		\text{30 \textit{fps}}
+	\end{subfigure}\\
+	\begin{subfigure}[b]{0.24\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/ImageNoise60FPS.png}
+		\text{60 \textit{fps}}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.24\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/ImageNoise90FPS.png}
+		\text{90 \textit{fps}}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.24\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/ImageNoise120FPS.png}
+		\text{120 \textit{fps}}
+	\end{subfigure}
+	\caption{Imágenes de una misma escena tomadas a distintas velocidades de captura. A medida que aumentan los \textit{fps}, las imágenes son más oscuras \cite{DVD}.}
+	\label{fig:ImageNoiseFPS}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=12cm]{Graphics/NoiseSNR.png}
+	\caption{Ruido en las imágenes a distintas velocidades de captura. Valores pequeños de SNR significan más ruido en la imagen \cite{DVD}.}
+	\label{fig:NoiseSNR}
+\end{figure}
+
+Como es importante que la eliminación de ruido en el sistema se realice en tiempo real, es necesario aplicar un filtro sencillo y efectivo, pero que a su vez preserve las características de la imagen como bordes y texturas, este es el caso del filtro de mediana (ver sección \ref{sec:NoiseFilters}). Este filtro no está exento de eliminar los detalles de la imagen, de hecho si la vecindad es muy grande las texturas pierden definición. Para evitar que se afecten en gran medida los detalles de la imagen, se aplicó el filtro varias veces con un tamaño de ventana pequeño.
+
 \section{Detección de \textit{Home Plate}}
 
 Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee dicho objeto. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un \textit{Home Plate} (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en el proceso de detección de \textit{Home Plate}, en el cual se hayaron todos los contornos sobre la imagen (ver Fig. \ref{fig:ImagesContours}) para luego ir filtrandolos por las características geométricas que mejor lo describan.
@@ -154,18 +213,22 @@ El umbral utilizado sobre la imagen para hayar los contornos fue el umbral adapt
 
 \subsection{Filtros a los Contornos}
 
-Luego de haber hayado todos los contornos en la imagen tenemos que encontrar el contorno del \textit{Home Plate}. Para esto se fueron filtrando los contornos utilizando diferentes criterios, dichos criterios mayormente formaban parte de las características geométricas que definen al \textit{Home Plate} (ver Fig. \ref{fig:FilteredContours}).
+Luego de haber hayado todos los contornos en la imagen tenemos que encontrar el contorno del \textit{Home Plate}. Para esto se fueron filtrando los contornos utilizando diferentes criterios, dichos criterios mayormente formaban parte de las características geométricas que definen al \textit{Home Plate} (ver Fig. \ref{fig:FilteredContours}). \\
 
+\textbf{Filtrado por área.}
 El primer filtro utilizado fue el filtrado por área, donde se tienen dos umbrales uno máximo y otro mínimo. Estos umbrales son porcentuales con respecto a la imagen, lo que permite utilizar diferentes tipos de resolución sin afectar la correctitud del sistema. Un contorno de área $X$ pasa el filtro de área (posible \textit{Home Plate}) si:
 $$cpa \leq max\_cpa \quad \text{y} \quad cpa \geq min\_cpa \quad \text{con} \quad cpa = 100 * X / IA$$
-donde $IA$ el área de la imagen, $cpa$ es el porciento del área de la imagen que ocupa el contorno, $max\_cpa$ es el umbral máximo y $min\_cpa$ el umbral mínimo. Los umbrales seleccionados para el sistema fueron $max\_cpa = 10$ y $min\_cpa = 1$ debido al campo de visión de la cámara.
+donde $IA$ el área de la imagen, $cpa$ es el porciento del área de la imagen que ocupa el contorno, $max\_cpa$ es el umbral máximo y $min\_cpa$ el umbral mínimo. Los umbrales seleccionados para el sistema fueron $max\_cpa = 10$ y $min\_cpa = 1$ debido al campo de visión de la cámara.\\
 
-Una de las características geométricas que posee el \textit{Home Plate} es que es un polígono de 5 lados (pentágono). Esta característica es un buen filtro debido a que muchos contornos en la imagen aunque sean un polígono no serán un pentágono (tendrán 5 lados).
+\textbf{Filtrado por número de lados.}
+Una de las características geométricas que posee el \textit{Home Plate} es que es un polígono de 5 lados (pentágono). Esta característica es un buen filtro debido a que muchos contornos en la imagen aunque sean un polígono no serán un pentágono (no tendrán 5 lados).\\
 
+\textbf{Filtrado de relación entre los lados.}
 Otro de los filtros utilizados es el filtro de relación entre los lados. Como se muestra en la figura \ref{fig:HomePlateDimentions} el \textit{Home Plate} tiene dos pares de lados iguales, lo que supone una característica bastante particular de este pentágono. Al igual que en el filtrado por área la relación entre los lados iguales es porcentual y se tiene un umbral de diferencia entre los lados, esto está dado debido a que los lados rara vez van a ser exactamente iguales. Un lado de longitud $d_1$ es igual a otro de longitud $d_2$ si:
 $$psd \leq psr \quad \text{con} \quad psd = \frac{100 * \mid d_1 - d_2 \mid}{min(d_1, d_2)}$$
-donde $psd$ \textbf{es el porciento del valor absoluto de la diferencia entre $d_1$ y $d_2$ y el menor de los dos lados} y $psr$ es el umbral de diferencia entre los dos lados. El umbral seleccionado para el sistema fue $psr = 20$ debido al campo de visión de la cámara.
+donde $psd$ es el porciento del valor absoluto de la diferencia entre $d_1$ y $d_2$ y el menor de los dos lados y $psr$ es el umbral de diferencia entre los dos lados. El umbral seleccionado para el sistema fue $psr = 20$ debido al campo de visión de la cámara.\\
 
+\textbf{Filtrado por ángulos.}
 El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la figura \ref{fig:HomePlateDimentions} el HomePlate tiene tres ángulos de 90º y dos de 135º, otra característica bastante particular de este pentágono. Al igual que en dos de los filtros anteriores este también cuanta con un umbral. Otra característica geométrica es que la lista de los ángulos consecutivos es una rotación de la siguiente [90º, 90º, 135º, 90º, 135º]. Un contorno pasa el filtro de ángulos (posible \textit{Home Plate}) si los 5 ángulos ordenados de forma consecutiva siguen el patrón anteriormente expuesto (o cualquiera de sus rotaciones) y:
 \begin{equation*}
 	\begin{split}
@@ -180,6 +243,8 @@ El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la 
 	\end{split}
 \end{equation*}
 donde $\alpha_1$, $\alpha_2$, $\alpha_3$ son los tres ángulos menores y $\beta_1$, $\beta_2$ son los dos mayores. El umbral seleccionado para el sistema fue $umbral = 5$.
+
+% \textbf{text}
 
 \begin{figure}[h!]
 	\centering
@@ -227,7 +292,7 @@ donde $IA$ el área de la imagen, $rp$ es el porciento del área de la imagen qu
 
 \section{Aproximación de la trayectoria de la pelota}
 
-RANSAC
+Luego de obtener el conjunto de puntos en la imagen donde se encontró la pelota, es necesario hayar una función que los aproxime. En este conjunto de puntos obtenidos puede que todavía queden algunos que fueron identificados falsamente como una pelota, a los puntos con estas características se les denomina \textit{outliers}. Debido a esto es conveniente utilizar un método que no tenga en cuenta la presencia de estos \textit{outliers}, de lo contrario no se tendrá una buena aproximación de la trayectoria de la pelota. Un método que aproxima eficiente un conjunto de puntos donde hay \textit{outliers} es \textit{RANSAC} (ver sección \ref{sec:RANSAC}).
 
 \section{Herramientas}
 

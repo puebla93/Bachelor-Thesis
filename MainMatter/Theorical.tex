@@ -26,13 +26,13 @@ Una cámara es un mapeo entre el mundo 3D (espacio de objetos) y una imagen 2D. 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{Graphics/PinholeModel.png}
-    \caption{Modelo \textit{pinhole} \cite{David}.}
+    \caption{Modelo \textit{pinhole} \cite{DVD}.}
     \label{fig:PinholeModel}
 \end{figure}
 
-El centro de proyección $o$ se denomina \textit{centro óptico}. La distancia $f$ ente el centro óptico y el plano focal es la \textit{distancia focal}. La recta que pasa por el centro óptico y es perpendicular al plano focal se llama \textit{eje principal} de la cámara y el punto donde el eje principal intercepta el plano de la imagen se denomina \textit{punto principal}. El plano que pasa por el centro óptico y es paralelo al plano de la imagen se denomina \textit{plano principal} \cite{David}.
+El centro de proyección $o$ se denomina \textit{centro óptico}. La distancia $f$ ente el centro óptico y el plano focal es la \textit{distancia focal}. La recta que pasa por el centro óptico y es perpendicular al plano focal se llama \textit{eje principal} de la cámara y el punto donde el eje principal intercepta el plano de la imagen se denomina \textit{punto principal}. El plano que pasa por el centro óptico y es paralelo al plano de la imagen se denomina \textit{plano principal} \cite{DVD}.
 
-Dado que los pares de triángulos oad, obc y oqa, oQb son semejantes \cite{David}, se cumple que las
+Dado que los pares de triángulos oad, obc y oqa, oQb son semejantes \cite{DVD}, se cumple que las
 coordenadas de la proyección del punto Q en el plano de la imagen son:
 
 \begin{equation}
@@ -40,7 +40,7 @@ coordenadas de la proyección del punto Q en el plano de la imagen son:
     \label{eq:ProjectionCoordinates}
 \end{equation}
 
-La expresión \ref{eq:ProjectionCoordinates} supone que el origen de las coordenadas en el plano de la imagen está en el eje principal \cite{RichardAndrew}. En la práctica, puede no serlo, por lo que es necesario introducir dos nuevos parámetros, $c_x$ y $c_y$, para modelar un posible desplazamiento del centro de coordenadas en la pantalla de proyección \cite{GaryAdrian}. Los píxeles en una cámara de bajo costo son rectangulares en lugar de cuadrados \cite{GaryAdrian}, por dicha razón se introducen dos nuevas distancias focales $f_x=fs_x$ y $f_y=fs_y$ donde $s_x/s_y$ representa la relación de aspecto de los pixeles \cite{David}. Teniendo en cuenta los nuevos parámetros y la expresión \ref{eq:ProjectionCoordinates}, el punto en el plano de la imagen se define como:
+La expresión \ref{eq:ProjectionCoordinates} supone que el origen de las coordenadas en el plano de la imagen está en el eje principal \cite{RichardAndrew}. En la práctica, puede no serlo, por lo que es necesario introducir dos nuevos parámetros, $c_x$ y $c_y$, para modelar un posible desplazamiento del centro de coordenadas en la pantalla de proyección \cite{GaryAdrian}. Los píxeles en una cámara de bajo costo son rectangulares en lugar de cuadrados \cite{GaryAdrian}, por dicha razón se introducen dos nuevas distancias focales $f_x=fs_x$ y $f_y=fs_y$ donde $s_x/s_y$ representa la relación de aspecto de los pixeles \cite{DVD}. Teniendo en cuenta los nuevos parámetros y la expresión \ref{eq:ProjectionCoordinates}, el punto en el plano de la imagen se define como:
 
 \begin{equation}
     x=f_x\bigg(\frac{X}{Z}\bigg) + c_x, \quad y=f_y\bigg(\frac{Y}{Z}\bigg) + c_y
@@ -71,7 +71,7 @@ Los lentes de las cámaras reales a menudo distorsionan la ubicación de los pí
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{Graphics/RadialDistortion.png}
-    \caption{Distorsión radial causada por el lente de la cámara \cite{David}.}
+    \caption{Distorsión radial causada por el lente de la cámara \cite{DVD}.}
     \label{fig:RadialDistortion}
 \end{figure}
 
@@ -84,7 +84,7 @@ Dado que se asume que no hay distorsión en el centro de la imagen se tiene que 
     y_c = y(1 + k_1 r^2 + k_2 r^4 + k_3 r^6)
 \end{gather*}
 
-Donde $(x, y)$ son las coordenadas originales, $k_1$, $k_2$ y $k_3$ son los términos de la serie de Taylor $a_2$, $a_4$ y $a_6$ respectivamente y $(x_c, y_c)$ es la nueva posición rectificada. En la mayoría de los casos no es necesario tener en cuenta el parámetro $k_3$ a excepción de las cámaras con lentes que provocan una deformación radial extrema \cite{David}.\\
+Donde $(x, y)$ son las coordenadas originales, $k_1$, $k_2$ y $k_3$ son los términos de la serie de Taylor $a_2$, $a_4$ y $a_6$ respectivamente y $(x_c, y_c)$ es la nueva posición rectificada. En la mayoría de los casos no es necesario tener en cuenta el parámetro $k_3$ a excepción de las cámaras con lentes que provocan una deformación radial extrema \cite{DVD}.\\
 
 \textbf{Distorsión tangencial.}
 Otra de las distorsión más comunes es la distorsión tangencial. Esta distorsión se debe a defectos de fabricación, los cuales resultan en que el lente no está exactamente paralelo al plano de imagen (ver Fig. \ref{fig:TangentialDistortion}). La fórmula propuesta en \cite{GaryAdrian} para corregir esta distorsión es:
@@ -96,7 +96,7 @@ Otra de las distorsión más comunes es la distorsión tangencial. Esta distorsi
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{Graphics/TangentialDistortion.png}
-	\caption{Distorsión tangencial \cite{David}.}
+	\caption{Distorsión tangencial \cite{DVD}.}
 	\label{fig:TangentialDistortion}
 \end{figure}
 
@@ -106,7 +106,7 @@ Hay muchos otros tipos de distorsiones que ocurren en los sistemas de imágenes,
 
 El proceso de calibración de la cámara nos proporciona un modelo de la geometría de la cámara y un modelo de distorsión del lente. Estos dos modelos informativos definen los parámetros intrínsecos de la cámara. La calibración de la cámara también es importante para relacionar las mediciones de la cámara con mediciones en el mundo tridimensional real \cite{GaryAdrian}. Esto es importante porque las escenas no son solo tridimensionales; también son espacios físicos con unidades físicas. Según \cite{GaryAdrian} la calibración es: \textit{el proceso mediante el cual se calculan los parámetros intrínsecos y extrínsecos de la cámara, a partir de la correspondencia entre un conjunto de puntos de control con coordenadas tridimensionales conocidas y sus proyecciones en la imagen obtenida con dicha cámara}.
 
-Para calcular los parámetros intrínsecos, $f_x$, $f_y$, $c_x$, $c_y$ y el vector de coeficientes de distorsión, se capturan imágenes de una escena que tenga un conjunto $C=(Q_1 \dots Q_n)$ de puntos característicos (fácilmente identificables) con coordenadas conocidas con respecto a un origen previamente definido. Cada punto $Q_i\in{C}$ tiene una proyección $q_i=(x, y)$ en el plano de la imagen con coordenadas en pixeles. Es posible describir la posición relativa de los puntos $Q$ con respecto a las coordenadas de la cámara (con origen en el punto principal) utilizando una rotación $R$ y una traslación $T$ de modo que $Q_c=R(Q_w-T)$, donde $Q_w$ son las coordenadas de los puntos en el espacio y $Q_c$ son las coordenadas con respecto a la cámara y las matrices $R$, $T$ se denominan parámetros extrínsecos de la cámara. Utilizando coordenadas homogéneas y la matriz de parámetros intrínsecos $M$ es posible definir la homografía $H$ que relaciona a cada punto del espacio $Q_i$ con sus proyecciones $q_i$ en el plano de la imagen \cite{David}
+Para calcular los parámetros intrínsecos, $f_x$, $f_y$, $c_x$, $c_y$ y el vector de coeficientes de distorsión, se capturan imágenes de una escena que tenga un conjunto $C=(Q_1 \dots Q_n)$ de puntos característicos (fácilmente identificables) con coordenadas conocidas con respecto a un origen previamente definido. Cada punto $Q_i\in{C}$ tiene una proyección $q_i=(x, y)$ en el plano de la imagen con coordenadas en pixeles. Es posible describir la posición relativa de los puntos $Q$ con respecto a las coordenadas de la cámara (con origen en el punto principal) utilizando una rotación $R$ y una traslación $T$ de modo que $Q_c=R(Q_w-T)$, donde $Q_w$ son las coordenadas de los puntos en el espacio y $Q_c$ son las coordenadas con respecto a la cámara y las matrices $R$, $T$ se denominan parámetros extrínsecos de la cámara. Utilizando coordenadas homogéneas y la matriz de parámetros intrínsecos $M$ es posible definir la homografía $H$ que relaciona a cada punto del espacio $Q_i$ con sus proyecciones $q_i$ en el plano de la imagen \cite{DVD}
 \begin{equation*}
     \begin{split}
         q'=sHQ',\quad\text{donde}\qquad &
@@ -124,7 +124,7 @@ Para calcular los parámetros intrínsecos, $f_x$, $f_y$, $c_x$, $c_y$ y el vect
     \end{split}
 \end{equation*}
 
-El parámetro $s$ es un factor de escalado arbitrario que hace explícito el hecho de que la homografía solo está definida hasta este factor y $W_{3x4}$ es una matriz donde las tres primeras columnas es la matriz de rotación $R$ y la última columna es el vector de traslación $T$. Resolver este sistema de ecuaciones resulta en la obtención de los parámetros intrínsecos y extrínsecos de la cámara \cite{David}.
+El parámetro $s$ es un factor de escalado arbitrario que hace explícito el hecho de que la homografía solo está definida hasta este factor y $W_{3x4}$ es una matriz donde las tres primeras columnas es la matriz de rotación $R$ y la última columna es el vector de traslación $T$. Resolver este sistema de ecuaciones resulta en la obtención de los parámetros intrínsecos y extrínsecos de la cámara \cite{DVD}.
 
 \section{Eliminación de ruido}
 
@@ -171,7 +171,7 @@ donde $z$ representa el nivel de gris, $\bar{z}$ el valor medio y $\sigma$ la de
     \label{fig:PDFGaussianNoise}
 \end{figure}
 
-\subsection{Filtros}
+\subsection{Filtros} \label{sec:NoiseFilters}
 
 El propósito del filtrado de imágenes es reducir el ruido y mejorar la calidad visual de la imagen. Hay muchas maneras de eliminar el ruido de una imagen y se utilizan una variedad de algoritmos \cite{MandarMeghana, PawanManojSumitAshok} para ello. La propiedad más importante de un buen modelo de eliminación de ruidos en imágenes, es que debe eliminar completamente el ruido tanto como sea posible, así como preservar los bordes \cite{PawanManojSumitAshok}. El filtrado de imágenes hace posible varias tareas útiles en el procesamiento de imágenes. Se puede aplicar un filtro para reducir la cantidad de ruido no deseado en una imagen (ver Fig. \ref{fig:filters}) o para revertir los efectos de desenfoque en la misma \cite{RuchikaGaurav}. Existen principalmente dos tipos de algoritmos, lineales y no lineales. Los beneficios de los modelos de eliminación de ruido lineales es la velocidad y sus limitaciones, consisten, en que no son capaces de preservar los bordes de las imágenes de manera eficiente, es decir, los bordes, que se reconocen como discontinuidades en la imagen, se corrigen \cite{PawanManojSumitAshok}. Los filtros no lineales tienen un comportamiento bastante diferente en comparación con los filtros lineales, puesto que pueden manejar los bordes de una manera mucho mejor que los lineales además pueden producir resultados que varían de una manera no intuitiva \cite{RuchikaGaurav}.\\
 
@@ -311,27 +311,27 @@ Tres importantes métricas de evaluación se calculan con las siguientes ecuacio
 
 La precisión se puede ver como una métrica de exactitud o calidad, mientras que la recuperación es una medida de integridad o cantidad. Para un mejor algoritmo de BS, los puntajes de precisión y recuperación deben ser altos, pero existe una relación inversa entre estos, donde es posible aumentar uno al costo de reducir al otro \cite{GuangleTaoJiandanPingWenwu}. Como un umbral $\tau$ para un método produce una sola pareja de precisión/recuperación por video, se usan 15 umbrales diferentes para producir curvas. De esta manera, la comparación entre métodos se hace más fácil ya que no tenemos que encontrar el mejor umbral para cada método sobre cada video \cite{YannickPierreMarcBrunoHeleneChristophe}. La \textit{Medida-F}, que es un medio armónico de precisión y recuperación, puede verse como un compromiso entre ambas. Equilibra la precisión y la recuperación con pesos iguales, y solo es alta cuando tanto la recuperación como la precisión son altas. Una puntuación más alta de \textit{Medida-F} significa que el rendimiento del algoritmo BS es mejor \cite{GuangleTaoJiandanPingWenwu}.
 
-\section{RANSAC}
+\section{RANSAC} \label{sec:RANSAC}
 
 Las técnicas generales de estimación de parámetros se basan en la suposición de que el ruido en los datos de entrenamiento es ruido gaussiano con media cero. Por lo tanto, este ruido se suavizaría después de la optimización de parámetros que promedia todos los datos. Sin embargo, esta suposición no se cumple cuando existen errores graves que pueden ocurrir con valores extremos de ruido o con mediciones incorrectas durante el muestreo. Este tipo de errores en realidad no se ajustan al modelo y deben rechazarse durante el entrenamiento para obtener mejores ajustes del modelo.
 
 \begin{figure}[b]
     \centering
     \includegraphics[width=10cm]{Graphics/RANSACGraphic.png}
-    \caption{Ejemplo del algoritmo RANSAC.}
+    \caption{Ejemplo del algoritmo \textit{RANSAC}.}
     \label{fig:RANSACExample}
 \end{figure}
 
-El algoritmo \textit{RANSAC} (\textit{RANdom SAmple Consensus}) propuesto por \cite{FischlerBolles} es un algoritmo iterativo utilizado para estimar los parámetros de un modelo matemático de un conjunto de datos que contiene outliers \cite{PabloJuan}. Otros métodos para estimar parámetros de modelos como mínimos cuadrados le dan el mismo peso a todos los datos, por lo que la presencia de un outlier puede llegar a distorsionar el modelo obtenido (Ver Fig. \ref{fig:RANSACExample}). Este algoritmo utiliza una técnica de remuestreo que genera soluciones candidatas mediante el uso del número mínimo de observaciones (puntos de datos) necesarias para estimar los parámetros del modelo subyacente \cite{Konstantinos}.
+El algoritmo \textit{RANSAC} (\textit{RANdom SAmple Consensus}) propuesto por \cite{FischlerBolles} es un algoritmo iterativo utilizado para estimar los parámetros de un modelo matemático de un conjunto de datos que contiene \textit{outliers} \cite{PabloJuan}. Otros métodos para estimar parámetros de modelos como mínimos cuadrados le dan el mismo peso a todos los datos, por lo que la presencia de un \textit{outlier} puede llegar a distorsionar el modelo obtenido (Ver Fig. \ref{fig:RANSACExample}). Este algoritmo utiliza una técnica de remuestreo que genera soluciones candidatas mediante el uso del número mínimo de observaciones (puntos de datos) necesarias para estimar los parámetros del modelo subyacente \cite{Konstantinos}.
 
 \subsection{Algoritmo}
 
-Para entender mejor lo que RANSAC hace, se describe el flujo del algoritmo genéricamente de la siguiente manera:
+Para entender mejor lo que \textit{RANSAC} hace, se describe el flujo del algoritmo genéricamente de la siguiente manera:
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=\linewidth]{Graphics/RANSACAlgorithm1.png}
-	\caption{Algoritmo RANSAC.}
+	\caption{Algoritmo \textit{RANSAC}.}
 	\label{fig:RANSACAlgorithm}
 \end{figure}
 
@@ -373,21 +373,21 @@ Para entender mejor lo que RANSAC hace, se describe el flujo del algoritmo gené
 %     \label{alg:RANSAC}    
 % \end{algorithm}
 
-Como se describe al principio del flujo del algoritmo, RANSAC necesita algunos parámetros predefinidos para ejecutarse: tamaño del subconjunto de muestra ($n$), umbral de tolerancia de error ($t$), umbral de consenso mínimo ($d$) y número de iteraciones ($k$).
+Como se describe al principio del flujo del algoritmo, \textit{RANSAC} necesita algunos parámetros predefinidos para ejecutarse: tamaño del subconjunto de muestra ($n$), umbral de tolerancia de error ($t$), umbral de consenso mínimo ($d$) y número de iteraciones ($k$).
 
 \subsection{Parámetros}
 
-Como RANSAC es un algoritmo aleatorizado, es esencial estimar verdaderamente los parámetros, a fin de aumentar la probabilidad de encontrar el modelo óptimo, manteniendo las ventajas computacionales de un algoritmo aleatorizado frente a un algoritmo determinista exhaustivo.\\
+Como \textit{RANSAC} es un algoritmo aleatorizado, es esencial estimar verdaderamente los parámetros, a fin de aumentar la probabilidad de encontrar el modelo óptimo, manteniendo las ventajas computacionales de un algoritmo aleatorizado frente a un algoritmo determinista exhaustivo.\\
 
 \textbf{Tamaño del Subconjunto de Muestra.}
-El tamaño del subconjunto de muestra es el número de muestras que RANSAC elige para ajustar el modelo en cada iteración. RANSAC usa la cantidad mínima de muestras necesarias para definir el modelo. Por ejemplo, para ajustarse a un modelo lineal, elige 2 muestras de datos o para ajustarse a un modelo cuadrático, selecciona 3 muestras de datos.
+El tamaño del subconjunto de muestra es el número de muestras que \textit{RANSAC} elige para ajustar el modelo en cada iteración. \textit{RANSAC} usa la cantidad mínima de muestras necesarias para definir el modelo. Por ejemplo, para ajustarse a un modelo lineal, elige 2 muestras de datos o para ajustarse a un modelo cuadrático, selecciona 3 muestras de datos.
 
 $$n = \text{número mínimo de muestras para definir el modelo}$$
 
-Se podría pensar que al usar más muestras de datos, el subconjunto mínimo sería ventajoso, ya que se puede obtener inicialmente una estimación mejor y más precisa del modelo. Sin embargo, tener más muestras en el subconjunto de muestra aumentaría el espacio de búsqueda para la selección del subconjunto. Entonces, para mantener la probabilidad de encontrar el modelo óptimo en el mismo nivel, deberíamos probar más subconjunto de muestra. Por lo tanto, se requiere un aumento en el número de iteraciones, que en su mayoría provoca un aumento en la complejidad computacional que supera las ventajas de tener un subconjunto de muestra más grande.\\
+Se podría pensar que al usar más muestras de datos, el subconjunto mínimo sería ventajoso, ya que se puede obtener inicialmente una estimación mejor y más precisa del modelo. Sin embargo, tener más muestras en el subconjunto de muestra aumentaría el espacio de búsqueda para la selección del subconjunto. Entonces, para mantener la probabilidad de encontrar el modelo óptimo en el mismo nivel, deberíamos probar más subconjuntos de muestra. Por lo tanto, se requiere un aumento en el número de iteraciones, que en su mayoría provoca un aumento en la complejidad computacional que supera las ventajas de tener un subconjunto de muestra más grande.\\
 
 \textbf{Umbral de Tolerancia de Error.}
-El umbral de tolerancia de error ($t$) es utilizado por RANSAC para determinar si una muestra de datos concuerda con un modelo o no. Nos gustaría elegir este umbral, tal que con una probabilidad $\alpha$ el punto sea un inlier. Este cálculo requiere la distribución de probabilidad para la distancia de un inlier del modelo. En la práctica, el umbral generalmente se elige empíricamente, sin embargo, si se supone que el error de medición es gaussiano con media cero y desviación estándar $\sigma$, entonces se puede calcular un valor para $t$ \cite{RichardAndrew}. En este caso, el cuadrado de la distancia del punto ($d^2$), es una suma de variables gaussianas al cuadrado y sigue una distribución de $\chi_{m}^2$ con $m$ grados de libertad, donde $m$ es igual a la codificación del modelo. Para una línea, la codificación es $1$, solo se mide la distancia perpendicular a la línea. Si el modelo es un punto, la codificación es $2$, y el cuadrado de la distancia es la suma de los errores de medición $x$ e $y$ al cuadrado \cite{RichardAndrew}.
+El umbral de tolerancia de error ($t$) es utilizado por \textit{RANSAC} para determinar si una muestra de datos concuerda con un modelo o no. Nos gustaría elegir este umbral, tal que con una probabilidad $\alpha$ el punto sea un \textit{inlier}. Este cálculo requiere la distribución de probabilidad para la distancia de un \textit{inlier} del modelo. En la práctica, el umbral generalmente se elige empíricamente, sin embargo, si se supone que el error de medición es gaussiano con media cero y desviación estándar $\sigma$, entonces se puede calcular un valor para $t$ \cite{RichardAndrew}. En este caso, el cuadrado de la distancia del punto ($d^2$), es una suma de variables gaussianas al cuadrado y sigue una distribución de $\chi_{m}^2$ con $m$ grados de libertad, donde $m$ es igual a la codificación del modelo. Para una línea, la codificación es $1$, solo se mide la distancia perpendicular a la línea. Si el modelo es un punto, la codificación es $2$, y el cuadrado de la distancia es la suma de los errores de medición $x$ e $y$ al cuadrado \cite{RichardAndrew}.
 
 La probabilidad de que el valor de una variable aleatoria de $\chi_{m}^2$ sea menor que $k^2$ viene dada por la distribución acumulada de chi-cuadrado, $F_m(k^2) = \int_{0}^{k^2} \chi_{m}^2(\xi)d\xi$ \cite{RichardAndrew}.
 
@@ -401,14 +401,14 @@ $$
 \mbox{ with } t^2 = F_{m}^{-1}(\alpha)\sigma^2
 $$
 
-Por lo general, $\alpha$ se elige como $0,95$, por lo que hay un 95\% de probabilidad de que el punto sea un inlier. Esto significa que un inlier solo será rechazado incorrectamente el 5\% del tiempo \cite{RichardAndrew}.\\
+Por lo general, $\alpha$ se elige como $0,95$, por lo que hay un 95\% de probabilidad de que el punto sea un \textit{inlier}. Esto significa que un \textit{inlier} solo será rechazado incorrectamente el 5\% del tiempo \cite{RichardAndrew}.\\
 
 \textbf{Umbral de Consenso Mínimo.}
-El umbral de consenso mínimo es el número mínimo de muestras que se aceptarían como un consenso válido para generar un modelo final para esa iteración. Una regla empírica es terminar si el tamaño del conjunto de consenso es similar al número de inliers que se cree que están en el conjunto de datos dada la proporción supuesta de outliers, es decir, para $n$ puntos de datos $d = (1 - \epsilon)n$ \cite{RichardAndrew}.\\
+El umbral de consenso mínimo es el número mínimo de muestras que se aceptarían como un consenso válido para generar un modelo final para esa iteración. Una regla empírica es terminar si el tamaño del conjunto de consenso es similar al número de \textit{inliers} que se cree que están en el conjunto de datos dada la proporción supuesta de \textit{outliers}, es decir, para $n$ puntos de datos $d = (1 - \epsilon)n$ \cite{RichardAndrew}.\\
 
 \textbf{Número de Iteraciones.}
-Los algoritmos deterministas exhaustivos probarían todos los subconjuntos de muestras posibles para encontrar el mejor, pero en realidad no solo es computacionalmente inviable, sino también innecesario. Por lo tanto, en lugar de una forma determinista, RANSAC elige un subconjunto de muestras al azar. Pero, también es importante determinar el número de estas elecciones aleatorias para obtener una alta probabilidad de que RANSAC elija un subconjunto de muestra que no incluya outliers.
-El número de iteraciones $k$ se calcula en función de la probabilidad ($p$) de que por lo menos un subconjunto que se elija aleatoriamente este libre de outliers. $\omega$ es la probabilidad de que un punto dentro del conjunto de datos sea un inlier, por lo tanto $\epsilon = 1-\omega$ es la probabilidad de encontrar un outlier \cite{PabloJuan}. Para que se cumpla la probabilidad $p$ se tiene que cumplir:
+Los algoritmos deterministas exhaustivos probarían todos los subconjuntos de muestras posibles para encontrar el mejor, pero en realidad no solo es computacionalmente inviable, sino también innecesario. Por lo tanto, en lugar de una forma determinista, \textit{RANSAC} elige un subconjunto de muestras al azar. Pero, también es importante determinar el número de estas elecciones aleatorias para obtener una alta probabilidad de que \textit{RANSAC} elija un subconjunto de muestra que no incluya \textit{outliers}.
+El número de iteraciones $k$ se calcula en función de la probabilidad ($p$) de que por lo menos un subconjunto que se elija aleatoriamente este libre de \textit{outliers}. $\omega$ es la probabilidad de que un punto dentro del conjunto de datos sea un \textit{inlier}, por lo tanto $\epsilon = 1-\omega$ es la probabilidad de encontrar un \textit{outlier} \cite{PabloJuan}. Para que se cumpla la probabilidad $p$ se tiene que cumplir:
 
 $$1 - p = (1 - u^m)^k$$
 despejando $k$ obtenemos:

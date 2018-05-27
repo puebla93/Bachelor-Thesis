@@ -1,6 +1,8 @@
-\backcite {David}{{\es@scroman {viii}}{(document)}{Doc-Start}}
-\backcite {David}{{\es@scroman {viii}}{(document)}{Doc-Start}}
-\backcite {David}{{\es@scroman {viii}}{(document)}{Doc-Start}}
+\backcite {DVD}{{\es@scroman {viii}}{(document)}{Doc-Start}}
+\backcite {DVD}{{\es@scroman {viii}}{(document)}{Doc-Start}}
+\backcite {DVD}{{\es@scroman {viii}}{(document)}{Doc-Start}}
+\backcite {DVD}{{\es@scroman {viii}}{(document)}{Doc-Start}}
+\backcite {DVD}{{\es@scroman {ix}}{(document)}{Doc-Start}}
 \backcite {Pitchf/x}{{1}{(document)}{Doc-Start}}
 \backcite {Sportvision}{{1}{(document)}{Doc-Start}}
 \backcite {MLB}{{2}{(document)}{Doc-Start}}
@@ -11,23 +13,23 @@
 \backcite {PlayStationEye}{{4}{(document)}{Doc-Start}}
 \backcite {PlayStationMove}{{4}{(document)}{Doc-Start}}
 \backcite {RichardAndrew}{{8}{1.1}{section.1.1}}
-\backcite {David}{{8}{1.1}{figure.caption.11}}
-\backcite {David}{{8}{1.1}{figure.caption.11}}
-\backcite {David}{{8}{1.1}{figure.caption.11}}
+\backcite {DVD}{{8}{1.1}{figure.caption.11}}
+\backcite {DVD}{{8}{1.1}{figure.caption.11}}
+\backcite {DVD}{{8}{1.1}{figure.caption.11}}
 \backcite {RichardAndrew}{{9}{1.1}{equation.1.1.1}}
 \backcite {GaryAdrian}{{9}{1.1}{equation.1.1.1}}
 \backcite {GaryAdrian}{{9}{1.1}{equation.1.1.1}}
-\backcite {David}{{9}{1.1}{equation.1.1.1}}
+\backcite {DVD}{{9}{1.1}{equation.1.1.1}}
 \backcite {JamesAndriesStevenJohnRichard}{{9}{1.1}{equation.1.1.2}}
 \backcite {Nicolas}{{9}{1.1.1}{figure.caption.12}}
-\backcite {David}{{10}{1.2}{figure.caption.12}}
-\backcite {David}{{10}{1.1.1}{figure.caption.12}}
+\backcite {DVD}{{10}{1.2}{figure.caption.12}}
+\backcite {DVD}{{10}{1.1.1}{figure.caption.12}}
 \backcite {GaryAdrian}{{10}{1.1.1}{figure.caption.12}}
-\backcite {David}{{11}{1.3}{figure.caption.13}}
+\backcite {DVD}{{11}{1.3}{figure.caption.13}}
 \backcite {GaryAdrian}{{11}{1.2}{section.1.2}}
 \backcite {GaryAdrian}{{11}{1.2}{section.1.2}}
-\backcite {David}{{12}{1.2}{section.1.2}}
-\backcite {David}{{12}{1.2}{section.1.2}}
+\backcite {DVD}{{12}{1.2}{section.1.2}}
+\backcite {DVD}{{12}{1.2}{section.1.2}}
 \backcite {PawanManojSumitAshok}{{12}{1.3}{section.1.3}}
 \backcite {topic5}{{12}{1.3}{section.1.3}}
 \backcite {AjayBrijendra}{{12}{1.3}{section.1.3}}
@@ -91,13 +93,17 @@
 \backcite {RichardAndrew}{{24}{1.5.2}{subsection.1.5.2}}
 \backcite {PabloJuan}{{24}{1.5.2}{subsection.1.5.2}}
 \backcite {MLB}{{25}{2.1}{section.2.1}}
-\backcite {PlayStationEye}{{27}{2.2}{section.2.2}}
-\backcite {PlayStationMove}{{27}{2.2}{section.2.2}}
-\backcite {PitcherSpeed}{{28}{2.3.1}{subsection.2.3.1}}
-\backcite {Contours}{{32}{2.4.1}{subsection.2.4.1}}
-\backcite {AdaptiveThreshold}{{32}{2.4.1}{subsection.2.4.1}}
-\backcite {AdaptiveThresholdOpenCV}{{32}{2.4.1}{subsection.2.4.1}}
-\backcite {AdaptiveThresholdOpenCV}{{32}{2.4.1}{subsection.2.4.1}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{35}{2.5.1}{subsection.2.5.1}}
-\backcite {GMM}{{35}{2.5.1}{subsection.2.5.1}}
-\backcite {MorphologicalTransformationsOpenCV}{{35}{2.5.1}{subsection.2.5.1}}
+\backcite {PlayStationEye}{{28}{2.2}{section.2.2}}
+\backcite {PlayStationMove}{{28}{2.2}{section.2.2}}
+\backcite {PitcherSpeed}{{29}{2.3.1}{subsection.2.3.1}}
+\backcite {DVD}{{32}{2.4}{section.2.4}}
+\backcite {DVD}{{32}{2.7}{figure.caption.28}}
+\backcite {DVD}{{33}{2.8}{figure.caption.29}}
+\backcite {Contours}{{33}{2.5.1}{subsection.2.5.1}}
+\backcite {AdaptiveThreshold}{{34}{2.5.1}{subsection.2.5.1}}
+\backcite {AdaptiveThresholdOpenCV}{{34}{2.5.1}{subsection.2.5.1}}
+\backcite {AdaptiveThresholdOpenCV}{{34}{2.5.1}{subsection.2.5.1}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{37}{2.6.1}{subsection.2.6.1}}
+\backcite {GMM}{{37}{2.6.1}{subsection.2.6.1}}
+\backcite {MorphologicalTransformationsOpenCV}{{37}{2.6.1}{subsection.2.6.1}}
+\backcite {DVD}{{50}{3.3}{chapter*.45}}
