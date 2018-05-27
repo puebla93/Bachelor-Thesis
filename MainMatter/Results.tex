@@ -20,7 +20,7 @@ En la detección del \textit{Home Plate} que se muestra en la figura \ref{fig:De
         \includegraphics[width=\linewidth]{Graphics/Results/DetectedHomeSEDER.png}
         \caption{}
     \end{subfigure}
-    \caption{Detección de \textit{Home Plate}. Escena terreno del SEDER : (a) Imagen original, (b)\textit{ Home Plat}e detectado.}
+    \caption{Detección de \textit{Home Plate}. Escena terreno del SEDER : (a) Imagen original, (b)\textit{ Home Plate} detectado.}
     \label{fig:DetectedHomeSEDER}
 \end{figure}
 
@@ -36,7 +36,7 @@ Por otra parte en la figura \ref{fig:DetectedHomeMATCOM} el ambiente es más des
         \includegraphics[width=\linewidth]{Graphics/Results/DetectedHomeMATCOM.png}
         \caption{}
     \end{subfigure}
-    \caption{Detección de \textit{Home Plate}. Escena pasillo de MATCOM : (a) Imagen original, (b)\textit{ Home Plat}e detectado.}
+    \caption{Detección de \textit{Home Plate}. Escena pasillo de MATCOM : (a) Imagen original, (b)\textit{ Home Plate} detectado.}
     \label{fig:DetectedHomeMATCOM}
 \end{figure}
 
@@ -96,14 +96,14 @@ Para la obtención del conjunto de prueba que medirá los resultados obtenidos e
 
 \begin{figure}[!h]
     \centering
-	\includegraphics[width=5cm]{Graphics/Results/HomeWrongContourGloveMATCOM.png}
-    \caption{Archivo JSON generado por la herramienta que conforma el conjuto de prueba.}
+	\includegraphics[width=10cm]{Graphics/JSONFileFormat.png}
+    \caption{Archivo JSON generado por la herramienta que conforma el conjunto de prueba.}
     \label{fig:JsonFile}
 \end{figure}
 
-Para la obtención de las imagenes que se utilizaron en la generación del conjunto de prueba, se construyó una estructura conformada por dos tripodes de $2.25$ metros de altura y una tabla de $2.20$ metros de largo donde fue colocada la cámara (ver Fig. \ref{fig:Structure}). Esta estructura fue posicionada encima del \textit{Home PLate}, posición seleccionada previamente en la sección \ref{sec:Position}. La estructura fue montada en el SEDER donde se realizarón los lanzamientos que forman parte del conjunto de prueba.
+Para la obtención de las imagenes que se utilizaron en la generación del conjunto de prueba, se construyó una estructura conformada por dos tripodes de $2.25$ metros de altura y una tabla de $2.20$ metros de largo donde fue colocada la cámara (ver Fig. \ref{fig:Structure}). Esta estructura fue posicionada encima del \textit{Home Plate}, posición seleccionada previamente en la sección \ref{sec:Position}. Los lanzamientos que forman parte del conjunto de prueba fueron realizados en el SEDER.
 
-Las imagenes tomadas poseen diferentes resoluciones como 320x240, 1280x720 y 1920x1080. Las imagenes con resolución de 320x240 fueron tomadas con la cámara del PlayStation Eye que es la cámara que usa el sistema. Las resoluciones de 1280x720 y 1920x1080 (\textit{fullHD}) fueron tomadas con el \textit{SmartPhone OnePlus 5T}. Estas imagenes de mayor resolución se tomarón con el objetivo de comparar los resultados obtenidos con la cámara del PlayStation Eye que son a un amenor resolución.
+Las imagenes tomadas poseen diferentes resoluciones como 320x240, 1280x720 y 1920x1080. Las imagenes con resolución de 320x240 fueron tomadas con la cámara del \textit{PlayStation Eye} que es la cámara que usa el sistema. Las resoluciones de 1280x720 y 1920x1080 (\textit{fullHD}) fueron tomadas con el \textit{SmartPhone OnePlus 5T}. Estas imagenes de mayor resolución se tomarón con el objetivo de comparar los resultados obtenidos con la cámara del \textit{PlayStation Eye} que son a una menor resolución.
 
 \begin{figure}[!h]
     \centering
@@ -125,4 +125,73 @@ Las imagenes tomadas poseen diferentes resoluciones como 320x240, 1280x720 y 192
 
 \section{Resultados en la detección de la pelota}
 
-Resultados
+Para analizar los resultados alcanzados en la detección de la pelota se seleccionaron del conjunto de prueba doce lanzamientos distintos, de los cuales cuatro fueron tomados a una resolución de 320x240, otros cuatro a 1280x720 y los restantes a 1920x1080. Los lanzamientos escogidos poseen diferentes características, lo que permite evaluar el comportamiento del sistema en diferentes tipos de lanzamientos. Los cuatro tipos de lanzamientos seleccionados por cada resolución son al centro de \textit{Home Plate}, lanzamientos en la zona alta y lanzamientos a la izquierda y la derecha del \textit{Home Plate}.
+
+Para poder comprender con una mayor claridad los resultados obtenidos, se decidió implementar una herramienta que permitiera dado los lanzamientos seleccionados del conjunto de prueba, graficar en \textit{3D} la posición de la pelota seleccionada manualmente y la posición brindada por el sistema (ver Figs. \ref{fig:PitchesPSEye}, \ref{fig:PitchesSlowMotion} y \ref{fig:PitchesFullHD}). Otra de las funcionalidades que brinda esta herramienta es que permite calcular el error obtenido en cada lanzamiento. Para calcular este error primeramente hayamos la distancia entre la posición de la pelota selecionada manualmente y la que nos proporcionó el sistema en cada frame de un lanzamiento, luego las distanias calculadas durante este lanzamiento son promediadas. Los errores obtenidos se pueden observar en la Tabla \ref{table:Errors}.
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/PSEye_pitch1.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/PSEye_pitch2.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/PSEye_pitch3.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/PSEye_pitch4.png}
+    \end{subfigure}
+	\caption{Lanzaminentos tomados con la cámara del \textit{PlayStation Eye} a una resolución de 320x240 a 187$fps$.}
+	\label{fig:PitchesPSEye}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/SlowMotion_pitch1.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/SlowMotion_pitch2.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/SlowMotion_pitch3.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/SlowMotion_pitch4.png}
+    \end{subfigure}
+	\caption{Lanzaminentos tomados con el \textit{SmartPhone OnePlus 5T} a una resolución de 1280x720 a 120$fps$.}
+	\label{fig:PitchesSlowMotion}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/FullHD_pitch1.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/FullHD_pitch2.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/FullHD_pitch3.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Graphics/Results/FullHD_pitch4.png}
+    \end{subfigure}
+	\caption{Lanzaminentos tomados con el \textit{SmartPhone OnePlus 5T} a una resolución de 1920x1080 a 60$fps$.}
+	\label{fig:PitchesFullHD}
+\end{figure}
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{cccc}
+        & 320x240/187$fps$ & 1280x720/120$fps$ & 1920x1080/60$fps$\\\hline
+        lanzamiento \# 1 & $4.80px$ & $3.76px$ & $7.60px$\\\hline
+        lanzamiento \# 2 & $7.63px$ & $3.75px$ & $4.86px$\\\hline
+        lanzamiento \# 3 & $6.53px$ & $3.09px$ & $5.68px$\\\hline
+        lanzamiento \# 4 & $3.75px$ & $4.02px$ & $5.37px$
+    \end{tabular}
+    \caption{Error promedio en la posición de la pelota en cada lanzamiento.}
+    \label{table:Errors}
+\end{table}
