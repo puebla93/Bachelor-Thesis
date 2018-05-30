@@ -31,7 +31,7 @@ Desde 1950-62, la zona de strike fue desde las axilas hasta la parte superior de
 
 De 1963 hasta 1968, la zona de strike fue desde la parte superior de los hombros del bateador hasta las rodillas.
 
-Desde 1969 hasta 1987, la zona de strike fue desde las axilas hasta la parte superior de las rodillas. Esta zona de strike fue implementada junto con el decremento de la altura del montículo de 15 pulgadas a 10 pulgadas, en respuesta a una temporada de 1968, ahora conocida como el ``Año del lanzador'', en la que el dominio de los lanzadores alcanzó nuevas alturas.
+Desde 1969 hasta 1987, la zona de strike fue desde las axilas hasta la parte superior de las rodillas. Esta zona de strike fue implementada junto con la disminución de la altura del montículo de 15 pulgadas a 10 pulgadas, en respuesta a una temporada de 1968, ahora conocida como el ``Año del lanzador'', en la que el dominio de los lanzadores alcanzó nuevas alturas.
 
 En los años comprendidos entre 1988 y 1995, la zona de strike fue desde el punto medio entre los hombros y la parte superior de los pantalones del uniforme, hasta la parte superior de las rodillas.
 
@@ -75,13 +75,13 @@ La interfaz de conexión es USB 2.0, por tanto puede utilizarse sin problemas en
 
 \section{Posición y Configuración de la Cámara}
 
-Los sistemas existentes en su gran mayoría utilizan cámaras estereoscópicas de muy alta calidad, con una gran resolución y una alta velocidad de captura. Estas características se deben tener muy en cuenta en el análisis de en que parte del estadio de béisbol serán ubicadas y el posicionamiento que tendrán dichas cámaras. En el caso de este sistema en particular se hizo un amplio estudio de las características que posee el dispositivo \textit{PlayStation Eye} para lograr una posición y ubicación donde sean aprovechadas al máximo las ventajas brindadas por la cámara.
+Los sistemas existentes en su gran mayoría utilizan cámaras estereoscópicas de muy alta calidad, con una gran resolución y una alta velocidad de captura. Estas características se deben tener muy en cuenta en el análisis, en qué parte del estadio de béisbol serán ubicadas y el posicionamiento que tendrán dichas cámaras. En el caso de este sistema en particular se hizo un amplio estudio de las características que posee el dispositivo \textit{PlayStation Eye} para lograr una posición y ubicación donde sean aprovechadas al máximo las ventajas brindadas por la cámara.
 
 \subsection{Configuración}
 
-El ángulo de visión seleccionado fue de 75 grados (\textit{punto azul}), puesto que nos proporciona una campo de visión más amplio del terreno en comparación con la otra posible configuración ofrecida por la cámara, la cuál es de 56 grados, mucho menor que la seleccionada.
+El ángulo de visión seleccionado fue de 75 grados (\textit{punto azul}), puesto que nos proporciona una campo de visión más amplio del terreno en comparación con la otra posible configuración ofrecida por la cámara, la cual es de 56 grados, mucho menor que la seleccionada.
 
-Puesto que los lanzamientos en el béisbol son bastante rápidos (la bola rápida (recta) promedio de un lanzador de Grandes Ligas alcanza una velocidad de \textit{91mph} \cite{PitcherSpeed}) y que mientras más veces el sistema obtenga la posición de la pelota en un lanzamiento mejor será la aproximación de la función que describe su trayectoria, es necesario que la cámara utilizada posea una alta velocidad de captura. Con el objetivo de un mejor funcionamiento la cámara utilizada por el sistema fue ajustada a una configuración de 187\textit{fps} a 320x240, puesto que el dispositivo \textit{PlayStation Eye} permite configurar la velocidad de captura y resolución como fue expuesto anteriormente. Aunque esta resolución es un poco pobre, la velocidad de captura es considerablemente alta y birnda la posibilidad de poder capturar la pelota varias veces en cada lanzamiento.
+Puesto que los lanzamientos en el béisbol son bastante rápidos (la bola rápida (recta) promedio de un lanzador de Grandes Ligas alcanza una velocidad de \textit{91mph} \cite{PitcherSpeed}) y que mientras más veces el sistema obtenga la posición de la pelota en un lanzamiento mejor será la aproximación de la función que describe su trayectoria, es necesario que la cámara utilizada posea una alta velocidad de captura. Con el objetivo de un mejor funcionamiento la cámara utilizada por el sistema fue ajustada a una configuración de 187\textit{fps} a 320x240, puesto que el dispositivo \textit{PlayStation Eye} permite configurar la velocidad de captura y resolución como fue expuesto anteriormente. Aunque esta resolución es un poco pobre, la velocidad de captura es considerablemente alta y brinda la posibilidad de poder capturar la pelota varias veces en cada lanzamiento.
 
 \subsection{Posición}\label{sec:Position}
 
@@ -112,9 +112,9 @@ donde $h$ es la altura de la cámara con respecto a \textit{Home Plate} ($2.25$ 
         \label{fig:VisionAreaGraphic}
 \end{figure}
 
-A una mayor altura la cámara contará con un campo de visón más amplio lo que supone una ventaja pero también tiene un inconveniente, al colocar la cámara a una gran altura necesitariamos que la cámara posea una mayor resolución, puesto que a mayor altura más lejos se observarán los objetos que se muestran en la imagen. La resolución en la configuración utilizada es de 320x240 por lo que no sería factible alejarse mucho más de la zona por donde pasa la pelota.
+A una mayor altura la cámara contará con un campo de visón más amplio lo que supone una ventaja pero también tiene un inconveniente, al colocar la cámara a una gran altura necesitaríamos que la cámara posea una mayor resolución, puesto que a mayor altura más lejos se observarán los objetos que se muestran en la imagen. La resolución en la configuración utilizada es de 320x240 por lo que no sería factible alejarse mucho más de la zona por donde pasa la pelota.
 
-Un dato que interesa conocer es en cuantos frames se podrá observar la pelota en un lanzamiento a velocidad promedio. Para conocer este dato es necesario calcular el tiempo $t$ en que la pelota recorre los $3.45$ metros del campo de visión:
+Un dato que interesa conocer es en cuántos frames se podrá observar la pelota en un lanzamiento a velocidad promedio. Para conocer este dato es necesario calcular el tiempo $t$ en que la pelota recorre los $3.45$ metros del campo de visión:
 $$t = \frac{d}{v}, \quad t = \frac{2*tan(37.5^{\circ})*2.25m}{91mph}, \quad t = 84.9ms (milisegundos)$$
 Calculado este tiempo sabemos entonces que la pelota a una velocidad de \textit{91mph} recorre los $3.45$ metros del campo de visión en $84.9ms$. Dada la velocidad de captura utilizada (\textit{187fps}) y $t$ obtenemos:
 $$n=\frac{2*tan(37.5^{\circ})*2.25m}{91mph}*187fps, \quad n=15.87 frames$$
@@ -175,7 +175,7 @@ Como es importante que la eliminación de ruido en el sistema se realice en tiem
 
 \section{Detección de \textit{Home Plate}}
 
-Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee dicho objeto. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un \textit{Home Plate} (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en el proceso de detección de \textit{Home Plate}, en el cual se hayaron todos los contornos sobre la imagen (ver Fig. \ref{fig:ImagesContours}) para luego ir filtrandolos por las características geométricas que mejor lo describan.
+Para poder detectar correctamente un objeto en una imagen es necesario el conocimiento previo de las características que posee dicho objeto. Es por esta razón que se hizo un estudio detallado de todas las características geométricas que describen a un \textit{Home Plate} (ver Fig. \ref{fig:HomePlateDimentions}) para su posterior detección en la imagen. Estas características geométricas fueron la base en el proceso de detección de \textit{Home Plate}, en el cual se hallaron todos los contornos sobre la imagen (ver Fig. \ref{fig:ImagesContours}) para luego ir filtrándolos por las características geométricas que mejor lo describan.
 
 \begin{figure}[!h]
     \centering
@@ -186,9 +186,9 @@ Para poder detectar correctamente un objeto en una imagen es necesario el conoci
 
 \subsection{Contornos}
 
-Los contornos se pueden explicar simplemente como una curva que une todos los puntos continuos (a lo largo del límite), teniendo el mismo color o intensidad. Los contornos son una herramienta útil para el análisis de formas, la detección de objetos y su reconocimiento \cite{Contours}. Para una mayor precisión, los contornos se hayan sobre imágenes binarias, por lo que antes de buscar un contorno sobre una imagen se aplica un umbral sobre la misma.
+Los contornos se pueden explicar simplemente como una curva que une todos los puntos continuos (a lo largo del límite), teniendo el mismo color o intensidad. Los contornos son una herramienta útil para el análisis de formas, la detección de objetos y su reconocimiento \cite{Contours}. Para una mayor precisión, los contornos se hallan sobre imágenes binarias, por lo que antes de buscar un contorno sobre una imagen se aplica un umbral sobre la misma.
 
-El umbral utilizado sobre la imagen para hayar los contornos fue el umbral adaptativo \cite{AdaptiveThreshold}. La principal razón por la cuál se utilizó este umbral es debido a que pueden haber condiciones donde la imagen tenga diferente iluminación en diferentes áreas \cite{AdaptiveThresholdOpenCV}. El algoritmo de umbral adaptativo calcula el umbral para una pequeña región de la imagen, por lo que obtenemos diferentes umbrales para diferentes regiones de la misma imagen y nos da mejores resultados para las imágenes con iluminación variable \cite{AdaptiveThresholdOpenCV}.
+El umbral utilizado sobre la imagen para hallar los contornos fue el umbral adaptativo \cite{AdaptiveThreshold}. La principal razón por la cual se utilizó este umbral es debido a que pueden haber condiciones donde la imagen tenga diferente iluminación en diferentes áreas \cite{AdaptiveThresholdOpenCV}. El algoritmo de umbral adaptativo calcula el umbral para una pequeña región de la imagen, por lo que obtenemos diferentes umbrales para diferentes regiones de la misma imagen y nos da mejores resultados para las imágenes con iluminación variable \cite{AdaptiveThresholdOpenCV}.
 
 \begin{figure}[h!]
 	\centering
@@ -213,7 +213,7 @@ El umbral utilizado sobre la imagen para hayar los contornos fue el umbral adapt
 
 \subsection{Filtros a los Contornos}
 
-Luego de haber hayado todos los contornos en la imagen tenemos que encontrar el contorno del \textit{Home Plate}. Para esto se fueron filtrando los contornos utilizando diferentes criterios, dichos criterios mayormente formaban parte de las características geométricas que definen al \textit{Home Plate} (ver Fig. \ref{fig:FilteredContours}). \\
+Luego de haber hallado todos los contornos en la imagen tenemos que encontrar el contorno del \textit{Home Plate}. Para esto se fueron filtrando los contornos utilizando diferentes criterios, dichos criterios mayormente formaban parte de las características geométricas que definen al \textit{Home Plate} (ver Fig. \ref{fig:FilteredContours}). \\
 
 \textbf{Filtrado por área.}
 El primer filtro utilizado fue el filtrado por área, donde se tienen dos umbrales uno máximo y otro mínimo. Estos umbrales son porcentuales con respecto a la imagen, lo que permite utilizar diferentes tipos de resolución sin afectar la correctitud del sistema. Un contorno de área $X$ pasa el filtro de área (posible \textit{Home Plate}) si:
@@ -229,7 +229,7 @@ $$psd \leq psr \quad \text{con} \quad psd = \frac{100 * \mid d_1 - d_2 \mid}{min
 donde $psd$ es el porciento del valor absoluto de la diferencia entre $d_1$ y $d_2$ y el menor de los dos lados y $psr$ es el umbral de diferencia entre los dos lados. El umbral seleccionado para el sistema fue $psr = 20$ debido al campo de visión de la cámara.\\
 
 \textbf{Filtrado por ángulos.}
-El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la figura \ref{fig:HomePlateDimentions} el HomePlate tiene tres ángulos de 90º y dos de 135º, otra característica bastante particular de este pentágono. Al igual que en dos de los filtros anteriores este también cuanta con un umbral. Otra característica geométrica es que la lista de los ángulos consecutivos es una rotación de la siguiente [90º, 90º, 135º, 90º, 135º]. Un contorno pasa el filtro de ángulos (posible \textit{Home Plate}) si los 5 ángulos ordenados de forma consecutiva siguen el patrón anteriormente expuesto (o cualquiera de sus rotaciones) y:
+El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la figura \ref{fig:HomePlateDimentions} el HomePlate tiene tres ángulos de 90º y dos de 135º, otra característica bastante particular de este pentágono. Al igual que en dos de los filtros anteriores este también cuenta con un umbral. Otra característica geométrica es que la lista de los ángulos consecutivos es una rotación de la siguiente [90º, 90º, 135º, 90º, 135º]. Un contorno pasa el filtro de ángulos (posible \textit{Home Plate}) si los 5 ángulos ordenados de forma consecutiva siguen el patrón anteriormente expuesto (o cualquiera de sus rotaciones) y:
 \begin{equation*}
 	\begin{split}
 		\begin{split}
@@ -269,17 +269,17 @@ donde $\alpha_1$, $\alpha_2$, $\alpha_3$ son los tres ángulos menores y $\beta_
 
 \section{Detección de la Pelota}
 
-Una de las restricciones que impone el sistema es el hecho de que la cámara tiene una posición fija sobre el \textit{Home Plate}. Esto nos brinda la ventaja de que el área observada por la cámara es estática, lo que implica que no cambia entre lanzamiento y lanzamiento. Estas restricción del sistema y el hecho de que en un lanzamiento la pelota esta en constante movimiento son las principales bases del módulo de detección de la pelota. Un exelente algoritmo para identificar un objeto en movimiento dada una secuencia de frames y la cámara en una posición estática es Background Subtraction (ver sección \ref{sec:BS}).
+Una de las restricciones que impone el sistema es el hecho de que la cámara tiene una posición fija sobre el \textit{Home Plate}. Esto nos brinda la ventaja de que el área observada por la cámara es estática, lo que implica que no cambia entre lanzamiento y lanzamiento. Esta restricción del sistema y el hecho de que en un lanzamiento la pelota está en constante movimiento son las principales bases del módulo de detección de la pelota. Un excelente algoritmo para identificar un objeto en movimiento dada una secuencia de frames y la cámara en una posición estática es Background Subtraction (ver sección \ref{sec:BS}).
 
 \subsection{Background Subtraction}
 
-Debido a que el uso del sistema propuesto será en exteriores, el modelo de BS seleccionado fue Mezcla Gaussiana (GMM). Este modelo brinda grandes ventajas en un ambiente de exteriores (al aire libre), puesto que funciona mejor cuando el fondo es inestable o cuando el nivel de ruido es significativamente grande \cite{YannickPierreMarcBrunoHeleneChristophe}. Esta ventaja esta dada debido a que el modelado de fondo se realiza como un fenómeno estadístico (aleatorio) en lugar de una constante. Los ruidos en las imagenes de esteriores estan dado mayormente por fluctuación de la cámara y cambio de luz, ruidos en los que el modelo GMM se adapta muy bien \cite{GMM}.
+Debido a que el uso del sistema propuesto será en exteriores, el modelo de BS seleccionado fue Mezcla Gaussiana (GMM). Este modelo brinda grandes ventajas en un ambiente de exteriores (al aire libre), puesto que funciona mejor cuando el fondo es inestable o cuando el nivel de ruido es significativamente grande \cite{YannickPierreMarcBrunoHeleneChristophe}. Esta ventaja está dada debido a que el modelado de fondo se realiza como un fenómeno estadístico (aleatorio) en lugar de una constante. Los ruidos en las imágenes de exteriores están dado mayormente por fluctuación de la cámara y cambio de luz, ruidos en los que el modelo GMM se adapta muy bien \cite{GMM}.
 
-Luego de aplicar GMM sobre la imagen al resultado obtenido se le aplica una transformación morfológica. Las transformaciones morfológicas son algunas operaciones simples basadas en la forma de la imagen, las cuales se realizan en imágenes binarias. Estas operaciones necesitan dos entradas, una es la imagen original, la segunda se llama elemento estructurador o \textit{kernel}, el cuál decide la naturaleza de la operación. Dos operadores morfológicos básicos son Erosión y Dilatación. Luego, sus variantes como apertura, cierre, gradiente, etc. también entran en juego \cite{MorphologicalTransformationsOpenCV}. La operación morfológica utilizada por el sistema es apertura, nombre que se le da a la operación de erosión seguida de dilatación. La forma del kernel utilizada es un círculo debido a que se ajusta mejor a la forma de la pelota.
+Luego de aplicar GMM sobre la imagen al resultado obtenido se le aplica una transformación morfológica. Las transformaciones morfológicas son algunas operaciones simples basadas en la forma de la imagen, las cuales se realizan en imágenes binarias. Estas operaciones necesitan dos entradas, una es la imagen original, la segunda se llama elemento estructurador o \textit{kernel}, el cual decide la naturaleza de la operación. Dos operadores morfológicos básicos son Erosión y Dilatación. Luego, sus variantes como apertura, cierre, gradiente, etc. también entran en juego \cite{MorphologicalTransformationsOpenCV}. La operación morfológica utilizada por el sistema es apertura, nombre que se le da a la operación de erosión seguida de dilatación. La forma del kernel utilizada es un círculo debido a que se ajusta mejor a la forma de la pelota.
 
 \subsection{Filtrado a la Pelota}
 
-Como el algoritmo de BS se consideran un problema de clasificación, es posible que se detecte un objeto como primer plano y que este no lo sea (falso positivo FP). Es por esto que luego de etiquetados todos los objetos que forman parte del primer plano, se filtran por su radio. Cada objeto es aproximado por un círculo, lo que nos proporciona el radio de dicho objeto y luego se aplica el filtro. El filtro de radio cuenta con dos umbrales uno máximo y otro mínimo, los cuales son porcentuales con respecto a la imagen. Un objeto de radio $r$ pasa el filtro de radio (posible pelota) si:
+Como el algoritmo de BS se considera un problema de clasificación, es posible que se detecte un objeto como primer plano y que este no lo sea (falso positivo FP). Es por esto que luego de etiquetados todos los objetos que forman parte del primer plano, se filtran por su radio. Cada objeto es aproximado por un círculo, lo que nos proporciona el radio de dicho objeto y luego se aplica el filtro. El filtro de radio cuenta con dos umbrales uno máximo y otro mínimo, los cuales son porcentuales con respecto a la imagen. Un objeto de radio $r$ pasa el filtro de radio (posible pelota) si:
 $$rp \leq max\_rp \quad \text{y} \quad rp \geq min\_rp \quad \text{con} \quad rp = 100*r/IA$$
 donde $IA$ el área de la imagen, $rp$ es el porciento del área de la imagen que ocupa el radio, $max\_rp$ es el umbral máximo y $min\_rp$ el umbral mínimo. Los umbrales seleccionados para el sistema fueron $max\_rp = 0.01$ y $min\_rp = 0.002$ debido al campo de visión de la cámara. 
 
@@ -292,7 +292,7 @@ donde $IA$ el área de la imagen, $rp$ es el porciento del área de la imagen qu
 
 \section{Aproximación de la trayectoria de la pelota}
 
-Luego de obtener el conjunto de puntos en la imagen donde se encontró la pelota, es necesario hayar una función que los aproxime. En este conjunto de puntos obtenidos puede que todavía queden algunos que fueron identificados falsamente como una pelota, a los puntos con estas características se les denomina \textit{outliers}. Debido a esto es conveniente utilizar un método que no tenga en cuenta la presencia de estos \textit{outliers}, de lo contrario no se tendrá una buena aproximación de la trayectoria de la pelota. Un método que aproxima eficiente un conjunto de puntos donde hay \textit{outliers} es \textit{RANSAC} (ver sección \ref{sec:RANSAC}).
+Luego de obtener el conjunto de puntos en la imagen donde se encontró la pelota, es necesario hallar una función que los aproxime. En este conjunto de puntos obtenidos puede que todavía queden algunos que fueron identificados falsamente como una pelota, a los puntos con estas características se les denomina \textit{outliers}. Debido a esto es conveniente utilizar un método que no tenga en cuenta la presencia de estos \textit{outliers}, de lo contrario no se tendrá una buena aproximación de la trayectoria de la pelota. Un método que aproxima eficiente un conjunto de puntos donde hay \textit{outliers} es \textit{RANSAC} (ver sección \ref{sec:RANSAC}).
 
 \section{Herramientas}
 
