@@ -111,18 +111,7 @@ Las imágenes tomadas poseen diferentes resoluciones como 320x240, 1280x720 y 19
 
 \begin{figure}[!h]
     \centering
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{Graphics/Structure0.jpg}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{Graphics/Structure1.jpg}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{Graphics/Structure2.jpg}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{Graphics/Structure3.jpg}
-    \end{subfigure}
+    \includegraphics[width=\linewidth]{Graphics/Structure.jpg}
 	\caption{Estructura utilizada en el proceso de obtención las imagenes que se utilizaron en la generación del conjunto de prueba.}
 	\label{fig:Structure}
 \end{figure}
@@ -131,7 +120,9 @@ Las imágenes tomadas poseen diferentes resoluciones como 320x240, 1280x720 y 19
 
 Para analizar los resultados alcanzados en la detección de la pelota se seleccionaron del conjunto de prueba doce lanzamientos distintos, de los cuales cuatro fueron tomados a una resolución de 320x240, otros cuatro a 1280x720 y los restantes a 1920x1080. Los lanzamientos escogidos poseen diferentes características, lo que permite evaluar el comportamiento del sistema en diferentes tipos de lanzamientos. Los cuatro tipos de lanzamientos seleccionados para cada una de las resoluciones son lanzamientos al centro de \textit{Home Plate}, lanzamientos en la zona alta y lanzamientos a la izquierda y la derecha del \textit{Home Plate}.
 
-Para poder comprender con una mayor claridad los resultados obtenidos, se decidió implementar una herramienta que permitiera dado los lanzamientos seleccionados del conjunto de prueba, graficar en \textit{3D} la posición de la pelota seleccionada manualmente y la posición brindada por el sistema (ver Figs. \ref{fig:PitchesPSEye}, \ref{fig:PitchesSlowMotion} y \ref{fig:PitchesFullHD}). Otra de las funcionalidades que brinda esta herramienta es que permite calcular el error promedio obtenido en cada lanzamiento. Para calcular este error primeramente hallamos la distancia entre la posición de la pelota selecionada manualmente y la que nos proporcionó el sistema en cada frame de un lanzamiento, luego las distancias calculadas durante este lanzamiento son promediadas. Los errores obtenidos se pueden observar en la Tabla \ref{table:Errors}.
+Para poder comprender con una mayor claridad los resultados obtenidos, se decidió implementar una herramienta que permitiera dado los lanzamientos seleccionados del conjunto de prueba, graficar en \textit{3D} la posición de la pelota seleccionada manualmente y la posición brindada por el sistema (ver Figs. \ref{fig:PitchesPSEye}, \ref{fig:PitchesSlowMotion} y \ref{fig:PitchesFullHD}). Otra de las funcionalidades que brinda esta herramienta es que permite calcular el error promedio obtenido en cada lanzamiento.
+$$err$$
+Para calcular este error primeramente hallamos la distancia entre la posición de la pelota selecionada manualmente y la que nos proporcionó el sistema en cada frame de un lanzamiento, luego las distancias calculadas durante este lanzamiento son promediadas. Los errores obtenidos se pueden observar en la Tabla \ref{table:Errors}.
 
 \begin{figure}[!h]
     \centering

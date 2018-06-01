@@ -19,7 +19,7 @@ A lo largo de este capítulo se pretende describir el fundamento teórico y los 
 
 \section{Modelo de cámara}
 
-Una cámara es un mapeo entre el mundo 3D (espacio de objetos) y una imagen 2D. Los modelos de cámara son matrices con propiedades particulares que representan el mapeo de la cámara. El modelo de cámara más especializado y simple es el modelo monocular sencillo o \textit{pinhole} \cite{RichardAndrew}.\\
+Para comprender el funcionamiento de este sistema y los algoritmos que intervienen en cada una de las etapas, es necesario plantear un modelo matemático que describa la geometría de la cámara y el proceso de formación de la imagen. Una cámara es un mapeo entre el mundo 3D (espacio de objetos) y una imagen 2D. Los modelos de cámara son matrices con propiedades particulares que representan el mapeo de la cámara. El modelo de cámara más especializado y simple es el modelo monocular sencillo o \textit{pinhole} \cite{RichardAndrew}.\\
 
 \textit{\textbf{Pinhole.}} Sea $O$ centro de proyección y origen de un sistema de coordenadas Euclidiano, dado el plano $Z = f$, denominado \textit{plano de la imagen} o \textit{plano focal}, la proyección $q = (x,y,f)$ de todo punto $Q = (X,Y,Z)$ en el espacio, es la intersección entre el plano focal y la recta definida por $Q$ y $O$ (ver Fig. \ref{fig:PinholeModel}).
 
@@ -104,7 +104,7 @@ Hay muchos otros tipos de distorsiones que ocurren en los sistemas de imágenes,
 
 \section{Calibración}
 
-El proceso de calibración de la cámara nos proporciona un modelo de la geometría de la cámara y un modelo de distorsión del lente. Estos dos modelos informativos definen los parámetros intrínsecos de la cámara. La calibración de la cámara también es importante para relacionar las mediciones de la cámara con mediciones en el mundo tridimensional real \cite{GaryAdrian}. Esto es importante porque las escenas no son solo tridimensionales; también son espacios físicos con unidades físicas. Según \cite{GaryAdrian} la calibración es: \textit{el proceso mediante el cual se calculan los parámetros intrínsecos y extrínsecos de la cámara, a partir de la correspondencia entre un conjunto de puntos de control con coordenadas tridimensionales conocidas y sus proyecciones en la imagen obtenida con dicha cámara}.
+Para poder estimar con una mayor precisión la posición del \textit{Home Plate} o de la pelota es importante la calibración de la cámara, esto premite relacionar las mediciones de la misma con mediciones en el mundo tridimensional real. El proceso de calibración de la cámara nos proporciona un modelo de la geometría de la cámara y un modelo de distorsión del lente. Estos dos modelos informativos definen los parámetros intrínsecos de la cámara. Esto es importante porque las escenas no son solo tridimensionales; también son espacios físicos con unidades físicas. Según \cite{GaryAdrian} la calibración es: \textit{el proceso mediante el cual se calculan los parámetros intrínsecos y extrínsecos de la cámara, a partir de la correspondencia entre un conjunto de puntos de control con coordenadas tridimensionales conocidas y sus proyecciones en la imagen obtenida con dicha cámara}.
 
 Para calcular los parámetros intrínsecos, $f_x$, $f_y$, $c_x$, $c_y$ y el vector de coeficientes de distorsión, se capturan imágenes de una escena que tenga un conjunto $C=(Q_1 \dots Q_n)$ de puntos característicos (fácilmente identificables) con coordenadas conocidas con respecto a un origen previamente definido. Cada punto $Q_i\in{C}$ tiene una proyección $q_i=(x, y)$ en el plano de la imagen con coordenadas en pixeles. Es posible describir la posición relativa de los puntos $Q$ con respecto a las coordenadas de la cámara (con origen en el punto principal) utilizando una rotación $R$ y una traslación $T$ de modo que $Q_c=R(Q_w-T)$, donde $Q_w$ son las coordenadas de los puntos en el espacio y $Q_c$ son las coordenadas con respecto a la cámara y las matrices $R$, $T$ se denominan parámetros extrínsecos de la cámara. Utilizando coordenadas homogéneas y la matriz de parámetros intrínsecos $M$ es posible definir la homografía $H$ que relaciona a cada punto del espacio $Q_i$ con sus proyecciones $q_i$ en el plano de la imagen \cite{DVD}
 \begin{equation*}
@@ -128,7 +128,7 @@ El parámetro $s$ es un factor de escalado arbitrario que hace explícito el hec
 
 \section{Eliminación de ruido}
 
-La eliminación de ruido en imágenes es una tarea vital de procesamiento de imágenes, como un proceso en sí mismo o como un componente en otros procesos \cite{PawanManojSumitAshok}. En todos los sistemas de procesamiento debemos considerar qué parte de la señal detectada puede considerarse verdadera y qué tanto está asociada con los eventos de fondo aleatorios resultantes del proceso de detección o transmisión. Estos eventos aleatorios se clasifican bajo el tema general de ruido. Este ruido puede ser el resultado de una amplia variedad de fuentes, incluyendo la naturaleza discreta de la radiación, variación en la sensibilidad del detector, efectos de granos fotográficos, errores de transmisión de datos, propiedades de sistemas de imágenes como turbulencia de aire o gotas de agua y errores de cuantificación de imágenes. En cada caso, las propiedades del ruido son diferentes, al igual que las operaciones de procesamiento de imágenes que se pueden aplicar para reducir sus efectos \cite{topic5}. En esta sección brindaremos, una breve descripción de varios modelos de ruido \cite{AjayBrijendra} y los diferentes tipos de filtros que se utilizan para eliminarlo \cite{MandarMeghana, PawanManojSumitAshok}.
+Esta etapa es fundamental en el sistema, puesto que permite eliminar el ruido introducido por el proceso de captura. La eliminación de ruido en imágenes es una tarea vital de procesamiento de imágenes, como un proceso en sí mismo o como un componente en otros procesos \cite{PawanManojSumitAshok}. En todos los sistemas de procesamiento debemos considerar qué parte de la señal detectada puede considerarse verdadera y qué tanto está asociada con los eventos de fondo aleatorios resultantes del proceso de detección o transmisión. Estos eventos aleatorios se clasifican bajo el tema general de ruido. Este ruido puede ser el resultado de una amplia variedad de fuentes, incluyendo la naturaleza discreta de la radiación, variación en la sensibilidad del detector, efectos de granos fotográficos, errores de transmisión de datos, propiedades de sistemas de imágenes como turbulencia de aire o gotas de agua y errores de cuantificación de imágenes. En cada caso, las propiedades del ruido son diferentes, al igual que las operaciones de procesamiento de imágenes que se pueden aplicar para reducir sus efectos \cite{topic5}. En esta sección brindaremos, una breve descripción de varios modelos de ruido \cite{AjayBrijendra} y los diferentes tipos de filtros que se utilizan para eliminarlo \cite{MandarMeghana, PawanManojSumitAshok}.
 
 \subsection{Ruido}
 
@@ -202,19 +202,19 @@ El filtro de mediana es una técnica de filtrado digital no lineal, el cual se b
     \label{fig:filters}
 \end{figure}    
 
-\section{Background Subtraction}\label{sec:BS}
+\section{\textit{Background Subtraction}}\label{sec:BS}
 
-Background Subtraction (BS) es una de las tareas más frecuentes en los sistemas de seguimiento y análisis de video. Es el primer paso para todo tipo de aplicaciones en el campo de visión por computadora, como análisis de video, seguimiento de objetos, videovigilancia, recuento de objetos, análisis de tráfico, etc \cite{GuangleTaoJiandanPingWenwu}. Por esta razón, generalmente se requiere que sea lo más rápido y simple posible. La popularidad de los algoritmos de background subtraction proviene en gran medida de su eficiencia computacional, permitiendo que aplicaciones como las antes mencionadas cumplan con sus objetivos en tiempo real \cite{DeepjoySarat}.
+Eliminación de Fondo o \textit{Background Subtraction} (\textit{BS}) es una tarea indispensable en el proceso de detección de la posición de la pelota en el sistema. Es el primer paso para todo tipo de aplicaciones en el campo de visión por computadora, como análisis de video, seguimiento de objetos, videovigilancia, recuento de objetos, análisis de tráfico, etc \cite{GuangleTaoJiandanPingWenwu}. Por esta razón, generalmente se requiere que sea lo más rápido y simple posible. La popularidad de los algoritmos de \textit{background subtraction} proviene en gran medida de su eficiencia computacional, permitiendo que aplicaciones como las antes mencionadas cumplan con sus objetivos en tiempo real \cite{DeepjoySarat}.
 
-La idea básica en el enfoque es detectar los objetos en movimiento a partir de la diferencia entre el cuadro actual y un cuadro de referencia, que se denomina imagen de fondo o modelo de fondo \cite{DeepjoySarat}. Esta solución ha demostrado ser exitosa siempre que la cámara esté rigurosamente estática con un fondo fijo libre de ruido \cite{YannickPierreMarcBrunoHeleneChristophe}. La imagen de fondo debe ser lo suficientemente buena para representar la escena y actualizarse periódicamente para que se adapte a las diferentes condiciones de luminancia y configuraciones de geometría. Una imagen de fondo deficiente puede dar lugar a resultados pobres de background subtraction, ya que se restará con la imagen actual para obtener el resultado final \cite{DeepjoySarat}.
+La idea básica en el enfoque es detectar los objetos en movimiento a partir de la diferencia entre el cuadro actual y un cuadro de referencia, que se denomina imagen de fondo o modelo de fondo \cite{DeepjoySarat}. Esta solución ha demostrado ser exitosa siempre que la cámara esté rigurosamente estática con un fondo fijo libre de ruido \cite{YannickPierreMarcBrunoHeleneChristophe}. La imagen de fondo debe ser lo suficientemente buena para representar la escena y actualizarse periódicamente para que se adapte a las diferentes condiciones de luminancia y configuraciones de geometría. Una imagen de fondo deficiente puede dar lugar a resultados pobres de \textit{background subtraction}, ya que se restará con la imagen actual para obtener el resultado final \cite{DeepjoySarat}.
 
 Algunos videos con una pobre relación señal-ruido causada por una cámara de baja calidad, artefactos de compresión o un entorno ruidoso, es probable que generen numerosos falsos positivos. Los falsos positivos también pueden ser inducidos por cambios en la iluminación (gradual o repentino), un fondo animado (ondas en el agua, árboles sacudidos por el viento) o inestabilidad de la cámara por nombrar algunos \cite{YannickPierreMarcBrunoHeleneChristophe}.
 
-Desde la década de 1990, se ha propuesto una gran cantidad de algoritmos BS y se han lanzado diferentes tipos de conjuntos de datos y puntos de referencia para evaluar dichos algoritmos \cite{GuangleTaoJiandanPingWenwu}.
+Desde la década de 1990, se ha propuesto una gran cantidad de algoritmos \textit{BS} y se han lanzado diferentes tipos de conjuntos de datos y puntos de referencia para evaluar dichos algoritmos \cite{GuangleTaoJiandanPingWenwu}.
 
-\subsection{Algoritmos de Background Subtraction}
+\subsection{Algoritmos de \textit{Background Subtraction}}
 
-Muchos algoritmos de BS han sido diseñados para segmentar los objetos de primer plano del fondo de una secuencia (ver Fig. \ref{fig:BSExample}), y generalmente comparten el mismo esquema (ver Fig. \ref{fig:BSParadigm}).
+Muchos algoritmos de \textit{BS} han sido diseñados para segmentar los objetos de primer plano del fondo de una secuencia (ver Fig. \ref{fig:BSExample}), y generalmente comparten el mismo esquema (ver Fig. \ref{fig:BSParadigm}).
 
 \begin{figure}[h!]
 	\centering
@@ -233,11 +233,11 @@ Muchos algoritmos de BS han sido diseñados para segmentar los objetos de primer
 		\includegraphics[width=\linewidth]{Graphics/BSExampleDetected.png}
 		\caption{}
 	\end{subfigure}
-	\caption{Ejemplo de Background Subtraction : (a) Fondo, (b) Frame Actual, (c) Fondo Detectado.}
+	\caption{Ejemplo de \textit{Background Subtraction} : (a) Fondo, (b) Frame Actual, (c) Fondo Detectado.}
 	\label{fig:BSExample}
 \end{figure}
 
-Este esquema esta dado debido a que la mayoría de las técnicas de BS comparten un denominador común: \textit{suponen que la secuencia de video observada $I$ está hecha de un fondo estático $B$ frente a los objetos en movimiento que se observan} \cite{YannickPierreMarcBrunoHeleneChristophe}. Con la suposición de que cada objeto en movimiento está hecho de un color o una distribución de color diferente del observado en $B$, numerosos métodos de BS se pueden resumir con la siguiente fórmula:
+Este esquema esta dado debido a que la mayoría de las técnicas de \textit{BS} comparten un denominador común: \textit{suponen que la secuencia de video observada $I$ está hecha de un fondo estático $B$ frente a los objetos en movimiento que se observan} \cite{YannickPierreMarcBrunoHeleneChristophe}. Con la suposición de que cada objeto en movimiento está hecho de un color o una distribución de color diferente del observado en $B$, numerosos métodos de \textit{BS} se pueden resumir con la siguiente fórmula:
 \begin{equation}
 X_t(s) = \left\{
 \begin{array}{ll}
@@ -247,17 +247,17 @@ X_t(s) = \left\{
 \right.
 \label{eq:BSFormula}
 \end{equation}
-donde $\tau$ es un umbral, $X_t$ es el campo de etiqueta de movimiento en el tiempo $t$ (también llamado máscara de movimiento), $d$ es la distancia entre $I_{s,t}$ color en el tiempo $t$ y el píxel $s$ y $B_s$ modelo de fondo en el pixel $s$. La diferencia principal entre varios métodos BS es cómo se modela $B$ y qué medida de distancia $d$ usan.\\
+donde $\tau$ es un umbral, $X_t$ es el campo de etiqueta de movimiento en el tiempo $t$ (también llamado máscara de movimiento), $d$ es la distancia entre $I_{s,t}$ color en el tiempo $t$ y el píxel $s$ y $B_s$ modelo de fondo en el pixel $s$. La diferencia principal entre varios métodos \textit{BS} es cómo se modela $B$ y qué medida de distancia $d$ usan.\\
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=11cm]{Graphics/BSParadigm.png}
-	\caption{Paradigma de Background Subtraction.}
+	\caption{Paradigma de \textit{Background Subtraction}.}
 	\label{fig:BSParadigm}
 \end{figure}
 
 \textbf{Diferencia de Fotograma.}
-La diferencia de fotograma es la forma más simple de background subtraction \cite{DeepjoySarat}. El fotograma actual simplemente se resta del fotograma anterior, y si la diferencia en los valores de píxel para un píxel dado es mayor que un umbral $\tau$, entonces el píxel se considera parte del primer plano. Dada la equación \ref{eq:BSFormula} podemos formular el método de la siguiente forma:
+La diferencia de fotograma es la forma más simple de \textit{background subtraction} \cite{DeepjoySarat}. El fotograma actual simplemente se resta del fotograma anterior, y si la diferencia en los valores de píxel para un píxel dado es mayor que un umbral $\tau$, entonces el píxel se considera parte del primer plano. Dada la equación \ref{eq:BSFormula} podemos formular el método de la siguiente forma:
 $$
 X_t(s) = \left\{
 \begin{array}{ll}
@@ -271,7 +271,7 @@ donde el modelo $B_s$ se define como $I_{s,t-1}$ y la medida de distancia $d$ es
 Este método no necesita de un historial de fotogramas, ni de realizar varios cálculos, lo cual presupone una ventaja ya que no consume tiempo ni memoria \cite{InsafSlimane}, otra ventaja es que se adapta a los cambios en el fondo más rápido que cualquier otro método, puesto que, el fondo es solo el fotograma anterior. Sin embargo, como no se conoce el historial de fotogramas, no se puede mantener el fondo multimodal y es imposible evitar la detección de objetos espurios, como el balanceo de las ramas de los árboles, lo cual también se conoce como el problema de apertura descrito en \cite{ApewokinApewokinWillsWillsGentile} y \cite{KentaroJohnBarryBrian}.\\
 
 \textbf{Gaussiano Simple.}
-Modelar $B$ con una sola imagen como el método \textit{Diferencia de Fotograma} requiere un fondo rigurosamente fijo y libre de ruido. Como este requisito no se puede satisfacer en todos los escenarios de la vida real, muchos algoritmos modelan cada píxel de fondo con una función de densidad de probabilidad (PDF) aprendida sobre una serie de marcos de entrenamiento \cite{YannickPierreMarcBrunoHeleneChristophe}. En este caso, el problema de BS se convierte en un problema de umbral de PDF para el cual es probable que un píxel con baja probabilidad corresponda a un objeto en movimiento en primer plano. Por ejemplo, para tener en cuenta el ruido, \cite{WrenAzarbayejaniDarrellPentland} modela cada píxel de fondo con una distribución gaussiana $\Gamma(\mu_{s,t}, \Sigma_{s,t})$ donde  $\mu_{s,t}$ y $\Sigma_{s,t}$ representan respectivamente el color de fondo promedio y la matriz de covarianza en el píxel $s$ y tiempo $t$. En este contexto, la métrica de distancia puede ser la siguiente probabilidad de registro \cite{YannickPierreMarcBrunoHeleneChristophe}:
+Modelar $B$ con una sola imagen como el método \textit{Diferencia de Fotograma} requiere un fondo rigurosamente fijo y libre de ruido. Como este requisito no se puede satisfacer en todos los escenarios de la vida real, muchos algoritmos modelan cada píxel de fondo con una función de densidad de probabilidad (PDF) aprendida sobre una serie de marcos de entrenamiento \cite{YannickPierreMarcBrunoHeleneChristophe}. En este caso, el problema de \textit{BS} se convierte en un problema de umbral de PDF para el cual es probable que un píxel con baja probabilidad corresponda a un objeto en movimiento en primer plano. Por ejemplo, para tener en cuenta el ruido, \cite{WrenAzarbayejaniDarrellPentland} modela cada píxel de fondo con una distribución gaussiana $\Gamma(\mu_{s,t}, \Sigma_{s,t})$ donde  $\mu_{s,t}$ y $\Sigma_{s,t}$ representan respectivamente el color de fondo promedio y la matriz de covarianza en el píxel $s$ y tiempo $t$. En este contexto, la métrica de distancia puede ser la siguiente probabilidad de registro \cite{YannickPierreMarcBrunoHeleneChristophe}:
 
 $$d_G = \frac{1}{2}\log((2\pi)^3\mid\Sigma_{s,t}\mid)+\frac{1}{2}(I_{s,t}-\mu_{s,t})\Sigma_{s,t}^{-1}(I_{s,t}-\mu_{s,t})^T$$
 o una distancia Mahalanobis:
@@ -290,12 +290,12 @@ Las ventajas y desventajas del método se pueden ver en \cite{BenezethJodoinEmil
 
 \subsection{Métricas de Evaluación}
 
-Background subtraction se considera un problema de clasificación binaria: \textit {un píxel se etiqueta como fondo o primer plano} \cite{GuangleTaoJiandanPingWenwu}. Como se muestra en la Figura \ref{fig:BSMetrics}, el círculo y el cuadrado respectivamente representan el primer plano verdadero y el detectado. TP es el número de verdaderos positivos, TN es el número de negativos verdaderos, FN es el número de falsos negativos y FP es el número de falsos positivos.\\
+\textit{Background subtraction} se considera un problema de clasificación binaria: \textit {un píxel se etiqueta como fondo o primer plano} \cite{GuangleTaoJiandanPingWenwu}. Como se muestra en la Figura \ref{fig:BSMetrics}, el círculo y el cuadrado respectivamente representan el primer plano verdadero y el detectado. TP es el número de verdaderos positivos, TN es el número de negativos verdaderos, FN es el número de falsos negativos y FP es el número de falsos positivos.\\
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=8cm]{Graphics/BSMetrics.png}
-    \caption{Primer Plano verdadero y detectado en BS.}
+    \caption{Primer Plano verdadero y detectado en \textit{BS}.}
     \label{fig:BSMetrics}
 \end{figure}
 
@@ -309,73 +309,97 @@ Tres importantes métricas de evaluación se calculan con las siguientes ecuacio
     \end{split}
 \end{equation*}
 
-La precisión se puede ver como una métrica de exactitud o calidad, mientras que la recuperación es una medida de integridad o cantidad. Para un mejor algoritmo de BS, los puntajes de precisión y recuperación deben ser altos, pero existe una relación inversa entre estos, donde es posible aumentar uno al costo de reducir al otro \cite{GuangleTaoJiandanPingWenwu}. Como un umbral $\tau$ para un método produce una sola pareja de precisión/recuperación por video, se usan 15 umbrales diferentes para producir curvas. De esta manera, la comparación entre métodos se hace más fácil ya que no tenemos que encontrar el mejor umbral para cada método sobre cada video \cite{YannickPierreMarcBrunoHeleneChristophe}. La \textit{Medida-F}, que es un medio armónico de precisión y recuperación, puede verse como un compromiso entre ambas. Equilibra la precisión y la recuperación con pesos iguales, y solo es alta cuando tanto la recuperación como la precisión son altas. Una puntuación más alta de \textit{Medida-F} significa que el rendimiento del algoritmo BS es mejor \cite{GuangleTaoJiandanPingWenwu}.
+La precisión se puede ver como una métrica de exactitud o calidad, mientras que la recuperación es una medida de integridad o cantidad. Para un mejor algoritmo de \textit{BS}, los puntajes de precisión y recuperación deben ser altos, pero existe una relación inversa entre estos, donde es posible aumentar uno al costo de reducir al otro \cite{GuangleTaoJiandanPingWenwu}. Como un umbral $\tau$ para un método produce una sola pareja de precisión/recuperación por video, se usan 15 umbrales diferentes para producir curvas. De esta manera, la comparación entre métodos se hace más fácil ya que no tenemos que encontrar el mejor umbral para cada método sobre cada video \cite{YannickPierreMarcBrunoHeleneChristophe}. La \textit{Medida-F}, que es un medio armónico de precisión y recuperación, puede verse como un compromiso entre ambas. Equilibra la precisión y la recuperación con pesos iguales, y solo es alta cuando tanto la recuperación como la precisión son altas. Una puntuación más alta de \textit{Medida-F} significa que el rendimiento del algoritmo \textit{BS} es mejor \cite{GuangleTaoJiandanPingWenwu}.
 
-\section{RANSAC} \label{sec:RANSAC}
+\section{Aproximación de funciones}
 
-Las técnicas generales de estimación de parámetros se basan en la suposición de que el ruido en los datos de entrenamiento es ruido gaussiano con media cero. Por lo tanto, este ruido se suavizaría después de la optimización de parámetros que promedia todos los datos. Sin embargo, esta suposición no se cumple cuando existen errores graves que pueden ocurrir con valores extremos de ruido o con mediciones incorrectas durante el muestreo. Este tipo de errores en realidad no se ajustan al modelo y deben rechazarse durante el entrenamiento para obtener mejores ajustes del modelo.
+Luego de la detección de un conjunto de pelotas en un lanzamiento es necesario estimar un modelo matemático que describa su trayectoria. Las técnicas generales de estimación de parámetros se basan en la suposición de que el ruido en los datos de entrenamiento es ruido gaussiano con media cero. Por lo tanto, este ruido se suavizaría después de la optimización de parámetros que promedia todos los datos. Sin embargo, esta suposición no se cumple cuando existen errores graves que pueden ocurrir con valores extremos de ruido o con mediciones incorrectas durante el muestreo. Este tipo de errores en realidad no se ajustan al modelo y deben rechazarse durante el entrenamiento para obtener mejores ajustes del modelo.
 
-\begin{figure}[b]
+\subsection{Regresión Lineal}
+
+En estadística la regresión lineal o ajuste lineal es un modelo matemático usado para aproximar la relación de dependencia entre una variable dependiente $Y$, las variables independientes $X_i$ y un término aleatorio $\epsilon$ (ver Fig: \ref{fig:LinearRegression}). Este modelo puede ser expresado como:
+$$Y_t = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \epsilon$$
+donde:\\
+\begin{itemize}
+    \item $Y_t$ : variable dependiente, explicada o regresando.
+    \item $X_1, X_2, \cdots, X_p$: variables explicativas, independientes o regresores.
+    \item $\beta_0, \beta_1, \beta_2, \cdots, \beta_p$: parámetros, miden la influencia que las variables explicativas tienen sobre el regrediendo.
+\end{itemize}
+
+$\beta_0$ es la intersección o término ``constante'', las $\beta_i$ ($i > 0$) son los parámetros respectivos a cada variable independiente y $p$ es el número de parámetros independientes a tener en cuenta en la regresión.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{Graphics/LinearRegression.png}
+    \caption{Resultado de ajustar un conjunto de puntos con una recta usando un regresor lineal.}
+    \label{fig:LinearRegression}
+\end{figure}
+
+Las regresiones lineales son sensibles a \textit{outliers}, puesto que pueden tener enormes efectos en la regresión. Por ejemplo, si la mayoría de los datos están en el intervalo $[20,50]$ en el eje $x$, pero se tienen uno o dos puntos en $x=200$, esto podría cambiar significativamente los resultados de regresión.
+
+De manera similar, si se construye la regresión en el intervalo $x=[20,50]$ y luego trata de usar ese modelo para predecir un valor $y$ para $x=200$, esta es una extrapolación bastante significativa y no necesariamente se va a obtener un buen resultado.
+
+\subsection{RANSAC} \label{sec:RANSAC}
+
+El algoritmo \textit{RANSAC} (\textit{RANdom SAmple Consensus}) propuesto por \cite{FischlerBolles} es un algoritmo iterativo utilizado para estimar los parámetros de un modelo matemático de un conjunto de datos que contiene \textit{outliers} \cite{PabloJuan}. Otros métodos para estimar parámetros de modelos como regresión lineal le dan el mismo peso a todos los datos, por lo que la presencia de un \textit{outlier} puede llegar a distorsionar el modelo obtenido (Ver Fig. \ref{fig:RANSACExample}). Este algoritmo utiliza una técnica de remuestreo que genera soluciones candidatas mediante el uso del número mínimo de observaciones (puntos de datos) necesarias para estimar los parámetros del modelo subyacente \cite{Konstantinos}.
+
+\begin{figure}[h!]
     \centering
     \includegraphics[width=10cm]{Graphics/RANSACGraphic.png}
     \caption{Ejemplo del algoritmo \textit{RANSAC}.}
     \label{fig:RANSACExample}
 \end{figure}
 
-El algoritmo \textit{RANSAC} (\textit{RANdom SAmple Consensus}) propuesto por \cite{FischlerBolles} es un algoritmo iterativo utilizado para estimar los parámetros de un modelo matemático de un conjunto de datos que contiene \textit{outliers} \cite{PabloJuan}. Otros métodos para estimar parámetros de modelos como mínimos cuadrados le dan el mismo peso a todos los datos, por lo que la presencia de un \textit{outlier} puede llegar a distorsionar el modelo obtenido (Ver Fig. \ref{fig:RANSACExample}). Este algoritmo utiliza una técnica de remuestreo que genera soluciones candidatas mediante el uso del número mínimo de observaciones (puntos de datos) necesarias para estimar los parámetros del modelo subyacente \cite{Konstantinos}.
+Para entender mejor lo que \textit{RANSAC} hace, se muestra su pseudocódigo genérico en el Algoritmo \ref{alg:RANSAC}.
 
-\subsection{Algoritmo}
+\begin{algorithm}[!h]
+    \DontPrintSemicolon
+	\SetAlgoLined
+	\KwData{data - conjunto de puntos de datos observados\\
+            \hspace{1cm}model - modelo que pueda ser ajustado a los datos\\
+            \hspace{1cm}n - número mínimo de puntos necesarios para ajustar el\\
+            \hspace{1.5cm}modelo\\
+            \hspace{1cm}k - cantidad máxima de iteraciones permitidas en el algoritmo\\
+            \hspace{1cm}t - valor de umbral para determinar cuándo un punto se ajusta\\
+            \hspace{1.5cm}al modelo\\
+            \hspace{1cm}d - número de puntos cercanos necesarios para afirmar que un\\
+            \hspace{1.5cm}modelo se ajusta bien a los datos}
+    \KwResult{bestfit - parámetros del modelo que mejor se ajustan a los\\
+            \hspace{2.7cm}datos (o \textit{nil} si no se encuentra un modelo bueno)}
+    \everypar={\nl}
+    iterations = 0\;
+    bestfit = nil\;
+    besterr = número realmente grande\;
+    \While{$iterations < k$}{
+	maybeinliers = \textit{n} valores aleatorios de los datos\;
+	maybemodel = parámetros del modelo ajustados a \textit{maybeinliers}\;
+    alsoinliers = conjunto vacio\;
+	\For {cada punto en data que no está en maybeinliers} {
+		\If{punto se ajusta a maybemodel con un error menor que t}
+		    {agregar punto a \textit{alsoinliers}\;}
+	}
+	\If{la cantidad de elementos en alsoinliers es > d} {
+        /* esto implica que podemos haber encontrado un buen\\
+        modelo, ahora prueba qué tan bueno es */\\
+        bettermodel = parámetros del modelo ajustados a todos los\\
+        \hspace{2.5cm}puntos en \textit{maybeinliers} y \textit{alsoinliers}\;
+        thiserr = medida de qué tan bien el modelo se ajusta a estos\\
+        \hspace{1.5cm}puntos\;
+		\If {thiserr < besterr} {
+			bestfit = bettermodel\;
+			besterr = thiserr\;
+		}
+	}
+	increment iterations\;
+}
+return bestfit\;
+    \caption{RANSAC.}
+    \label{alg:RANSAC}    
+\end{algorithm}
 
-Para entender mejor lo que \textit{RANSAC} hace, se describe el flujo del algoritmo genéricamente de la siguiente manera:
+Como se describe al principio del algoritmo, \textit{RANSAC} necesita algunos parámetros predefinidos para ejecutarse: tamaño del subconjunto de muestra ($n$), umbral de tolerancia de error ($t$), umbral de consenso mínimo ($d$) y número de iteraciones ($k$).
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=\linewidth]{Graphics/RANSACAlgorithm1.png}
-	\caption{Algoritmo \textit{RANSAC}.}
-	\label{fig:RANSACAlgorithm}
-\end{figure}
-
-% \begin{algorithm}[!h]
-% 	\SetAlgoLined
-% 	\KwData{data - a set of observed data points\\
-%             model - a model that can be fitted to data points\\
-%             n - the minimum number of data values required to fit the model
-%             k - the maximum number of iterations allowed in the algorithm
-%             t - a threshold value for determining when a data point fits a model
-%             d - the number of close data values required to assert that a model fits well to data}
-% 	\KwResult{bestfit - model parameters which best fit the data (or nil if no good model is found)}
-%     \everypar={\nl}
-%     iterations = 0\;
-%     bestfit = nil\;
-%     besterr = something really large\;
-%     \While{$iterations < k$}{
-% 	maybeinliers = n randomly selected values from data\;
-% 	maybemodel = model parameters fitted to maybeinliers\;
-%     alsoinliers = empty set\;
-% 	\For {every point in data not in maybeinliers} {
-% 		\If{point fits maybemodel with an error smaller than t}
-% 		    {add point to alsoinliers\;}
-% 	}
-% 	\If{the number of elements in alsoinliers is > d} {
-% 		% this implies that we may have found a good model
-% 		% now test how good it is
-% 		bettermodel = model parameters fitted to all points in maybeinliers and alsoinliers\;
-% 		thiserr = a measure of how well model fits these points\;
-% 		\If {thiserr < besterr} {
-% 			bestfit = bettermodel\;
-% 			besterr = thiserr\;
-% 		}
-% 	}
-% 	increment iterations\;
-% }
-% return bestfit\;
-%     \caption{RANSAC.}
-%     \label{alg:RANSAC}    
-% \end{algorithm}
-
-Como se describe al principio del flujo del algoritmo, \textit{RANSAC} necesita algunos parámetros predefinidos para ejecutarse: tamaño del subconjunto de muestra ($n$), umbral de tolerancia de error ($t$), umbral de consenso mínimo ($d$) y número de iteraciones ($k$).
-
-\subsection{Parámetros}
+\subsection{Parámetros de RANSAC}
 
 Como \textit{RANSAC} es un algoritmo aleatorizado, es esencial estimar verdaderamente los parámetros, a fin de aumentar la probabilidad de encontrar el modelo óptimo, manteniendo las ventajas computacionales de un algoritmo aleatorizado frente a un algoritmo determinista exhaustivo.\\
 
