@@ -44,7 +44,7 @@ Por otra parte en la figura \ref{fig:DetectedHomeMATCOM} el ambiente es más des
     \label{fig:DetectedHomeMATCOM}
 \end{figure}
 
-Uno de los posibles escenarios en la detección del \textit{Home Plate} es en el que la pelota pasa por encima de este o que en el momento de capturar la pelota el guante del receptor (mascota) se interponga entre el \textit{Home} y la cámara, aunque esto es menos probable debido a la ubicación del receptor. En la gran mayoría de los casos en que un objeto se interpone entre la cámara y el \textit{Home}, la detección de este se verá afectada.
+Uno de los posibles escenarios en la detección del \textit{Home Plate} es en el que la pelota pasa por encima de este o que en el momento de capturar la pelota el guante del receptor (mascota) se interponga entre el \textit{Home} y la cámara, aunque esto es menos probable debido a la ubicación del receptor. En la gran mayoría de los casos en que un objeto se interpone entre la cámara y el \textit{Home}, la detección de este se verá afectada. En este sistema esto no supone un problema, puesto que \textit{Home Plate} es detectado entre lanzamiento y lanzamiento. Luego de cada lanzamiento el sistema dedica un tiempo de alrededor 2 segundos a calibrar la posición del \textit{Home}.
 
 En la figura \ref{fig:WrongHomeBall} se muestra uno de los escenarios donde la pelota se encuentra sobre una de las esquinas del \textit{Home}. Como se puede apreciar el contorno no tiene las características geométricas propias de un \textit{Home Plate}, por lo que este no será detectado por el sistema en este frame.
 
@@ -121,7 +121,9 @@ Las imágenes tomadas poseen diferentes resoluciones como 320x240, 1280x720 y 19
 Para analizar los resultados alcanzados en la detección de la pelota se seleccionaron del conjunto de prueba doce lanzamientos distintos, de los cuales cuatro fueron tomados a una resolución de 320x240, otros cuatro a 1280x720 y los restantes a 1920x1080. Los lanzamientos escogidos poseen diferentes características, lo que permite evaluar el comportamiento del sistema en diferentes tipos de lanzamientos. Los cuatro tipos de lanzamientos seleccionados para cada una de las resoluciones son lanzamientos al centro de \textit{Home Plate}, lanzamientos en la zona alta y lanzamientos a la izquierda y la derecha del \textit{Home Plate}.
 
 Para poder comprender con una mayor claridad los resultados obtenidos, se decidió implementar una herramienta que permitiera dado los lanzamientos seleccionados del conjunto de prueba, graficar en \textit{3D} la posición de la pelota seleccionada manualmente y la posición brindada por el sistema (ver Figs. \ref{fig:PitchesPSEye}, \ref{fig:PitchesSlowMotion} y \ref{fig:PitchesFullHD}). Otra de las funcionalidades que brinda esta herramienta es que permite calcular el error promedio obtenido en cada lanzamiento.
-$$err$$
+$$error = \frac{1}{n} \sum_{i=1}^n dist(br_i, bs_i)$$
+donde $n$ es el número de frames donde aprarece la pelota, $br_i$ es el centro de la pelota selecionado manualmente y $bs_i$ es el centro de la pelota detectado por el sistema.
+
 Para calcular este error primeramente hallamos la distancia entre la posición de la pelota selecionada manualmente y la que nos proporcionó el sistema en cada frame de un lanzamiento, luego las distancias calculadas durante este lanzamiento son promediadas. Los errores obtenidos se pueden observar en la Tabla \ref{table:Errors}.
 
 \begin{figure}[!h]

@@ -112,21 +112,28 @@ donde $h$ es la altura de la cámara con respecto a \textit{Home Plate} ($2.25$ 
         \label{fig:VisionAreaGraphic}
 \end{figure}
 
-A una mayor altura la cámara contará con un campo de visón más amplio lo que supone una ventaja pero también tiene un inconveniente, al colocar la cámara a una gran altura necesitaríamos que la cámara posea una mayor resolución, puesto que a mayor altura más lejos se observarán los objetos que se muestran en la imagen. La resolución en la configuración utilizada es de 320x240 por lo que no sería factible alejarse mucho más de la zona por donde pasa la pelota.
+A una mayor altura la cámara contará con un campo de visón más amplio lo que supone una ventaja pero también tiene un inconveniente, al colocar la cámara a una gran altura necesitaríamos que la cámara posea una mayor resolución, puesto que a mayor altura más lejos se observarán los objetos que se muestran en la imagen. La resolución en la configuración utilizada es de 320x240 por lo que no sería factible alejarse mucho más de la zona por donde pasa la pelota, debido a que esta se observaría en la imagen demasiado pequeña.
 
-Un dato que interesa conocer es en cuántos frames se podrá observar la pelota en un lanzamiento a velocidad promedio. Para conocer este dato es necesario calcular el tiempo $t$ en que la pelota recorre los $3.45$ metros del campo de visión:
+Un dato que interesa conocer es en cuántos frames se podrá observar la pelota en un lanzamiento a velocidad promedio. Esto se debe a que necesitamos que este dato sea lo suficientemente grande para poder obtener una aproximación de la trayectoria de la pelota con el menor error posible. Para conocer este dato es necesario calcular el tiempo $t$ en que la pelota recorre los $3.45$ metros del campo de visión:
 $$t = \frac{d}{v}, \quad t = \frac{2*tan(37.5^{\circ})*2.25m}{91mph}, \quad t = 84.9ms (milisegundos)$$
 Calculado este tiempo sabemos entonces que la pelota a una velocidad de \textit{91mph} recorre los $3.45$ metros del campo de visión en $84.9ms$. Dada la velocidad de captura utilizada (\textit{187fps}) y $t$ obtenemos:
 $$n=\frac{2*tan(37.5^{\circ})*2.25m}{91mph}*187fps, \quad n=15.87 frames$$
 donde $n$ es el número de frames en que se podrá observar la pelota en un lanzamiento.
 
-La gráfica que muestra la relación entre el número de frames donde se observa la pelota en un lanzamiento y la velocidad de captura se muestra en la figura \ref{fig:NumberOfFrames}.
+La gráfica que muestra la relación entre el número de frames donde se observa la pelota en un lanzamiento y la velocidad de captura se muestra en la figura \ref{fig:NumberOfFrames} y la gráfica \ref{fig:NumberOfMiles} muestra la relación entre el número de frames donde se observa la pelota en un lanzamiento y la velocidad del lanzamiento en millas por hora (\textit{mph}).
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=10cm]{Graphics/NumberOfFrames.png}
     \caption{Relación número de frames donde se observa la pelota y velocidad de captura en fps.}
     \label{fig:NumberOfFrames}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=10cm]{Graphics/NumberOfMiles.png}
+    \caption{Relación número de frames donde se observa la pelota y velocidad del lanzamiento en \textit{mph}.}
+    \label{fig:NumberOfMiles}
 \end{figure}
 
 \section{Eliminación de ruido}
@@ -223,6 +230,18 @@ donde $IA$ el área de la imagen, $cpa$ es el porciento del área de la imagen q
 \textbf{Filtrado por número de lados.}
 Una de las características geométricas que posee el \textit{Home Plate} es que es un polígono de 5 lados (pentágono). Esta característica es un buen filtro debido a que muchos contornos en la imagen aunque sean un polígono no serán un pentágono (no tendrán 5 lados).\\
 
+\textbf{Refinado de bordes.}
+Puesto que el contorno que describe al \textit{Home Plate} no tiene exactamente la forma óptima es necesario refinar mejor sus lados para así obtener una mejor proporción entre estos. Esto se logra encontrando la ubicación precisa de las esquinas o puntos de montura radial subpíxel (ver Fig. \ref{fig:CornerSubPix}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{Graphics/CornerSubPix.png}
+	\caption{Método de búsqueda de esquinas sub-pixel.}
+	\label{fig:CornerSubPix}
+\end{figure}
+
+Este método se basa en la observación de que cada vector desde el centro $q$ hasta un punto $p$ ubicado dentro de un vecindario de $q$ es ortogonal al gradiente de imagen en $p$ sujeto a la imagen y al ruido de medición \cite{CornerSubPixOpenCV}.\\
+
 \textbf{Filtrado de relación entre los lados.}
 Otro de los filtros utilizados es el filtro de relación entre los lados. Como se muestra en la figura \ref{fig:HomePlateDimentions} el \textit{Home Plate} tiene dos pares de lados iguales, lo que supone una característica bastante particular de este pentágono. Al igual que en el filtrado por área la relación entre los lados iguales es porcentual y se tiene un umbral de diferencia entre los lados, esto está dado debido a que los lados rara vez van a ser exactamente iguales. Un lado de longitud $d_1$ es igual a otro de longitud $d_2$ si:
 $$psd \leq psr \quad \text{con} \quad psd = \frac{100 * \mid d_1 - d_2 \mid}{min(d_1, d_2)}$$
@@ -244,8 +263,6 @@ El último filtro utilizado fue el filtrado por ángulos. Como se muestra en la 
 \end{equation*}
 donde $\alpha_1$, $\alpha_2$, $\alpha_3$ son los tres ángulos menores y $\beta_1$, $\beta_2$ son los dos mayores. El umbral seleccionado para el sistema fue $umbral = 5$.
 
-% \textbf{text}
-
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}[b]{0.32\linewidth}
@@ -257,15 +274,19 @@ donde $\alpha_1$, $\alpha_2$, $\alpha_3$ son los tres ángulos menores y $\beta_
 		\centering
 		\includegraphics[width=\linewidth]{Graphics/FiltersContoursByArea.png}
 		\caption{}
-	\end{subfigure}    
+	\end{subfigure}
 	\begin{subfigure}[b]{0.32\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Graphics/FiltersContoursBySidesNumber.png}
 		\caption{}
-	\end{subfigure}    
+	\end{subfigure}
 	\caption{Filtros a contornos : (a) Todos los contornos, (b) Contornos filtrados por área, (c) Contornos filtrados por número de lados.}
 	\label{fig:FilteredContours}
-\end{figure}    
+\end{figure}
+
+\subsection{Transformación de la vista en la imagen a top-view}
+
+Transformación
 
 \section{Detección de la Pelota}
 
@@ -275,7 +296,38 @@ Una de las restricciones que impone el sistema es el hecho de que la cámara tie
 
 Debido a que el uso del sistema propuesto será en exteriores, el modelo de BS seleccionado fue Mezcla Gaussiana (GMM). Este modelo brinda grandes ventajas en un ambiente de exteriores (al aire libre), puesto que funciona mejor cuando el fondo es inestable o cuando el nivel de ruido es significativamente grande \cite{YannickPierreMarcBrunoHeleneChristophe}. Esta ventaja está dada debido a que el modelado de fondo se realiza como un fenómeno estadístico (aleatorio) en lugar de una constante. Los ruidos en las imágenes de exteriores están dado mayormente por fluctuación de la cámara y cambio de luz, ruidos en los que el modelo GMM se adapta muy bien \cite{GMM}.
 
-Luego de aplicar GMM sobre la imagen al resultado obtenido se le aplica una transformación morfológica. Las transformaciones morfológicas son algunas operaciones simples basadas en la forma de la imagen, las cuales se realizan en imágenes binarias. Estas operaciones necesitan dos entradas, una es la imagen original, la segunda se llama elemento estructurador o \textit{kernel}, el cual decide la naturaleza de la operación. Dos operadores morfológicos básicos son Erosión y Dilatación. Luego, sus variantes como apertura, cierre, gradiente, etc. también entran en juego \cite{MorphologicalTransformationsOpenCV}. La operación morfológica utilizada por el sistema es apertura, nombre que se le da a la operación de erosión seguida de dilatación. La forma del kernel utilizada es un círculo debido a que se ajusta mejor a la forma de la pelota.
+Luego de aplicar GMM sobre la imagen al resultado obtenido se le aplica una transformación morfológica. Las transformaciones morfológicas son algunas operaciones simples basadas en la forma de la imagen, las cuales se realizan en imágenes binarias. Estas operaciones necesitan dos entradas, una es la imagen original, la segunda se llama elemento estructurador o \textit{kernel}, el cual decide la naturaleza de la operación. Dos operadores morfológicos básicos son erosión y dilatación, también existen sus variantes como apertura, cierre, gradiente, etc (ver Fig: \ref{fig:MorphOp}). también entran en juego \cite{MorphologicalTransformationsOpenCV}. La operación morfológica utilizada por el sistema es apertura, nombre que se le da a la operación de erosión seguida de dilatación. La forma del kernel utilizada es un círculo debido a que se ajusta mejor a la forma de la pelota.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/MorphOp_OriginalImage.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/MorphOp_Erotion.jpg}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/MorphOp_Dilation.jpg}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/MorphOp_Opening.jpg}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Graphics/MorphOp_Closing.jpg}
+		\caption{}
+	\end{subfigure}
+	\caption{Operaciones morfológicas : (a) Imagen original, (b) Erosión, (c) Dilatación, (d) Apertura, (e) Cierre.}
+	\label{fig:MorphOp}
+\end{figure}
 
 \subsection{Filtrado a la Pelota}
 
@@ -292,7 +344,7 @@ donde $IA$ el área de la imagen, $rp$ es el porciento del área de la imagen qu
 
 \section{Aproximación de la trayectoria de la pelota}
 
-Luego de obtener el conjunto de puntos en la imagen donde se encontró la pelota, es necesario hallar una función que los aproxime. En este conjunto de puntos obtenidos puede que todavía queden algunos que fueron identificados falsamente como una pelota, a los puntos con estas características se les denomina \textit{outliers}. Debido a esto es conveniente utilizar un método que no tenga en cuenta la presencia de estos \textit{outliers}, de lo contrario no se tendrá una buena aproximación de la trayectoria de la pelota. Un método que aproxima eficiente un conjunto de puntos donde hay \textit{outliers} es \textit{RANSAC} (ver sección \ref{sec:RANSAC}).
+Luego de obtener el conjunto de puntos en la imagen donde se encontró la pelota, es necesario hallar una función que los aproxime. En este conjunto de puntos obtenidos puede que todavía queden algunos que fueron identificados falsamente como una pelota, a los puntos con estas características se les denomina \textit{outliers}. Debido a esto es conveniente utilizar un método que no tenga en cuenta la presencia de estos \textit{outliers}, de lo contrario no se tendrá una buena aproximación de la trayectoria de la pelota. Un método que aproxima eficientemente un conjunto de puntos donde hay \textit{outliers} es \textit{RANSAC} (ver sección \ref{sec:RANSAC}).
 
 \section{Herramientas}
 

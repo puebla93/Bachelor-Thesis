@@ -1,7 +1,7 @@
 \backcite {DVD}{{\es@scroman {ix}}{(document)}{Doc-Start}}
 \backcite {DVD}{{\es@scroman {ix}}{(document)}{Doc-Start}}
 \backcite {DVD}{{\es@scroman {ix}}{(document)}{Doc-Start}}
-\backcite {DVD}{{\es@scroman {ix}}{(document)}{Doc-Start}}
+\backcite {DVD}{{\es@scroman {x}}{(document)}{Doc-Start}}
 \backcite {DVD}{{\es@scroman {x}}{(document)}{Doc-Start}}
 \backcite {Pitchf/x}{{1}{(document)}{Doc-Start}}
 \backcite {Sportvision}{{1}{(document)}{Doc-Start}}
@@ -95,14 +95,15 @@
 \backcite {PlayStationEye}{{29}{2.2}{section.2.2}}
 \backcite {PlayStationMove}{{29}{2.2}{section.2.2}}
 \backcite {PitcherSpeed}{{30}{2.3.1}{subsection.2.3.1}}
-\backcite {DVD}{{33}{2.4}{section.2.4}}
-\backcite {DVD}{{33}{2.7}{figure.caption.29}}
+\backcite {DVD}{{34}{2.4}{section.2.4}}
 \backcite {DVD}{{34}{2.8}{figure.caption.30}}
-\backcite {Contours}{{34}{2.5.1}{subsection.2.5.1}}
-\backcite {AdaptiveThreshold}{{35}{2.5.1}{subsection.2.5.1}}
-\backcite {AdaptiveThresholdOpenCV}{{35}{2.5.1}{subsection.2.5.1}}
-\backcite {AdaptiveThresholdOpenCV}{{35}{2.5.1}{subsection.2.5.1}}
-\backcite {YannickPierreMarcBrunoHeleneChristophe}{{38}{2.6.1}{subsection.2.6.1}}
-\backcite {GMM}{{38}{2.6.1}{subsection.2.6.1}}
-\backcite {MorphologicalTransformationsOpenCV}{{38}{2.6.1}{subsection.2.6.1}}
-\backcite {DVD}{{52}{3.3}{chapter*.46}}
+\backcite {DVD}{{34}{2.9}{figure.caption.31}}
+\backcite {Contours}{{35}{2.5.1}{subsection.2.5.1}}
+\backcite {AdaptiveThreshold}{{36}{2.5.1}{subsection.2.5.1}}
+\backcite {AdaptiveThresholdOpenCV}{{36}{2.5.1}{subsection.2.5.1}}
+\backcite {AdaptiveThresholdOpenCV}{{36}{2.5.1}{subsection.2.5.1}}
+\backcite {CornerSubPixOpenCV}{{37}{2.5.2}{figure.caption.34}}
+\backcite {YannickPierreMarcBrunoHeleneChristophe}{{39}{2.6.1}{subsection.2.6.1}}
+\backcite {GMM}{{39}{2.6.1}{subsection.2.6.1}}
+\backcite {MorphologicalTransformationsOpenCV}{{40}{2.6.1}{subsection.2.6.1}}
+\backcite {DVD}{{54}{3.3}{chapter*.49}}
