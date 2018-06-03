@@ -12,7 +12,7 @@ En el béisbol existen un conjunto de reglas o definiciones extremadamente impor
 
 \subsection{Zona de Strike Actual}
 
-En el béisbol, la zona de strike es el volumen de espacio por el que debe pasar un lanzamiento para contar como strike. La zona de strike oficial es el área sobre el \textit{home plate} desde el punto medio entre los hombros de un bateador y la parte superior de los pantalones del uniforme, cuando el bateador está en su posición y preparado para golpear una bola lanzada, y un punto justo debajo de la rótula (ver Fig. \ref{fig:StrikeZone}).
+En el béisbol, la zona de strike es el volumen de espacio por el que debe pasar un lanzamiento para contar como strike. La zona de strike oficial es el área sobre el \textit{Home Plate} desde el punto medio entre los hombros de un bateador y la parte superior de los pantalones del uniforme, cuando el bateador está en su posición y preparado para golpear una bola lanzada, y un punto justo debajo de la rótula (ver Fig. \ref{fig:StrikeZone}).
 
 En las ligas juveniles, la zona de strike puede ser diferente. A menudo, la parte superior de la zona de strike está en las axilas, para que sea un poco más grande y más fácil para los árbitros.
 
@@ -186,7 +186,7 @@ Para poder detectar correctamente un objeto en una imagen es necesario el conoci
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=8cm]{Graphics/HomePlate.png}
+    \includegraphics[width=8cm]{Graphics/HomePlateDimentions.png}
     \caption{Dimensiones del \textit{Home Plate} de béisbol.}
     \label{fig:HomePlateDimentions}
 \end{figure}
@@ -284,9 +284,25 @@ donde $\alpha_1$, $\alpha_2$, $\alpha_3$ son los tres ángulos menores y $\beta_
 	\label{fig:FilteredContours}
 \end{figure}
 
-\subsection{Transformación de la vista en la imagen a top-view}
+\subsection{Rectificación de \textit{Home Plate}}
 
-Transformación
+La detección de \textit{Home Plate} se realiza entre lanzamiento y lanzamiento, puesto que es más lenta que la velocidad de captura de la cámara. Esto está dado por el trabajo de filtrado que se realiza sobre los contornos en la imagen. Luego de que sean hayados en diferentes frames un conjunto de \textit{Home Plates}, los valores que definen su posición son promediados, esto permite obtener una mejor aproximación de la posición real que este ocupa en la imagen.
+
+Para poder desempeñar un trabajo más comodo en las etapas posteriores a esta, la vista en la imagen es transformada a una vista \textit{top-down} o \textit{birds-eye} (ver Fig. \ref{fig:TopDownView}). El acto de transformar la imagen permite modificar el tamaño de la imagen resultante (1024x768) a una dimensión mayor que la original (320x240), sin perder el aspecto que poseen los objetos en esta imagen. La etapa de detección de la pelota se realiza sobre esta nueva imagen transformada.
+
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}[b]{0.35\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/ColorImage.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.35\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/TopDownViewWraped.png}
+		\caption{}
+	\end{subfigure}
+	\caption{Transformación de la vista en la imagen : (a) Imagen Original, (b) Vista \textit{top-down}.}
+	\label{fig:TopDownView}
+\end{figure}
 
 \section{Detección de la Pelota}
 
@@ -337,14 +353,59 @@ donde $IA$ el área de la imagen, $rp$ es el porciento del área de la imagen qu
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=7cm]{Graphics/Ball.jpg}
+    \includegraphics[width=7cm]{Graphics/BallDimentions.jpg}
     \caption{Dimensiones de la pelota de béisbol.}
     \label{fig:BallDimentions}
 \end{figure}
 
 \section{Aproximación de la trayectoria de la pelota}
 
-Luego de obtener el conjunto de puntos en la imagen donde se encontró la pelota, es necesario hallar una función que los aproxime. En este conjunto de puntos obtenidos puede que todavía queden algunos que fueron identificados falsamente como una pelota, a los puntos con estas características se les denomina \textit{outliers}. Debido a esto es conveniente utilizar un método que no tenga en cuenta la presencia de estos \textit{outliers}, de lo contrario no se tendrá una buena aproximación de la trayectoria de la pelota. Un método que aproxima eficientemente un conjunto de puntos donde hay \textit{outliers} es \textit{RANSAC} (ver sección \ref{sec:RANSAC}).
+Luego de obtener el conjunto de puntos en la imagen donde se encontró la pelota, es necesario hallar una función que los aproxime. En este conjunto de puntos obtenidos puede que todavía queden algunos que fueron identificados falsamente como una pelota, a los puntos con estas características se les denomina \textit{outliers}. Debido a esto es conveniente utilizar un método que no tenga en cuenta la presencia de estos \textit{outliers}, de lo contrario puede que no se obtenga una buena aproximación de la trayectoria de la pelota. El método utilizado por el sistema para aproximar eficientemente este conjunto de puntos es \textit{RANSAC} (ver sección \ref{sec:RANSAC}). El modelo utilizado por \textit{RANSAC} para aproximar la trayectoria de la pelota es la función cuadrática:
+$$f(x) = ax^2+bx+c$$
+
+Las funciones cuadráticas han demostrado ser buenas aproximaciones de los conjuntos de puntos que se encuentran a una distancia relativa pequeña, como es el caso de este sistema en donde el campo de visón es de $3.45$ metros. Luego de aplicar \textit{RANSAC} a este conjunto de puntos obtenemos la función que describe la trayectoria de la pelota (ver Fig: \ref{fig:BallTrajectory}) en el eje horizontal de la zona de strike.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=10cm]{Graphics/BallTrajectory.png}
+    \caption{Aproximación de la trayectoria de la pelota.}
+    \label{fig:BallTrajectory}
+\end{figure}
+
+Con este resultado se responde a la pregunta de si la pelota pasó por encima de \textit{Home Plate} o no. Otro dato que interesa conocer para poder caracterizar el lanzamiento es a que altura pasó la pelota por encima de \textit{Home Plate}. Para conocer la altura de la pelota se utilizó su radio en pixeles, puesto que a mayor radio más cerca esta la pelota de la cámara y por consecuente a mayor altura con respecto a \textit{Home Plate}. El radio de la pelota también es aproximado con \textit{RANSAC}, utilizado la misma función cuadrática anteriormente expuesta como modelo (ver Fig: \ref{fig:BallRadius}).
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=10cm]{Graphics/BallRadius.png}
+    \caption{Aproximación del radio de la pelota.}
+    \label{fig:BallRadius}
+\end{figure}
+
+Para conocer la altura de la pelota con respecto a \textit{Home Plate} se calcula previamente el tamaño en pixeles del diámetro de la pelota en el piso (a la altura de \textit{Home Plate}). Este cálculo se lleva a cabo mediante la siguiente fórmula:
+
+$$\frac{ball\_diameter_{pixels}}{home\_large_{pixels}} = \frac{ball\_diameter_{inches}}{home\_large_{inches}}$$\\
+donde el largo de \textit{Home Plate} en pulgadas es conocido (ver Fig: \ref{fig:HomePlateDimentions}) y el diámetro de la pelota en pulgadas es conocido (ver Fig: \ref{fig:BallDimentions}). Sustituyendo los valores conocidos y despejando $ball\_diameter_{pixels}$ nos queda:
+$$ball\_diameter_{pixels} = \frac{2.86}{17}*home\_large_{pixels}$$
+donde $home\_large_{pixels}$ es el largo de \textit{Home Plate} en pixeles, el cual se conoce a partir del \textit{Home Plate} detectado previamente. Con este resultado obtenemos el tamaño en pixeles del diámetro de la pelota en el piso, lo que nos permite calcular a que altura se encuentra la pelota del piso mediante la siguiente fórmula:
+$$ball\_high_{cm} = camera\_high_{cm} - (camera\_high_{cm}*\frac{ball\_diameter_{pixels}}{ball\_pixels})$$
+donde $camera\_high_{cm}$ es la altura a la que se encuentra la cámara del piso y $ball\_pixels$ es el radio de la pelota cuando pasa justo por encima de \textit{HomePlate}. Dado que la altura a la que se encuentra la cámara del piso en el sistema es $225\text{ }cm$, la fórmula queda de la siguiente forma:
+$$ball\_high_{cm} = 255 - (255*\frac{ball\_diameter_{pixels}}{ball\_pixels})$$
+
+Luego de realizados todos estos cálculos se tiene el punto por donde paso la pelota en la zona de strike, lo que nos permite caracterizar el lanzamiento en \textit{strike} o \textit{bola} (ver Fig: \ref{fig:PitchCall}).
+
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}[b]{0.45\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/Strike.jpg}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\linewidth}
+		\includegraphics[width=\linewidth]{Graphics/Ball.jpg}
+		\caption{}
+	\end{subfigure}
+	\caption{Caracterización del lanzamiento : (a) Strike, (b) Bola.}
+	\label{fig:PitchCall}
+\end{figure}
 
 \section{Herramientas}
 

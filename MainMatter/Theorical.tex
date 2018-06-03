@@ -10,7 +10,7 @@ Para comprender la solución que se propone en este trabajo se enumeran las cuat
 
 \begin{itemize}
     \item Obtención de los cinco puntos que describen el \textit{Home Plate}.
-    \item Computar la matriz de tranformación de la imagen a una vista top-view.
+    \item Computar la matriz de tranformación de la imagen a una vista \textit{top-down}.
     \item Detección de la pelota en la imagen.
     \item Modelación de la trayectoria de la pelota.
 \end{itemize}
@@ -104,7 +104,7 @@ Hay muchos otros tipos de distorsiones que ocurren en los sistemas de imágenes,
 
 \section{Calibración}
 
-Para poder estimar con una mayor precisión la posición del \textit{Home Plate} o de la pelota es importante la calibración de la cámara, esto premite relacionar las mediciones de la misma con mediciones en el mundo tridimensional real. El proceso de calibración de la cámara nos proporciona un modelo de la geometría de la cámara y un modelo de distorsión del lente. Estos dos modelos informativos definen los parámetros intrínsecos de la cámara. Esto es importante porque las escenas no son solo tridimensionales; también son espacios físicos con unidades físicas. Según \cite{GaryAdrian} la calibración es: \textit{el proceso mediante el cual se calculan los parámetros intrínsecos y extrínsecos de la cámara, a partir de la correspondencia entre un conjunto de puntos de control con coordenadas tridimensionales conocidas y sus proyecciones en la imagen obtenida con dicha cámara}.
+Para poder estimar con una mayor precisión la posición del \textit{Home Plate} o de la pelota es importante la calibración de la cámara, puesto que premite relacionar las mediciones de la misma con mediciones en el mundo tridimensional real. El proceso de calibración de la cámara nos proporciona un modelo de la geometría de la cámara y un modelo de distorsión del lente. Estos dos modelos informativos definen los parámetros intrínsecos de la cámara. Esto es importante porque las escenas no son solo tridimensionales; también son espacios físicos con unidades físicas. Según \cite{GaryAdrian} la calibración es: \textit{el proceso mediante el cual se calculan los parámetros intrínsecos y extrínsecos de la cámara, a partir de la correspondencia entre un conjunto de puntos de control con coordenadas tridimensionales conocidas y sus proyecciones en la imagen obtenida con dicha cámara}.
 
 Para calcular los parámetros intrínsecos, $f_x$, $f_y$, $c_x$, $c_y$ y el vector de coeficientes de distorsión, se capturan imágenes de una escena que tenga un conjunto $C=(Q_1 \dots Q_n)$ de puntos característicos (fácilmente identificables) con coordenadas conocidas con respecto a un origen previamente definido. Cada punto $Q_i\in{C}$ tiene una proyección $q_i=(x, y)$ en el plano de la imagen con coordenadas en pixeles. Es posible describir la posición relativa de los puntos $Q$ con respecto a las coordenadas de la cámara (con origen en el punto principal) utilizando una rotación $R$ y una traslación $T$ de modo que $Q_c=R(Q_w-T)$, donde $Q_w$ son las coordenadas de los puntos en el espacio y $Q_c$ son las coordenadas con respecto a la cámara y las matrices $R$, $T$ se denominan parámetros extrínsecos de la cámara. Utilizando coordenadas homogéneas y la matriz de parámetros intrínsecos $M$ es posible definir la homografía $H$ que relaciona a cada punto del espacio $Q_i$ con sus proyecciones $q_i$ en el plano de la imagen \cite{DVD}
 \begin{equation*}
