@@ -231,7 +231,7 @@ donde $IA$ el área de la imagen, $cpa$ es el porciento del área de la imagen q
 Una de las características geométricas que posee el \textit{Home Plate} es que es un polígono de 5 lados (pentágono). Esta característica es un buen filtro debido a que muchos contornos en la imagen aunque sean un polígono no serán un pentágono (no tendrán 5 lados).\\
 
 \textbf{Refinado de bordes.}
-Puesto que el contorno que describe al \textit{Home Plate} no tiene exactamente la forma óptima es necesario refinar mejor sus lados para así obtener una mejor proporción entre estos. Esto se logra encontrando la ubicación precisa de las esquinas o puntos de montura radial subpíxel (ver Fig. \ref{fig:CornerSubPix}).
+Puesto que el contorno que describe al \textit{Home Plate} no tiene exactamente la forma óptima, es necesario refinar mejor sus lados para así obtener una mejor proporción entre estos. Esto se logra encontrando la ubicación precisa de las esquinas o puntos de montura radial subpíxel (ver Fig. \ref{fig:CornerSubPix}).
 
 \begin{figure}[h!]
 	\centering
@@ -240,7 +240,7 @@ Puesto que el contorno que describe al \textit{Home Plate} no tiene exactamente 
 	\label{fig:CornerSubPix}
 \end{figure}
 
-Este método se basa en la observación de que cada vector desde el centro $q$ hasta un punto $p$ ubicado dentro de un vecindario de $q$ es ortogonal al gradiente de imagen en $p$ sujeto a la imagen y al ruido de medición \cite{CornerSubPixOpenCV}.\\
+Este método se basa en la observación de que cada vector desde el centro $q$ hasta un punto $p$ ubicado dentro de un vecindario de $q$ es ortogonal al gradiente de imagen en $p$, sujeto a la imagen y al ruido de medición \cite{CornerSubPixOpenCV}.\\
 
 \textbf{Filtrado de relación entre los lados.}
 Otro de los filtros utilizados es el filtro de relación entre los lados. Como se muestra en la figura \ref{fig:HomePlateDimentions} el \textit{Home Plate} tiene dos pares de lados iguales, lo que supone una característica bastante particular de este pentágono. Al igual que en el filtrado por área la relación entre los lados iguales es porcentual y se tiene un umbral de diferencia entre los lados, esto está dado debido a que los lados rara vez van a ser exactamente iguales. Un lado de longitud $d_1$ es igual a otro de longitud $d_2$ si:
