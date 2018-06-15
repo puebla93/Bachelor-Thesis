@@ -388,7 +388,7 @@ donde el largo de \textit{Home Plate} en pulgadas es conocido (ver Fig: \ref{fig
 $$ball\_diameter_{pixels} = \frac{2.86}{17}*home\_large_{pixels}$$
 donde $home\_large_{pixels}$ es el largo de \textit{Home Plate} en pixeles, el cual se conoce a partir del \textit{Home Plate} detectado previamente. Con este resultado obtenemos el tamaño en pixeles del diámetro de la pelota en el piso, lo que nos permite calcular a que altura se encuentra la pelota del piso mediante la siguiente fórmula:
 $$ball\_high_{cm} = camera\_high_{cm} - (camera\_high_{cm}*\frac{ball\_diameter_{pixels}}{ball\_pixels})$$
-donde $camera\_high_{cm}$ es la altura a la que se encuentra la cámara del piso y $ball\_pixels$ es el radio de la pelota cuando pasa justo por encima de \textit{HomePlate}. Dado que la altura a la que se encuentra la cámara del piso en el sistema es $225\text{ }cm$, la fórmula queda de la siguiente forma:
+donde $camera\_high_{cm}$ es la altura a la que se encuentra la cámara del piso y $ball\_pixels$ es el diámetro de la pelota cuando pasa justo por encima de \textit{HomePlate}. Dado que la altura a la que se encuentra la cámara del piso en el sistema es $225\text{ }cm$, la fórmula queda de la siguiente forma:
 $$ball\_high_{cm} = 255 - (255*\frac{ball\_diameter_{pixels}}{ball\_pixels})$$
 
 Luego de realizados todos estos cálculos se tiene el punto por donde paso la pelota en la zona de strike, lo que nos permite caracterizar el lanzamiento en \textit{strike} o \textit{bola} (ver Fig: \ref{fig:PitchCall}).
